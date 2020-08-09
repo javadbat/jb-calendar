@@ -1,0 +1,192 @@
+.jb-calendar-web-component{
+    width: 272px;
+    height: 272px;
+    //background-color: red;
+    color:#2a2d30;
+    font-size: 16px;
+    .navigator-section{
+        height: 32px;
+        width: 100%;
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        .prev-btn{
+            background-color: #f6f8f9;
+            width: 32px;
+            height: 32px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            svg{
+                fill:#97999a;
+            }
+        }
+        .next-btn{
+            background-color: #f6f8f9;
+            width: 32px;
+            height: 32px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            svg{
+                fill:#97999a;
+            }
+        }
+        .navigator-title{
+            .month{
+                display: none;
+                &.--show{
+                    display: inline;
+                }
+            }
+            .year{
+                display: none;
+                &.--show{
+                    display: inline;
+                } 
+            }
+            .year-range{
+                display: none;
+                &.--show{
+                    display: inline;
+                }
+            }
+        }
+    }
+    .calendar-section{
+        height: auto;
+        width: 100%;
+        .day-selection-section{
+            display: none;
+            &.--show{
+                display:block;
+            }
+            .week-day-wrapper{
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                grid-template-rows: 1fr;
+                gap: 4px;
+                height: 32px;
+                width: 100%;
+                margin-bottom: 16px;
+                .week-day{
+                    height: 32px;
+                    text-align: center;
+                    font-weight: 800;
+                    font-variation-settings: "wght" 800;;
+                    font-size: 1em;
+                }
+            }
+            .month-day-wrapper{
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                grid-auto-rows: 1fr;
+                gap: 8px 4px;
+                height: 32px;
+                width: 100%;
+                .day-wrapper{
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 12px;
+                    color:#b7bbc4;
+                    position: relative;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    &.--today{
+                        color:#28BD48;
+                        .status-point{
+                            display: block;
+                        }
+                    }
+                    &.--selected{
+                        color: #fff;
+                        background-color: #1e2832;
+                        &:hover{
+                            background-color: #1e2832;
+                        }
+                    }
+                    &:hover{
+                        background-color: #f6f8f9;
+                    }
+                    .day-number{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    .status-point{
+                        position: absolute;
+                        width: 10px;
+                        height: 10px;
+                        background-color: #28BD48;
+                        border-radius: 6px;
+                        bottom: -6px;
+                        left: calc(50% - 5px);
+                        display: none;
+                        z-index: 1;
+                        border:1px solid #fff;
+                        box-sizing: border-box;
+                    }
+                }
+            }
+        }
+        .month-selection-section{
+            display: none;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr;
+            gap:12px 8px;
+            &.--show{
+                display: grid;
+            }
+            .month-wrapper{
+                width: 100%;
+                height: 32px;
+                cursor: pointer;
+                border-radius: 12px;
+                &:hover{
+                    background-color: #f6f8f9;
+                }
+                .month-name{
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+        }
+        .year-selection-section{
+            display: none;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr;
+            gap:12px 8px;
+            &.--show{
+                display: grid;
+            }
+            .year-wrapper{
+                width: 100%;
+                height: 32px;
+                cursor: pointer;
+                border-radius: 12px;
+                &:hover{
+                    background-color: #f6f8f9;
+                }
+                .year-number{
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+        }
+
+    }
+}
