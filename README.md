@@ -33,3 +33,15 @@ you can write wrapper for it in any js framework you use and it will compatible 
 ## dependancy
 
 we use `dayjs` to manege calendar jalali data
+### events
+
+```js
+//when defualt property are defined best time for impl your config like min and max date
+document.querySelector('jb-calendar').addEventListener('init',this.onCalendarElementInitiated);
+
+//when calendar init all property and function and dom created and bind successully
+document.querySelector('jb-calendar').addEventListener('load',this.onCalendarElementLoaded);
+
+//when user select a selectable day on calendar
+document.querySelector('jb-calendar').addEventListener('select',this.onDaySelected);
+```
