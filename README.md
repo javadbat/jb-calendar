@@ -12,6 +12,7 @@ npm install jb-calendar
 ```html
     <jb-calendar></jb-calendar>
 ```
+
 in frameworks for example React:
 
 ```jsx
@@ -22,6 +23,7 @@ function myHOC(){
     )
 }
 ```
+
 ### select value
 
 ```js
@@ -29,10 +31,13 @@ function myHOC(){
     // for example:
     document.querySelector('jb-calendar').select(1399,8,24);
 ```
+
 you can write wrapper for it in any js framework you use and it will compatible with react, vue, angular, ...
+
 ## dependancy
 
 we use `dayjs` to manege calendar jalali data
+
 ### events
 
 ```js
@@ -44,4 +49,12 @@ document.querySelector('jb-calendar').addEventListener('load',this.onCalendarEle
 
 //when user select a selectable day on calendar
 document.querySelector('jb-calendar').addEventListener('select',this.onDaySelected);
+```
+
+### Jalali and Gregorian Date input
+
+in jb-calendar you can set date input type to be jalali or gregorian and change it whenever you want by simple set `dateInput` to `JALALI` or `GREGORIAN`.
+
+```js
+    document.querySelector('jb-calendar').dateInput = `GREGORIAN`;
 ```
