@@ -7,6 +7,7 @@ pure js jalali calendar interface web component
 ```cmd
 npm install jb-calendar
 ```
+
 ## usage
 
 ```html
@@ -58,3 +59,11 @@ in jb-calendar you can set date input type to be jalali or gregorian and change 
 ```js
     document.querySelector('jb-calendar').dateInput = `GREGORIAN`;
 ```
+
+## attribute
+
+### other attribute
+
+| atribute name  | description                                                                                                         |
+| -------------  | -------------                                                                                                       |
+| direction      | set web-component direction for legacy browser dont support `:dir()`. defualt set is rtl but if you need ltr use `<jb-input direction="ltr"></jb-input>`      |

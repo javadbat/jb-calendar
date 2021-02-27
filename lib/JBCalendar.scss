@@ -3,7 +3,6 @@
     height: auto;
     color:#2a2d30;
     font-size: 16px;
-    direction: rtl;
     .navigator-section{
         height: 32px;
         width: 100%;
@@ -12,7 +11,7 @@
         align-items: center;
         justify-content: space-between;
         cursor: pointer;
-        .prev-btn{
+        .arrow-btn{
             background-color: #f6f8f9;
             width: 32px;
             height: 32px;
@@ -21,19 +20,18 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            svg{
-                fill:#97999a;
+            
+            &:dir(ltr){
+                svg{
+                    transform: scaleX(-1);
+                }
             }
-        }
-        .next-btn{
-            background-color: #f6f8f9;
-            width: 32px;
-            height: 32px;
-            border-radius: 12px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
+            //for backward compatibility on chrome you can set parent element direction attribute manually
+            :host([direction="ltr"]) & {
+                svg{
+                    transform: scaleX(-1);
+                }
+             }
             svg{
                 fill:#97999a;
             }
