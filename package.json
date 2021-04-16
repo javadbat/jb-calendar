@@ -14,7 +14,7 @@
     "jalali",
     "web component"
   ],
-  "version": "1.0.7",
+  "version": "1.0.8",
   "bugs": "https://github.com/javadbat/jb-calendar/issues",
   "license": "MIT",
   "files": [
@@ -27,5 +27,9 @@
   "repository": {
 		"type": "git",
 		"url": "git@github.com:javadbat/jb-calendar.git"
+  },
+  "dependencies": {
+    "dayjs": "^1.8.31",
+    "jalaliday": "^2.3.0"
   }
 }

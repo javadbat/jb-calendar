@@ -1,6 +1,7 @@
 # jb-calendar
 
 pure js jalali calendar interface web component
+sample:  <https://codepen.io/javadbat/pen/poRKYEY>
 
 ## installation
 
