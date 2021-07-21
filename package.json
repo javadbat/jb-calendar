@@ -1,6 +1,7 @@
 {
   "name": "jb-calendar",
   "description": "jalali calendar interface web component",
+  "type": "module",
   "author": {
 		"name": "mohammad javad bathaei",
 		"email": "javadbat@gmail.com"
@@ -14,7 +15,7 @@
     "jalali",
     "web component"
   ],
-  "version": "1.0.10",
+  "version": "1.0.12",
   "bugs": "https://github.com/javadbat/jb-calendar/issues",
   "license": "MIT",
   "files": [
@@ -30,7 +31,7 @@
 		"url": "https://github.com/javadbat/jb-calendar"
   },
   "dependencies": {
-    "dayjs": "^1.8.31",
-    "jalaliday": "^2.3.0"
+    "dayjs": ">=1.8.31",
+    "jalaliday": ">=2.3.0"
   }
 }
