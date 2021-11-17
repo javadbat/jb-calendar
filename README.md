@@ -3,6 +3,8 @@
 pure js jalali calendar interface web component
 sample:  <https://codepen.io/javadbat/pen/poRKYEY>
 
+ - support jalali date as well as gregorian date
+ - customizable theme with css variable so you can implement dark mode too
 ## installation
 
 ```cmd
