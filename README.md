@@ -68,3 +68,22 @@ in jb-calendar you can set date input type to be jalali or gregorian and change 
 | atribute name  | description                                                                                                         |
 | -------------  | -------------                                                                                                       |
 | direction      | set web-component direction for legacy browser dont support `:dir()`. defualt set is rtl but if you need ltr use `<jb-input direction="ltr"></jb-input>`      |
+
+### set custome style
+
+in some cases in your project you need to change defualt style of web-component for example you need different color or different border-radius and etc.    
+if you want to set a custom style to this web-component all you need is to set css variable in parent scope of web-component 
+| css variable name                        | description                                                                                   |
+| --jb-calendar-color                      | general text color of component                                                               |
+| --jb-calendar-arrow-button-bgcolor       | background color of next and prev button                                                      |
+| --jb-calendar-day-text-color             | day text color                                                                                |
+| --jb-calendar-day-text-color-disabled    | day text color when day in not available for select                                           |
+| --jb-calendar-day-text-color-today       | today day text color                                                                          |
+| --jb-calendar-day-bgcolor-selected       | selected day background color                                                                 |
+| --jb-calendar-day-bgcolor-selected-hover | selected day background color on hover                                                        |
+| --jb-calendar-day-bgcolor-hover          | day background color on hover                                                                 |
+| --jb-calendar-status-point-bgcolor-today | backgrround color of small cirle under today text                                             |
+| --jb-calendar-status-point-border-color  | border color of status point                                                                  |
+| --jb-calendar-month-bgcolor-hover        | background color of month in month list in hover state                                        |
+| --jb-calendar-year-bgcolor-hover         | background color of year in month list in hover state                                         |
+| --jb-calendar-arrow-fill-color           | next and prev arrow icon color                                                                |
