@@ -74,7 +74,8 @@ in jb-calendar you can set date input type to be jalali or gregorian and change 
 ### set custome style
 
 in some cases in your project you need to change defualt style of web-component for example you need different color or different border-radius and etc.    
-if you want to set a custom style to this web-component all you need is to set css variable in parent scope of web-component 
+if you want to set a custom style to this web-component all you need is to set css variable in parent scope of web-component
+
 | css variable name                        | description                                                                                   |
 | --jb-calendar-color                      | general text color of component                                                               |
 | --jb-calendar-arrow-button-bgcolor       | background color of next and prev button                                                      |
