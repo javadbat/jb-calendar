@@ -81,63 +81,90 @@
                     font-size: 1em;
                 }
             }
-            .month-day-wrapper{
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-                grid-auto-rows: 1fr;
-                gap: 8px 4px;
-                height: auto;
+            .month-day-container{
+                position: relative;
                 width: 100%;
-                .day-wrapper{
-                    width: 32px;
-                    height: 32px;
-                    border-radius: 12px;
-                    color:var(--jb-calendar-day-text-color, #868990);
-                    position: relative;
-                    cursor: pointer;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    &.--disable{
-                        color:var(--jb-calendar-day-text-color-disabled, #ddd);
-                        cursor: not-allowed;
+                height: auto;
+                overflow-x: hidden;
+                
+                .month-day-wrapper{
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                    grid-auto-rows: 1fr;
+                    gap: 8px 4px;
+                    height: auto;
+                    width: 100%;
+                    &.current-month-day-wrapper{
+                        position: static;
                     }
-                    &.--today{
-                        color:var(--jb-calendar-day-text-color-today, #28BD48);;
-                        .status-point{
-                            display: block;
-                        }
+                    &.prev-month-day-wrapper{
+                        position: absolute;
+                        top: 0;
+                        left: -100%;
+                        width: 100%;
+                        height: 100%;
+                        overflow: hidden;
                     }
-                    &.--selected{
-                        color: #fff;
-                        background-color: var(--jb-calendar-day-bgcolor-selected, #1e2832);
-                        &:hover{
-                            background-color: var(--jb-calendar-day-bgcolor-selected-hover, #1e2832);
-                        }
+                    &.next-month-day-wrapper{
+                        position: absolute;
+                        top: 0;
+                        left: 100%;
+                        width: 100%;
+                        height: 100%;
+                        overflow: hidden;
                     }
-                    &:hover{
-                        background-color: var(--jb-calendar-day-bgcolor-hover, #f6f8f9) ;
-                    }
-                    .day-number{
+                    .day-wrapper{
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 12px;
+                        color:var(--jb-calendar-day-text-color, #868990);
+                        position: relative;
+                        cursor: pointer;
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                    }
-                    .status-point{
-                        position: absolute;
-                        width: 10px;
-                        height: 10px;
-                        background-color: var(--jb-calendar-status-point-bgcolor-today, #28BD48) ;
-                        border-radius: 6px;
-                        bottom: -6px;
-                        left: calc(50% - 5px);
-                        display: none;
-                        z-index: 1;
-                        border:1px solid var(--jb-calendar-status-point-border-color, #fff);
-                        box-sizing: border-box;
+                        &.--disable{
+                            color:var(--jb-calendar-day-text-color-disabled, #ddd);
+                            cursor: not-allowed;
+                        }
+                        &.--today{
+                            color:var(--jb-calendar-day-text-color-today, #28BD48);;
+                            .status-point{
+                                display: block;
+                            }
+                        }
+                        &.--selected{
+                            color: #fff;
+                            background-color: var(--jb-calendar-day-bgcolor-selected, #1e2832);
+                            &:hover{
+                                background-color: var(--jb-calendar-day-bgcolor-selected-hover, #1e2832);
+                            }
+                        }
+                        &:hover{
+                            background-color: var(--jb-calendar-day-bgcolor-hover, #f6f8f9) ;
+                        }
+                        .day-number{
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                        .status-point{
+                            position: absolute;
+                            width: 10px;
+                            height: 10px;
+                            background-color: var(--jb-calendar-status-point-bgcolor-today, #28BD48) ;
+                            border-radius: 6px;
+                            bottom: -6px;
+                            left: calc(50% - 5px);
+                            display: none;
+                            z-index: 1;
+                            border:1px solid var(--jb-calendar-status-point-border-color, #fff);
+                            box-sizing: border-box;
+                        }
                     }
                 }
             }
+
         }
         .month-selection-section{
             display: none;
