@@ -1,3 +1,5 @@
+import { Dayjs } from "dayjs";
+
 /* eslint-disable @typescript-eslint/no-namespace */
 export type JBCalendarValue = {
     day: number | null;
@@ -31,8 +33,8 @@ export type JBCalendarElements = {
     }
 }
 export type JBCalendarDateRestrictions = {
-    min: Date | null;
-    max: Date | null;
+    min: Dayjs| Date | null;
+    max: Dayjs| Date | null;
 };
 export type JBCalendarData = {
     selectedYear: number;
