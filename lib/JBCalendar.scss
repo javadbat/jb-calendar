@@ -147,6 +147,9 @@
                             display: flex;
                             align-items: center;
                             justify-content: center;
+                            &:hover{
+                                color: var(--jb-calendar-day-color-hover,#312d2d);
+                            }
                         }
                         .status-point{
                             position: absolute;
@@ -188,6 +191,9 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    &:hover{
+                        color: var(--jb-calendar-month-color-hover,#312d2d);
+                    }
                 }
             }
         }
@@ -240,6 +246,9 @@
                         display: flex;
                         justify-content: center;
                         align-items: center;
+                        &:hover{
+                            color: var(--jb-calendar-year-color-hover,#312d2d);
+                        }
                     }
                 }
             }
