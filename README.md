@@ -92,3 +92,6 @@ if you want to set a custom style to this web-component all you need is to set c
 | --jb-calendar-month-bgcolor-hover        | background color of month in month list in hover state                                        |
 | --jb-calendar-year-bgcolor-hover         | background color of year in month list in hover state                                         |
 | --jb-calendar-arrow-fill-color           | next and prev arrow icon color                                                                |
+| --jb-calendar-day-color-hover            | day color hover default color is `#312d2d`                                                    |
+| --jb-calendar-month-color-hover          | day color hover default color is `#312d2d`                                                    |
+| --jb-calendar-year-color-hover           | day color hover default color is `#312d2d`                                                    |
