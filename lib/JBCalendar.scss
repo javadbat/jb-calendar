@@ -148,7 +148,7 @@
                             align-items: center;
                             justify-content: center;
                             &:hover{
-                                color: var(--jb-calendar-day-color-hover,#312d2d);
+                                color: var(--jb-calendar-day-color-hover, #312d2d);
                             }
                         }
                         .status-point{
@@ -192,7 +192,7 @@
                     justify-content: center;
                     align-items: center;
                     &:hover{
-                        color: var(--jb-calendar-month-color-hover,#312d2d);
+                        color: var(--jb-calendar-month-color-hover, #312d2d);
                     }
                 }
             }
@@ -247,7 +247,7 @@
                         justify-content: center;
                         align-items: center;
                         &:hover{
-                            color: var(--jb-calendar-year-color-hover,#312d2d);
+                            color: var(--jb-calendar-year-color-hover, #312d2d);
                         }
                     }
                 }
