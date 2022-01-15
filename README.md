@@ -78,7 +78,7 @@ in some cases in your project you need to change defualt style of web-component 
 if you want to set a custom style to this web-component all you need is to set css variable in parent scope of web-component
 
 | css variable name                        | description                                                                                   |
-| -------------                           | -------------                                                                                 |
+| -------------                            | -------------                                                                                 |
 | --jb-calendar-color                      | general text color of component                                                               |
 | --jb-calendar-arrow-button-bgcolor       | background color of next and prev button                                                      |
 | --jb-calendar-day-text-color             | day text color                                                                                |
