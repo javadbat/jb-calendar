@@ -91,7 +91,7 @@
                     display: grid;
                     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
                     grid-auto-rows: 1fr;
-                    gap: 8px 4px;
+                    gap: 4px 4px;
                     height: auto;
                     width: 100%;
                     &.current-month-day-wrapper{
@@ -114,50 +114,66 @@
                         overflow: hidden;
                     }
                     .day-wrapper{
-                        width: 32px;
-                        height: 32px;
-                        border-radius: 12px;
-                        color:var(--jb-calendar-day-text-color, #868990);
                         position: relative;
-                        cursor: pointer;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
+                        height: 37px;
+                        width: 32px;
                         &.--disable{
-                            color:var(--jb-calendar-day-text-color-disabled, #ddd);
+                            .day-number-wrapper{
+                                color:var(--jb-calendar-day-text-color-disabled, #ddd);
+                            }
                             cursor: not-allowed;
                         }
                         &.--today{
-                            color:var(--jb-calendar-day-text-color-today, #28BD48);;
+                            .day-number-wrapper{
+                                color:var(--jb-calendar-day-text-color-today, #28BD48);;
+                            }
                             .status-point{
                                 display: block;
                             }
                         }
                         &.--selected{
-                            color: #fff;
-                            background-color: var(--jb-calendar-day-bgcolor-selected, #1e2832);
+                            .day-number-wrapper{
+                                color: #fff;
+                                background-color: var(--jb-calendar-day-bgcolor-selected, #1e2832);
+                                
+                            }
                             &:hover{
-                                background-color: var(--jb-calendar-day-bgcolor-selected-hover, #1e2832);
+                                .day-number-wrapper{
+                                    color:#fff;
+                                    background-color: var(--jb-calendar-day-bgcolor-selected-hover, #1e2832);
+                                }
                             }
                         }
                         &:hover{
-                            background-color: var(--jb-calendar-day-bgcolor-hover, #f6f8f9) ;
-                        }
-                        .day-number{
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            &:hover{
+                            .day-number-wrapper{
+                                background-color: var(--jb-calendar-day-bgcolor-hover, #f6f8f9) ;
                                 color: var(--jb-calendar-day-color-hover, #312d2d);
                             }
                         }
+                        .day-number-wrapper{
+                            width: 32px;
+                            height: 32px;
+                            border-radius: 12px;
+                            color:var(--jb-calendar-day-text-color, #868990);
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            .day-number{
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                
+                            }
+                        }
+
                         .status-point{
                             position: absolute;
                             width: 10px;
                             height: 10px;
                             background-color: var(--jb-calendar-status-point-bgcolor-today, #28BD48) ;
                             border-radius: 6px;
-                            bottom: -6px;
+                            bottom: 0px;
                             left: calc(50% - 5px);
                             display: none;
                             z-index: 1;

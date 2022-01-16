@@ -515,13 +515,19 @@ export class JBCalendarWebComponent extends HTMLElement {
         if (isSelected) {
             dayDom.classList.add('--selected');
         }
+        //
+        const dayNumberWrapperDom = document.createElement('div');
+        dayNumberWrapperDom.classList.add('day-number-wrapper');
+        //
         const dayNumberDom = document.createElement('div');
         dayNumberDom.classList.add('day-number');
         dayNumberDom.innerHTML = dayNumber.toString();
         const statusPoint = document.createElement('div');
         statusPoint.classList.add('status-point');
+        //
+        dayNumberWrapperDom.appendChild(dayNumberDom);
         dayDom.appendChild(statusPoint);
-        dayDom.appendChild(dayNumberDom);
+        dayDom.appendChild(dayNumberWrapperDom);
         if (!isDisable) {
             // add event listeners
             dayDom.addEventListener('click', () => { this.onDayClicked(year, month, dayNumber); });
