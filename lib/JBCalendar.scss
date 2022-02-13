@@ -20,7 +20,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            
+            user-select: none;
             &:dir(ltr){
                 svg{
                     transform: scaleX(-1);
@@ -37,6 +37,7 @@
             }
         }
         .navigator-title{
+            user-select: none;
             .month{
                 display: none;
                 &.--show{
@@ -79,6 +80,7 @@
                     font-weight: 800;
                     font-variation-settings: "wght" 800;;
                     font-size: 1em;
+                    user-select: none;
                 }
             }
             .month-day-container{
@@ -94,6 +96,7 @@
                     gap: 4px 4px;
                     height: auto;
                     width: 100%;
+                    user-select: none;
                     &.current-month-day-wrapper{
                         position: static;
                     }
@@ -117,6 +120,7 @@
                         position: relative;
                         height: 37px;
                         width: 32px;
+                        user-select: none;
                         &.--disable{
                             .day-number-wrapper{
                                 color:var(--jb-calendar-day-text-color-disabled, #ddd);
@@ -198,6 +202,7 @@
                 height: 32px;
                 cursor: pointer;
                 border-radius: 12px;
+                user-select: none;
                 &:hover{
                     background-color: var(--jb-calendar-month-bgcolor-hover, #f6f8f9);
                 }
@@ -228,7 +233,8 @@
                 height: 100%;
                 grid-template-columns: 1fr 1fr 1fr;
                 grid-template-rows: 1fr 1fr 1fr 1fr;
-                gap:12px 8px;;
+                gap:12px 8px;
+                user-select: none;
                 &.prev-years-wrapper{
                     position: absolute;
                     top: 0;
@@ -253,6 +259,7 @@
                     height: 32px;
                     cursor: pointer;
                     border-radius: 12px;
+                    user-select: none;
                     &:hover{
                         background-color: var(--jb-calendar-year-bgcolor-hover, #f6f8f9);
                     }
