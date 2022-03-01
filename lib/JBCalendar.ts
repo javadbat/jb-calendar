@@ -23,6 +23,8 @@ export enum JBCalendarSections {
     month = 'MONTH',
     year = 'YEAR'
 }
+const today = dayjs();
+const jalaliToday = today.calendar('jalali');
 export class JBCalendarWebComponent extends HTMLElement {
     #swipeGestureData: JBCalendarSwipeGestureData = {
         daysWrapper: {
@@ -40,6 +42,22 @@ export class JBCalendarWebComponent extends HTMLElement {
     };;
     #activeSection: JBCalendarSections | null = null;
     #inputType: string = InputTypes.jalali;
+    #defaultCalendarData = {
+        jalali:{
+            year:jalaliToday.year(),
+            month:jalaliToday.month() + 1,
+        },
+        gregorian:{
+            year:today.year(),
+            month:today.month() + 1,
+        }
+    }
+    get defaultCalendarData() {
+        return this.#defaultCalendarData;
+    }
+    set defaultCalendarData(value){
+        this.#defaultCalendarData = value;
+    }
     dateRestrictions: JBCalendarDateRestrictions = new Proxy<JBCalendarDateRestrictions>({
         min: null,
         max: null
@@ -121,15 +139,14 @@ export class JBCalendarWebComponent extends HTMLElement {
     }
     setCalendarData() {
         // we set default value for selected year and month here becuase we want user config value and min max date ,... in on init so we update our dom and calendar base on them
-        const today = dayjs();
-        const jalaliToday = today.calendar('jalali');
+
         if (this.inputType == InputTypes.jalali) {
-            this.data.selectedYear = this.value.year || jalaliToday.year();
-            this.data.selectedMonth = this.value.month || jalaliToday.month() + 1;
+            this.data.selectedYear = this.value.year || this.#defaultCalendarData.jalali.year;
+            this.data.selectedMonth = this.value.month || this.#defaultCalendarData.jalali.month;
             this.data.yearSelectionRange = [this.data.selectedYear - 4, this.data.selectedYear + 7];
         } else {
-            this.data.selectedYear = this.value.year || today.year();
-            this.data.selectedMonth = this.value.month || today.month() + 1;
+            this.data.selectedYear = this.value.year || this.#defaultCalendarData.gregorian.year;
+            this.data.selectedMonth = this.value.month || this.#defaultCalendarData.gregorian.month;
             this.data.yearSelectionRange = [this.data.selectedYear - 4, this.data.selectedYear + 7];
         }
 
