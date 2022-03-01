@@ -43,7 +43,7 @@ you can write wrapper for it in any js framework you use and it will compatible 
 
 we use `dayjs` to manege calendar jalali data
 
-### events
+## events
 
 ```js
 //when defualt property are defined best time for impl your config like min and max date
@@ -56,14 +56,30 @@ document.querySelector('jb-calendar').addEventListener('load',this.onCalendarEle
 document.querySelector('jb-calendar').addEventListener('select',this.onDaySelected);
 ```
 
-### Jalali and Gregorian Date input
+## Jalali and Gregorian Date input
 
 in jb-calendar you can set date input type to be jalali or gregorian and change it whenever you want by simple set `dateInput` to `JALALI` or `GREGORIAN`.
 
 ```js
     document.querySelector('jb-calendar').dateInput = `GREGORIAN`;
 ```
+## set default selected day and month
 
+you can say which date is shown by default in component when loaded like this: 
+
+```javascript
+document.querySelector('jb-calendar').defaultCalendarData = {
+            gregorian:{
+                year: 2022,
+                month:1,
+            },
+            jalali:{
+                year:1400,
+                month:1,
+            }
+        };
+```
+if you not set this the default will be today year and month
 ## attribute
 
 ### other attribute

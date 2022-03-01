@@ -39,7 +39,7 @@ export class JBCalendarWebComponent extends HTMLElement {
         year: null,
         month: null,
         day: null
-    };;
+    };
     #activeSection: JBCalendarSections | null = null;
     #inputType: string = InputTypes.jalali;
     #defaultCalendarData = {
@@ -70,6 +70,28 @@ export class JBCalendarWebComponent extends HTMLElement {
     private elements!: JBCalendarElements;
     get value() {
         return this.#value;
+    }
+    set value(value:JBCalendarValue){
+        const {year,month,day} = value;
+        if(year && month && day){
+            this.#value.year = year;
+            this.#value.month = month;
+            this.#value.day = day;
+            this.data.selectedYear = year;
+            this.data.selectedMonth = month;
+            const prevSelectedDayDom:(HTMLDivElement | null )= this.shadowRoot!.querySelector(`.--selected`);
+            if (prevSelectedDayDom !== null) {
+                prevSelectedDayDom.classList.remove('--selected');
+            }
+            if (this.data.selectedYear == year && this.data.selectedMonth == month) {
+                const dayDom = this.shadowRoot!.querySelector(`.day-wrapper[day-number="${day}"]`);
+                if(dayDom){
+                    dayDom.classList.add('--selected');
+                }
+            }
+        }else{
+            console.error('Invalid value. please make sure you have year,month and day');
+        }
     }
     get activeSection():JBCalendarSections{
         // determine we want to see day picker or month picker ,...
@@ -379,21 +401,11 @@ export class JBCalendarWebComponent extends HTMLElement {
 
     }
     select(year:number, month:number, day:number) {
-        this.#value.year = year;
-        this.#value.month = month;
-        this.#value.day = day;
-        this.data.selectedYear = year;
-        this.data.selectedMonth = month;
-        const prevSelectedDayDom:(HTMLDivElement | null )= this.shadowRoot!.querySelector(`.--selected`);
-        if (prevSelectedDayDom !== null) {
-            prevSelectedDayDom.classList.remove('--selected');
-        }
-        if (this.data.selectedYear == year && this.data.selectedMonth == month) {
-            const dayDom = this.shadowRoot!.querySelector(`.day-wrapper[day-number="${day}"]`);
-            if(dayDom){
-                dayDom.classList.add('--selected');
-            }
-        }
+        this.value = {
+            year: year,
+            month: month,
+            day: day
+        };
     }
     initCalendar() {
         if (!this.#activeSection) {
