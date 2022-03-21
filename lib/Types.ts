@@ -1,4 +1,4 @@
-import { Dayjs } from "dayjs";
+
 
 /* eslint-disable @typescript-eslint/no-namespace */
 export type JBCalendarValue = {
@@ -33,35 +33,14 @@ export type JBCalendarElements = {
     }
 }
 export type JBCalendarDateRestrictions = {
-    min: Dayjs| Date | null;
-    max: Dayjs| Date | null;
+    min: Date | null;
+    max: Date | null;
 };
 export type JBCalendarData = {
     selectedYear: number;
     selectedMonth: number;
     yearSelectionRange: [number, number];
 };
-
-//jalaliday extend dayjs
-//import { Dayjs, dayjs } from 'dayjs';
-// declare module 'dayjs' {
-//     type ModifiedType = Modify<OptionType, {
-//         a: number;
-//       }>
-//     interface OptionType {
-//        jalali?: boolean;
-//    }
-// }
-declare module 'dayjs' {
-    namespace dayjs {
-        type OptionType = { jalali?: boolean, locale?: string, format?: string, utc?: boolean } | string | string[]
-    }
-}
-
-
-// }
-
-//end of jalaliday extend dayjs
 
 export type JBCalendarSwipeGestureData = {
     daysWrapper: {

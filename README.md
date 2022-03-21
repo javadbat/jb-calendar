@@ -41,7 +41,7 @@ you can write wrapper for it in any js framework you use and it will compatible 
 
 ## dependancy
 
-we use `dayjs` to manege calendar jalali data
+we use `date-fns` and `date-fns-jalali` to manege calendar jalali data
 
 ## events
 

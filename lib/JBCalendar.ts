@@ -1,16 +1,8 @@
 import HTML from './JBCalendar.html';
 import CSS from './JBCalendar.scss';
 import { JBCalendarData, JBCalendarDateRestrictions, JBCalendarElements, JBCalendarSwipeGestureData, JBCalendarValue } from './Types';
-import dayjs, { Dayjs } from 'dayjs';
-import jalaliday from 'jalaliday';
-
-
-type JalaliDayjs = typeof dayjs & { calendar(calendarType: string): Dayjs; }
-
-
-if (typeof (dayjs as JalaliDayjs).calendar !== "function") {
-    dayjs.extend(jalaliday);
-}
+import {getYear, getMonth, getDay, isEqual, getDaysInMonth, getDate} from 'date-fns';
+import {newDate, isAfter,isBefore,getYear as getJalaliYear, getMonth as getJalaliMonth, getDay as getJalaliDay, getDaysInMonth as getJalaliDaysInMonth, getDate as getJalaliDate} from 'date-fns-jalali';
 
 const JalaliMonthList = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'];
 const GregorianMonthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -23,8 +15,7 @@ export enum JBCalendarSections {
     month = 'MONTH',
     year = 'YEAR'
 }
-const today = dayjs();
-const jalaliToday = today.calendar('jalali');
+const today = new Date();
 export class JBCalendarWebComponent extends HTMLElement {
     #swipeGestureData: JBCalendarSwipeGestureData = {
         daysWrapper: {
@@ -44,12 +35,12 @@ export class JBCalendarWebComponent extends HTMLElement {
     #inputType: string = InputTypes.jalali;
     #defaultCalendarData = {
         jalali:{
-            year:jalaliToday.year(),
-            month:jalaliToday.month() + 1,
+            year:getJalaliYear(today),
+            month:getJalaliMonth(today) + 1,
         },
         gregorian:{
-            year:today.year(),
-            month:today.month() + 1,
+            year:getYear(today),
+            month:getMonth(today) + 1,
         }
     }
     get defaultCalendarData() {
@@ -391,12 +382,11 @@ export class JBCalendarWebComponent extends HTMLElement {
         this.callOnInitEvent();
     }
     selectToday() {
-        const today = dayjs();
-        const jalaliToday = today.calendar('jalali');
+        const today = new Date();
         if (this.inputType == InputTypes.jalali) {
-            this.select(jalaliToday.year(), jalaliToday.month() + 1, jalaliToday.date());
+            this.select(getJalaliYear(today), getJalaliMonth(today) + 1, getJalaliDay(today));
         } else {
-            this.select(today.year(), today.month() + 1, today.date());
+            this.select(getYear(today), getMonth(today) + 1, getDay(today));
         }
 
     }
@@ -466,22 +456,45 @@ export class JBCalendarWebComponent extends HTMLElement {
         return monthDom;
 
     }
+    #getDate(year:number,month:number,day:number):Date{
+        if(this.inputType == InputTypes.jalali){
+            return newDate(year,month-1,day);
+        }
+        return new Date(year,month-1,day);  
+    }
+    #getWeekDayIndex(date:Date):number{
+        if(this.inputType == InputTypes.jalali){
+            return this.mapgaregorianDayofWeekToJalali(getJalaliDay(date)) ;
+        }
+        return getDay(date);
+    }
+    #getDaysInMonth(date:Date):number{
+        if(this.inputType == InputTypes.jalali){
+            return getJalaliDaysInMonth(date);
+        }
+        return getDaysInMonth(date);
+    }
+    #isToday(day:number,month:number,year:number):boolean{
+        const today = new Date();
+        if(this.inputType == InputTypes.jalali){
+            return getJalaliYear(today) == year && getJalaliMonth(today) == month -1 && getJalaliDate(today) == day;
+        }
+        return getYear(today) == year && getMonth(today) == month -1 && getDate(today) == day;
+    }
     fillMonthDaysDom(year: number, month: number, type: string) {
-        const firstDayOfMonthdate = (dayjs as any)(`${year}-${month}-1`, { jalali: this.inputType == InputTypes.jalali });
-        const jalaliFirstDayOfMonthdate = firstDayOfMonthdate.calendar('jalali');
-        const firstDayInWeek = this.inputType == InputTypes.jalali ? this.mapgaregorianDayofWeekToJalali(firstDayOfMonthdate.day()) : firstDayOfMonthdate.day() + 1;
-        const gregorianToday = dayjs();
-        const jalaliToday = gregorianToday.calendar('jalali');
-        const today = this.inputType == InputTypes.jalali ? jalaliToday : gregorianToday;
+        const firstDayOfMonthdate = this.#getDate(year, month, 1);
+        // const firstDayInWeek = this.inputType == InputTypes.jalali ? this.mapgaregorianDayofWeekToJalali(firstDayOfMonthdate.day()) : firstDayOfMonthdate.day() + 1;
+        const firstDayInWeek = this.#getWeekDayIndex(firstDayOfMonthdate);
+        
         this.elements.monthDayWrapper[type].innerHTML = "";
         for (let i = 1; i < firstDayInWeek; i++) {
             const emptyDayDom = this.createEmptyDayDom();
             this.elements.monthDayWrapper[type].appendChild(emptyDayDom);
         }
-        const dayInMonth = this.inputType == InputTypes.jalali ? jalaliFirstDayOfMonthdate.daysInMonth() : firstDayOfMonthdate.daysInMonth();
+        const dayInMonth = this.#getDaysInMonth(firstDayOfMonthdate);
         for (let i = 1; i <= dayInMonth; i++) {
-            const dayDate = (dayjs as any)(`${this.data.selectedYear}-${this.data.selectedMonth}-${i}`, { jalali: this.inputType == InputTypes.jalali });
-            const isToday = today.date() == i && this.data.selectedMonth == today.month() + 1 && this.data.selectedYear == today.year();
+            const dayDate = this.#getDate(this.data.selectedYear, this.data.selectedMonth, i);
+            const isToday = this.#isToday(i,this.data.selectedMonth,this.data.selectedYear);
             const isSelected = this.value.year == this.data.selectedYear && this.value.month == this.data.selectedMonth && this.value.day == i;
             const isDisable = !this.checkIsDayDisable(dayDate).isAllValid;
             const dayDom = this.createDayDom(i, this.data.selectedYear, this.data.selectedMonth, isToday, isSelected, isDisable);
@@ -514,17 +527,17 @@ export class JBCalendarWebComponent extends HTMLElement {
         }
         this.fillMonthDaysDom(nextYear, nextMonth, 'next');
     }
-    checkIsDayDisable(dayDate: dayjs.Dayjs) {
+    checkIsDayDisable(dayDate:Date) {
         const result = {
             min: true,
             max: true,
             get isAllValid() { return this.min && this.max; }
         };
         if (this.dateRestrictions.min) {
-            result.min = dayDate.isAfter(this.dateRestrictions.min) || dayDate.isSame(this.dateRestrictions.min);
+            result.min = isAfter(dayDate, this.dateRestrictions.min) || isEqual(dayDate,this.dateRestrictions.min);
         }
         if (this.dateRestrictions.max) {
-            result.max = dayDate.isBefore(this.dateRestrictions.max) || dayDate.isSame(this.dateRestrictions.max);
+            result.max = isBefore(dayDate,this.dateRestrictions.max) || isEqual(dayDate,this.dateRestrictions.max);
         }
         return result;
     }
