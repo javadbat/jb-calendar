@@ -8,7 +8,7 @@ sample:  <https://codepen.io/javadbat/pen/poRKYEY>
  - support typescript
 ## installation
 
-```cmd
+```bash
 npm install jb-calendar
 ```
 
@@ -80,6 +80,16 @@ document.querySelector('jb-calendar').defaultCalendarData = {
         };
 ```
 if you not set this the default will be today year and month
+
+## persian number
+
+you can set `usePersianNumber` so calendar number format change to persian number char for example in year instead of `1400` you will see `۱۴۰۰`.
+
+```javascript
+
+document.querySelector('jb-calendar').usePersianNumber = true;
+
+```
 ## attribute
 
 ### other attribute

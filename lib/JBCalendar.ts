@@ -3,6 +3,7 @@ import CSS from './JBCalendar.scss';
 import { JBCalendarData, JBCalendarDateRestrictions, JBCalendarElements, JBCalendarSwipeGestureData, JBCalendarValue } from './Types';
 import {getYear, getMonth, getDay, isEqual, getDaysInMonth, getDate} from 'date-fns';
 import {newDate, isAfter,isBefore,getYear as getJalaliYear, getMonth as getJalaliMonth, getDay as getJalaliDay, getDaysInMonth as getJalaliDaysInMonth, getDate as getJalaliDate} from 'date-fns-jalali';
+import { enToFaDigits } from '../../../common/js/PersianHelper';
 
 const JalaliMonthList = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'];
 const GregorianMonthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -123,6 +124,19 @@ export class JBCalendarWebComponent extends HTMLElement {
     set inputType(value) {
         this.#inputType = value;
         this.onInputTypeChange();
+    }
+    #usePersianNumber = false;
+    get usePersianNumber() {
+        return this.#usePersianNumber;
+    }
+    set usePersianNumber(value:boolean) {
+        if(typeof value !== 'boolean'){
+            console.error('usePersianNumber must be boolean');
+            return;
+        }
+        this.#usePersianNumber = value;
+        this.setCalendarData();
+
     }
     constructor() {
         super();
@@ -325,7 +339,7 @@ export class JBCalendarWebComponent extends HTMLElement {
     }
     createDataHandler() {
         const onYearChanged = (newYear:number, prevYear:number) => {
-            this.elements.navigatorTitle.year.innerHTML = newYear.toString();
+            this.elements.navigatorTitle.year.innerHTML = this.localizeString(newYear.toString());
         };
         const onMonthChanged = (newMonth:number, prevMonth:number) => {
             const monthName = this.inputType == InputTypes.jalali ? JalaliMonthList[newMonth - 1] : GregorianMonthList[newMonth - 1];
@@ -333,7 +347,8 @@ export class JBCalendarWebComponent extends HTMLElement {
             this.fillMonthDays();
         };
         const onYearSelectionRangeChanged = (newRange:number[]) => {
-            this.elements.navigatorTitle.yearRange.innerHTML = `${newRange[0]} - ${newRange[1]}`;
+
+            this.elements.navigatorTitle.yearRange.innerHTML = this.localizeString(`${ newRange[0]} - ${newRange[1]}`);
             this.fillYearList();
         };
         const dataHandler = {
@@ -425,7 +440,7 @@ export class JBCalendarWebComponent extends HTMLElement {
         monthDom.classList.add('year-wrapper');
         const monthTextDom = document.createElement('div');
         monthTextDom.classList.add('year-number');
-        monthTextDom.innerHTML = year.toString();
+        monthTextDom.innerHTML = this.localizeString( year.toString());
         monthDom.appendChild(monthTextDom);
         monthDom.addEventListener('click', () => {
             this.data.selectedYear = year;
@@ -563,7 +578,7 @@ export class JBCalendarWebComponent extends HTMLElement {
         //
         const dayNumberDom = document.createElement('div');
         dayNumberDom.classList.add('day-number');
-        dayNumberDom.innerHTML = dayNumber.toString();
+        dayNumberDom.innerHTML = this.localizeString(dayNumber.toString()) ;
         const statusPoint = document.createElement('div');
         statusPoint.classList.add('status-point');
         //
@@ -639,6 +654,13 @@ export class JBCalendarWebComponent extends HTMLElement {
         this.setCalendarData();
         this.fillDayOfWeek();
         this.fillMonthList();
+    }
+    localizeString(string:string):string{
+        if(this.usePersianNumber){
+            return enToFaDigits(string);
+        }else{
+            return string;
+        }
     }
 }
 const myElementNotExists = !customElements.get('jb-calendar');
