@@ -15,7 +15,7 @@
             background-color: var(--jb-calendar-arrow-button-bgcolor, #f6f8f9);
             width: 32px;
             height: 32px;
-            border-radius: 12px;
+            border-radius: var(--jb-calendar-arrow-button-border-radius, 12px);
             cursor: pointer;
             display: flex;
             justify-content: center;

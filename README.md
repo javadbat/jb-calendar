@@ -107,6 +107,7 @@ if you want to set a custom style to this web-component all you need is to set c
 | -------------                            | -------------                                                                                 |
 | --jb-calendar-color                      | general text color of component                                                               |
 | --jb-calendar-arrow-button-bgcolor       | background color of next and prev button                                                      |
+| --jb-calendar-arrow-button-border-radius | border rauis of arrow buttons default is 12px                                                 | 
 | --jb-calendar-day-text-color             | day text color                                                                                |
 | --jb-calendar-day-text-color-disabled    | day text color when day in not available for select                                           |
 | --jb-calendar-day-text-color-today       | today day text color                                                                          |
