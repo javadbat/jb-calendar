@@ -16,6 +16,7 @@ export enum JBCalendarSections {
     month = 'MONTH',
     year = 'YEAR'
 }
+export {JBCalendarValue}; 
 const today = new Date();
 export class JBCalendarWebComponent extends HTMLElement {
     #swipeGestureData: JBCalendarSwipeGestureData = {
