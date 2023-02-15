@@ -217,7 +217,8 @@ export class JBCalendarWebComponent extends HTMLElement {
                 nextButton: shadowRoot.querySelector('.next-btn')!,
                 prevButton: shadowRoot.querySelector('.prev-btn')!,
                 wrapper: shadowRoot.querySelector('.navigator-title')!,
-            }
+            },
+            swipeupSymbol:shadowRoot.querySelector('.swipe-up-symbol')!
         };
         this.registerEventHandlers();
     }
@@ -240,14 +241,41 @@ export class JBCalendarWebComponent extends HTMLElement {
         this.#swipeGestureData.daysWrapper.startY = e.touches[0].clientY;
     }
     onDayWrapperTouchMove(e: TouchEvent) {
-        if (this.#swipeGestureData.daysWrapper.startX !== null) {
+        if (this.#swipeGestureData.daysWrapper.startX !== null && this.#swipeGestureData.daysWrapper.startY !== null) {
             e.preventDefault();
-            this.elements.monthDayWrapper.current.style.transform = `translateX(${e.touches[0].clientX - this.#swipeGestureData.daysWrapper.startX}px)`;
-            this.elements.monthDayWrapper.prev.style.transform = `translateX(${e.touches[0].clientX - this.#swipeGestureData.daysWrapper.startX}px)`;
-            this.elements.monthDayWrapper.next.style.transform = `translateX(${e.touches[0].clientX - this.#swipeGestureData.daysWrapper.startX}px)`;
-        }
-        if (this.#swipeGestureData.daysWrapper.startY !== null) {
-            e.preventDefault();
+            const deltaX = e.touches[0].clientX - this.#swipeGestureData.daysWrapper.startX;
+            const deltaY = e.touches[0].clientY - this.#swipeGestureData.daysWrapper.startY;
+            if(Math.abs(deltaX)> Math.abs(deltaY)){
+                //when user swipe horizentally
+                //first wen remove and reset vertical effect
+                this.elements.swipeupSymbol.classList.remove("--show");
+                this.elements.swipeupSymbol.style.transform = `translateY(${0}px)`;
+                this.elements.swipeupSymbol.style.opacity = `0`;
+                //then move horizentally
+                this.elements.monthDayWrapper.current.style.transform = `translateX(${deltaX}px)`;
+                this.elements.monthDayWrapper.prev.style.transform = `translateX(${deltaX}px)`;
+                this.elements.monthDayWrapper.next.style.transform = `translateX(${deltaX}px)`;
+            }else{
+                //if user swipe more vertically than horizentally we reset horizental swipe change
+                this.elements.monthDayWrapper.current.style.transform = `translateX(${0}px)`;
+                this.elements.monthDayWrapper.prev.style.transform = `translateX(${0}px)`;
+                this.elements.monthDayWrapper.next.style.transform = `translateX(${0}px)`;
+                //then we move calendar vertically
+                this.elements.monthDayWrapper.current.style.transform = `translateY(${deltaY}px)`;
+                if(deltaY <0){
+                    //on swipe up
+                    this.elements.swipeupSymbol.classList.add("--show");
+                    const opacity = Math.abs(deltaY) /70;
+                    if(Math.abs(deltaY)>32){
+                        this.elements.swipeupSymbol.style.transform = `translateY(${0}px)`;
+                    }else{
+                        this.elements.swipeupSymbol.style.transform = `translateY(${deltaY+32}px)`;
+                    }
+                    this.elements.swipeupSymbol.style.opacity = `${opacity}`;
+                }
+               
+            }
+
         }
     }
     onDayWrapperTouchEnd(e: TouchEvent) {
@@ -281,12 +309,16 @@ export class JBCalendarWebComponent extends HTMLElement {
             const clientY = e.changedTouches[0].clientY;
             const deltaY = clientY - this.#swipeGestureData.daysWrapper.startY;
             this.#swipeGestureData.daysWrapper.startY = null;
-            if (Math.abs(deltaY) > 100) {
+            this.elements.swipeupSymbol.classList.remove("--show");
+            this.elements.swipeupSymbol.style.transform = `translateY(${0}px)`;
+            this.elements.swipeupSymbol.style.opacity = `0`;
+            if (Math.abs(deltaY) > 70) {
                 if (deltaY > 0) {
                     //on swipe down
                     this.activeSection = JBCalendarSections.month;
                 } else {
                     this.activeSection = JBCalendarSections.year;
+
                 }
             }
         }

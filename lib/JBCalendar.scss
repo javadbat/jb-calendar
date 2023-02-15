@@ -67,6 +67,7 @@
     .calendar-section{
         height: auto;
         width: 100%;
+        position: relative;
         .day-selection-section{
             display: none;
             &.--show{
@@ -283,6 +284,25 @@
             }
 
         }
-
+        .swipe-up-symbol{
+            display: none;
+            position: absolute;
+            bottom: 0px;
+            opacity: 0;
+            transition: all 0.1s 0s ease;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            &.--show{
+                display: flex;
+            }
+            .swipe-up-text{
+                font-size: 0.8rem;
+            }
+            .swipe-up-icon{
+                fill:var(--jb-calendar-arrow-fill-color, #97999a);
+            }
+        }
     }
 }

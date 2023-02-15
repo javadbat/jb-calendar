@@ -30,7 +30,8 @@ export type JBCalendarElements = {
         yearRange: HTMLSpanElement;
         nextButton: HTMLDivElement;
         prevButton: HTMLDivElement;
-    }
+    },
+    swipeupSymbol:HTMLDivElement;
 }
 export type JBCalendarDateRestrictions = {
     min: Date | null;
