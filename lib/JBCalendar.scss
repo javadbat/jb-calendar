@@ -42,12 +42,18 @@
                 display: none;
                 &.--show{
                     display: inline;
+                    &:hover{
+                        font-weight: 600;
+                    }
                 }
             }
             .year{
                 display: none;
                 &.--show{
                     display: inline;
+                    &:hover{
+                        font-weight: 600;
+                    }
                 } 
             }
             .year-range{
