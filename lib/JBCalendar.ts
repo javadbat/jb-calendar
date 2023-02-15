@@ -167,15 +167,18 @@ export class JBCalendarWebComponent extends HTMLElement {
     }
     setCalendarData() {
         // we set default value for selected year and month here becuase we want user config value and min max date ,... in on init so we update our dom and calendar base on them
-
         if (this.inputType == InputTypes.jalali) {
             this.data.selectedYear = this.value.year || this.#defaultCalendarData.jalali.year;
             this.data.selectedMonth = this.value.month || this.#defaultCalendarData.jalali.month;
             this.data.yearSelectionRange = [this.data.selectedYear - 4, this.data.selectedYear + 7];
+            //chnage swipe up section text
+            this.shadowRoot!.querySelector('.swipe-up-text')!.innerHTML = "نمایش سال‌ها";
         } else {
             this.data.selectedYear = this.value.year || this.#defaultCalendarData.gregorian.year;
             this.data.selectedMonth = this.value.month || this.#defaultCalendarData.gregorian.month;
             this.data.yearSelectionRange = [this.data.selectedYear - 4, this.data.selectedYear + 7];
+            //chnage swipe up section text
+            this.shadowRoot!.querySelector('.swipe-up-text')!.innerHTML = "show years";
         }
 
     }
