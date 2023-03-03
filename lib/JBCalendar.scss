@@ -27,7 +27,7 @@
                 }
             }
             //for backward compatibility on chrome you can set parent element direction attribute manually
-            :host([direction="ltr"]) & {
+            &.--css-ltr {
                 svg{
                     transform: scaleX(-1);
                 }

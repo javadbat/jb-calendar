@@ -139,6 +139,9 @@ export class JBCalendarWebComponent extends HTMLElement {
         this.setCalendarData();
 
     }
+    get cssDirection(){
+        return getComputedStyle(this).direction;
+    }
     constructor() {
         super();
         this.initWebComponent();
@@ -150,6 +153,19 @@ export class JBCalendarWebComponent extends HTMLElement {
         this.fillDayOfWeek();
         this.setCalendarData();
         this.callOnLoadEvent();
+        const dir = this.cssDirection;
+        this.setupStyleBaseOnCssDirection(dir);
+    }
+    setupStyleBaseOnCssDirection(dir:string){
+        //change some calendar style base on css direction of the element
+        //TODO: use `:dir()` pesudo selector when supported by major browser 
+        if(dir =="ltr"){
+            this.elements.navigatorTitle.nextButton.classList.add('--css-ltr');
+            this.elements.navigatorTitle.prevButton.classList.add('--css-ltr');
+        }else if(dir =="rtl"){
+            this.elements.navigatorTitle.nextButton.classList.remove('--css-ltr');
+            this.elements.navigatorTitle.prevButton.classList.remove('--css-ltr');
+        }
     }
     fillDayOfWeek() {
         //fill day of week bas on input type
@@ -224,6 +240,7 @@ export class JBCalendarWebComponent extends HTMLElement {
             swipeupSymbol:shadowRoot.querySelector('.swipe-up-symbol')!
         };
         this.registerEventHandlers();
+        
     }
     registerEventHandlers() {
         this.elements.navigatorTitle.nextButton.addEventListener('click', this.onNextButtonClicked.bind(this));

@@ -96,7 +96,7 @@ document.querySelector('jb-calendar').usePersianNumber = true;
 
 | atribute name  | description                                                                                                         |
 | -------------  | -------------                                                                                                       |
-| direction      | set web-component direction for legacy browser dont support `:dir()`. defualt set is rtl but if you need ltr use `<jb-input direction="ltr"></jb-input>`      |
+| direction      | make component placing order to rtl  `<jb-calendar direction="rtl"></jb-calendar>`      |
 
 ### set custome style
 
