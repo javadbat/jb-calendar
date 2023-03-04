@@ -1,6 +1,6 @@
 import HTML from './JBCalendar.html';
 import CSS from './JBCalendar.scss';
-import { JBCalendarData, JBCalendarDateRestrictions, JBCalendarElements, JBCalendarSwipeGestureData, JBCalendarValue } from './Types';
+import { Direction, JBCalendarData, JBCalendarDateRestrictions, JBCalendarElements, JBCalendarSwipeGestureData, JBCalendarValue } from './Types';
 import { getYear, getMonth, getDay, isEqual, getDaysInMonth, getDate } from 'date-fns';
 import { newDate, isAfter, isBefore, getYear as getJalaliYear, getMonth as getJalaliMonth, getDay as getJalaliDay, getDaysInMonth as getJalaliDaysInMonth, getDate as getJalaliDate } from 'date-fns-jalali';
 import { enToFaDigits } from '../../../common/js/PersianHelper';
@@ -139,8 +139,19 @@ export class JBCalendarWebComponent extends HTMLElement {
         this.setCalendarData();
 
     }
-    get cssDirection(){
-        return getComputedStyle(this).direction;
+    //for layout direction
+    get cssDirection(): Direction {
+        return getComputedStyle(this).direction as Direction;
+    }
+    #direction: Direction = this.cssDirection;
+    get direction() {
+        return this.#direction;
+    }
+    //TODO: make this works and public currenly user cant change direction by js and attribute
+    private set direction(dir: Direction) {
+        if (dir && (dir == "ltr" || dir == "rtl")) {
+            this.#direction = dir;
+        }
     }
     constructor() {
         super();
@@ -150,21 +161,35 @@ export class JBCalendarWebComponent extends HTMLElement {
     }
     connectedCallback() {
         // standard web component event that called when all of dom is binded
-        this.fillDayOfWeek();
-        this.setCalendarData();
+
         this.callOnLoadEvent();
         const dir = this.cssDirection;
+        this.direction = dir;
         this.setupStyleBaseOnCssDirection(dir);
+        this.initCalendarLayout();
     }
-    setupStyleBaseOnCssDirection(dir:string){
+    initCalendarLayout() {
+        this.fillMonthList();
+        this.fillDayOfWeek();
+        this.setCalendarData();
+    }
+    setupStyleBaseOnCssDirection(dir: Direction) {
         //change some calendar style base on css direction of the element
         //TODO: use `:dir()` pesudo selector when supported by major browser 
-        if(dir =="ltr"){
+        if (dir == "ltr") {
             this.elements.navigatorTitle.nextButton.classList.add('--css-ltr');
             this.elements.navigatorTitle.prevButton.classList.add('--css-ltr');
-        }else if(dir =="rtl"){
+            this.elements.monthDayWrapper.next.classList.add('--css-ltr');
+            this.elements.monthDayWrapper.prev.classList.add('--css-ltr');
+            this.elements.yearsWrapper.next.classList.add('--css-ltr');
+            this.elements.yearsWrapper.prev.classList.add('--css-ltr');
+        } else if (dir == "rtl") {
             this.elements.navigatorTitle.nextButton.classList.remove('--css-ltr');
             this.elements.navigatorTitle.prevButton.classList.remove('--css-ltr');
+            this.elements.monthDayWrapper.next.classList.remove('--css-ltr');
+            this.elements.monthDayWrapper.prev.classList.remove('--css-ltr');
+            this.elements.yearsWrapper.next.classList.remove('--css-ltr');
+            this.elements.yearsWrapper.prev.classList.remove('--css-ltr');
         }
     }
     fillDayOfWeek() {
@@ -237,10 +262,10 @@ export class JBCalendarWebComponent extends HTMLElement {
                 prevButton: shadowRoot.querySelector('.prev-btn')!,
                 wrapper: shadowRoot.querySelector('.navigator-title')!,
             },
-            swipeupSymbol:shadowRoot.querySelector('.swipe-up-symbol')!
+            swipeupSymbol: shadowRoot.querySelector('.swipe-up-symbol')!
         };
         this.registerEventHandlers();
-        
+
     }
     registerEventHandlers() {
         this.elements.navigatorTitle.nextButton.addEventListener('click', this.onNextButtonClicked.bind(this));
@@ -265,7 +290,7 @@ export class JBCalendarWebComponent extends HTMLElement {
             e.preventDefault();
             const deltaX = e.touches[0].clientX - this.#swipeGestureData.daysWrapper.startX;
             const deltaY = e.touches[0].clientY - this.#swipeGestureData.daysWrapper.startY;
-            if(Math.abs(deltaX)> Math.abs(deltaY)){
+            if (Math.abs(deltaX) > Math.abs(deltaY)) {
                 //when user swipe horizentally
                 //first wen remove and reset vertical effect
                 this.elements.swipeupSymbol.classList.remove("--show");
@@ -275,25 +300,25 @@ export class JBCalendarWebComponent extends HTMLElement {
                 this.elements.monthDayWrapper.current.style.transform = `translateX(${deltaX}px)`;
                 this.elements.monthDayWrapper.prev.style.transform = `translateX(${deltaX}px)`;
                 this.elements.monthDayWrapper.next.style.transform = `translateX(${deltaX}px)`;
-            }else{
+            } else {
                 //if user swipe more vertically than horizentally we reset horizental swipe change
                 this.elements.monthDayWrapper.current.style.transform = `translateX(${0}px)`;
                 this.elements.monthDayWrapper.prev.style.transform = `translateX(${0}px)`;
                 this.elements.monthDayWrapper.next.style.transform = `translateX(${0}px)`;
                 //then we move calendar vertically
                 this.elements.monthDayWrapper.current.style.transform = `translateY(${deltaY}px)`;
-                if(deltaY <0){
+                if (deltaY < 0) {
                     //on swipe up
                     this.elements.swipeupSymbol.classList.add("--show");
-                    const opacity = Math.abs(deltaY) /70;
-                    if(Math.abs(deltaY)>32){
+                    const opacity = Math.abs(deltaY) / 70;
+                    if (Math.abs(deltaY) > 32) {
                         this.elements.swipeupSymbol.style.transform = `translateY(${0}px)`;
-                    }else{
-                        this.elements.swipeupSymbol.style.transform = `translateY(${deltaY+32}px)`;
+                    } else {
+                        this.elements.swipeupSymbol.style.transform = `translateY(${deltaY + 32}px)`;
                     }
                     this.elements.swipeupSymbol.style.opacity = `${opacity}`;
                 }
-               
+
             }
 
         }
@@ -305,7 +330,13 @@ export class JBCalendarWebComponent extends HTMLElement {
             const deltaX = clientX - this.#swipeGestureData.daysWrapper.startX;
             this.#swipeGestureData.daysWrapper.startX = null;
             if (Math.abs(deltaX) > 100) {
-                if (deltaX > 0) {
+                //detemine direcion of change
+                let swipeDirection = deltaX > 0 ? "next" : "prev";
+                if (this.direction == "ltr") {
+                    swipeDirection = deltaX > 0 ? "prev" : "next";
+                }
+                //do the transition
+                if (swipeDirection == "prev") {
                     this.elements.monthDayWrapper.current.style.transform = `translateX(${0}px)`;
                     this.elements.monthDayWrapper.prev.style.transform = `translateX(${0}px)`;
                     this.elements.monthDayWrapper.next.style.transform = `translateX(${0}px)`;
@@ -361,8 +392,14 @@ export class JBCalendarWebComponent extends HTMLElement {
             const clientX = e.changedTouches[0].clientX;
             const deltaX = clientX - this.#swipeGestureData.yearsWrapper.startX;
             this.#swipeGestureData.yearsWrapper.startX = null;
+
+            //detemine direcion of change
+            let swipeDirection = deltaX > 0 ? "next" : "prev";
+            if (this.direction == "ltr") {
+                swipeDirection = deltaX > 0 ? "prev" : "next";
+            }
             if (Math.abs(deltaX) > 100) {
-                if (deltaX > 0) {
+                if (swipeDirection == "prev") {
                     this.elements.yearsWrapper.current.style.transform = `translateX(${0}px)`;
                     this.elements.yearsWrapper.prev.style.transform = `translateX(${0}px)`;
                     this.elements.yearsWrapper.next.style.transform = `translateX(${0}px)`;
@@ -470,7 +507,6 @@ export class JBCalendarWebComponent extends HTMLElement {
         if (!this.#activeSection) {
             this.activeSection = JBCalendarSections.day;
         }
-        this.fillMonthList();
     }
     mapgaregorianDayofWeekToJalali(dayNumber: number) {
         // for example sunday is 0 so 2(yekshanbe) will return
@@ -697,12 +733,12 @@ export class JBCalendarWebComponent extends HTMLElement {
         }
     }
     onNavigatorTitleYearClicked() {
-        if (this.activeSection == JBCalendarSections.day || this.activeSection == JBCalendarSections.month){
+        if (this.activeSection == JBCalendarSections.day || this.activeSection == JBCalendarSections.month) {
             this.activeSection = JBCalendarSections.year;
         }
     }
     onNavigatorTitleMonthClicked() {
-        if (this.activeSection == JBCalendarSections.day ){
+        if (this.activeSection == JBCalendarSections.day) {
             this.activeSection = JBCalendarSections.month;
         }
     }

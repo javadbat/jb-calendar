@@ -110,18 +110,24 @@
                     &.prev-month-day-wrapper{
                         position: absolute;
                         top: 0;
-                        left: -100%;
-                        width: 100%;
-                        height: 100%;
-                        overflow: hidden;
-                    }
-                    &.next-month-day-wrapper{
-                        position: absolute;
-                        top: 0;
                         left: 100%;
                         width: 100%;
                         height: 100%;
                         overflow: hidden;
+                        &.--css-ltr{
+                            left: -100%;
+                        }
+                    }
+                    &.next-month-day-wrapper{
+                        position: absolute;
+                        top: 0;
+                        left: -100%;
+                        width: 100%;
+                        height: 100%;
+                        overflow: hidden;
+                        &.--css-ltr{
+                            left: 100%;
+                        }
                     }
                     .day-wrapper{
                         position: relative;
@@ -245,10 +251,13 @@
                 &.prev-years-wrapper{
                     position: absolute;
                     top: 0;
-                    left: -100%;
+                    left: 100%;
                     width: 100%;
                     height: 100%;
                     overflow: hidden;
+                    &.--css-ltr{
+                        left: -100%;
+                    }
                 }
                 &.current-years-wrapper{
                     position: static;
@@ -256,10 +265,13 @@
                 &.next-years-wrapper{
                     position: absolute;
                     top: 0;
-                    left: 100%;
+                    left: -100%;
                     width: 100%;
                     height: 100%;
                     overflow: hidden;
+                    &.--css-ltr{
+                        left: 100%;
+                    }
                 }
                 .year-wrapper{
                     width: 100%;

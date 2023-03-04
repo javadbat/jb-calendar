@@ -52,3 +52,4 @@ export type JBCalendarSwipeGestureData = {
         startX: number | null,
     }
 }
+export type Direction = "rtl" | "ltr" ;

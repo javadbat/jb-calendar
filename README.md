@@ -92,11 +92,11 @@ document.querySelector('jb-calendar').usePersianNumber = true;
 ```
 ## attribute
 
-### other attribute
+<!-- ### other attribute
 
 | atribute name  | description                                                                                                         |
 | -------------  | -------------                                                                                                       |
-| direction      | make component placing order to rtl  `<jb-calendar direction="rtl"></jb-calendar>`      |
+| direction      | make component placing order to rtl  `<jb-calendar direction="rtl"></jb-calendar>`      | -->
 
 ### set custome style
 
