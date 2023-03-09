@@ -18,6 +18,10 @@ export enum JBCalendarSections {
 }
 export { JBCalendarValue };
 const today = new Date();
+if(HTMLElement== undefined){
+    //in case of server render or old browser
+    console.error('you cant render web component on a server side');
+}
 export class JBCalendarWebComponent extends HTMLElement {
     #swipeGestureData: JBCalendarSwipeGestureData = {
         daysWrapper: {
