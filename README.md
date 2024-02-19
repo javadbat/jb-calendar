@@ -90,6 +90,13 @@ you can set `usePersianNumber` so calendar number format change to persian numbe
 document.querySelector('jb-calendar').usePersianNumber = true;
 
 ```
+## Change Month List
+you may want to change the default month list for both  of Jalali and Gregorian calendars base on your country month labels. here how you can do it:
+```js
+document.querySelector('jb-calendar').setMonthList('JALALI',['حَمَل','ثَور','جَوزا','سَرَطان','اَسَد','سُنبُله','میزان','عَقرَب','قَوس','جَدْی','دَلو','حوت']);
+document.querySelector('jb-calendar').setMonthList('GREGORIAN',['1','2','3','4','5','6','7','8','9','10','11','12']);
+```
+
 ## attribute
 
 <!-- ### other attribute
@@ -100,7 +107,7 @@ document.querySelector('jb-calendar').usePersianNumber = true;
 
 ### set custome style
 
-in some cases in your project you need to change defualt style of web-component for example you need different color or different border-radius and etc.    
+in some cases in your project you need to change default style of web-component for example you need different color or different border-radius and etc.    
 if you want to set a custom style to this web-component all you need is to set css variable in parent scope of web-component
 
 | css variable name                        | description                                                                                   |

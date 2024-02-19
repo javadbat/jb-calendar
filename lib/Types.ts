@@ -53,3 +53,4 @@ export type JBCalendarSwipeGestureData = {
     }
 }
 export type Direction = "rtl" | "ltr" ;
+export type InputType = 'JALALI' | 'GREGORIAN'

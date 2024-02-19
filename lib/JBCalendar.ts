@@ -1,13 +1,14 @@
 import HTML from './JBCalendar.html';
 import CSS from './JBCalendar.scss';
-import { Direction, JBCalendarData, JBCalendarDateRestrictions, JBCalendarElements, JBCalendarSwipeGestureData, JBCalendarValue } from './Types';
+import { Direction, InputType, JBCalendarData, JBCalendarDateRestrictions, JBCalendarElements, JBCalendarSwipeGestureData, JBCalendarValue } from './Types';
 import { getYear, getMonth, getDay, isEqual, getDaysInMonth, getDate } from 'date-fns';
 import { newDate, isAfter, isBefore, getYear as getJalaliYear, getMonth as getJalaliMonth, getDay as getJalaliDay, getDaysInMonth as getJalaliDaysInMonth, getDate as getJalaliDate } from 'date-fns-jalali';
 import { enToFaDigits } from '../../../common/js/PersianHelper';
 
 const JalaliMonthList = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'];
 const GregorianMonthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-const InputTypes = {
+
+const InputTypes:{[key:string]:InputType} = {
     jalali: 'JALALI',
     gregorian: 'GREGORIAN'
 };
@@ -38,7 +39,7 @@ export class JBCalendarWebComponent extends HTMLElement {
         day: null
     };
     #activeSection: JBCalendarSections | null = null;
-    #inputType: string = InputTypes.jalali;
+    #inputType: InputType = InputTypes.jalali;
     #defaultCalendarData = {
         jalali: {
             year: getJalaliYear(today),
@@ -47,6 +48,27 @@ export class JBCalendarWebComponent extends HTMLElement {
         gregorian: {
             year: getYear(today),
             month: getMonth(today) + 1,
+        }
+    }
+    #jalaliMonthList = JalaliMonthList;
+    #gregorianMonthList = GregorianMonthList;
+
+    /**
+     * @public change month labels to desired user label base on language or culture
+     */
+    setMonthList(inputType:InputType,monthList:string[]){
+        if(Array.isArray(monthList) && monthList.length == 12){
+            switch(inputType){
+                case 'JALALI':
+                    this.#jalaliMonthList=monthList.map((item)=>item);
+                    break;
+                case 'GREGORIAN':
+                    this.#gregorianMonthList = monthList;
+            }
+            this.#initMonthList();
+            this.#updateTitleMonth(this.data.selectedMonth);
+        }else{
+            console.error('Invalid Month List',monthList);
         }
     }
     get defaultCalendarData() {
@@ -173,7 +195,7 @@ export class JBCalendarWebComponent extends HTMLElement {
         this.initCalendarLayout();
     }
     initCalendarLayout() {
-        this.fillMonthList();
+        this.#initMonthList();
         this.fillDayOfWeek();
         this.setCalendarData();
     }
@@ -432,13 +454,16 @@ export class JBCalendarWebComponent extends HTMLElement {
         }
 
     }
+    #updateTitleMonth(monthIndex:number){
+        const monthName = this.inputType == InputTypes.jalali ? this.#jalaliMonthList[monthIndex - 1] : this.#gregorianMonthList[monthIndex - 1];
+        this.elements.navigatorTitle.month.innerHTML = monthName;
+    }
     createDataHandler() {
         const onYearChanged = (newYear: number, prevYear: number) => {
             this.elements.navigatorTitle.year.innerHTML = this.localizeString(newYear.toString());
         };
         const onMonthChanged = (newMonth: number, prevMonth: number) => {
-            const monthName = this.inputType == InputTypes.jalali ? JalaliMonthList[newMonth - 1] : GregorianMonthList[newMonth - 1];
-            this.elements.navigatorTitle.month.innerHTML = monthName;
+            this.#updateTitleMonth(newMonth);
             this.fillMonthDays();
         };
         const onYearSelectionRangeChanged = (newRange: number[]) => {
@@ -512,7 +537,7 @@ export class JBCalendarWebComponent extends HTMLElement {
             this.activeSection = JBCalendarSections.day;
         }
     }
-    mapgaregorianDayofWeekToJalali(dayNumber: number) {
+    #mapGregorianDayOfWeekToJalali(dayNumber: number) {
         // for example sunday is 0 so 2(yekshanbe) will return
         const mapper = [2, 3, 4, 5, 6, 7, 1];
         return mapper[dayNumber];
@@ -543,19 +568,19 @@ export class JBCalendarWebComponent extends HTMLElement {
         return monthDom;
 
     }
-    fillMonthList() {
+    #initMonthList() {
         this.elements.selectionSections.month.innerHTML = '';
         for (let i = 1; i < 13; i++) {
-            const monthDom = this.createMonthDom(i);
+            const monthDom = this.#createMonthDom(i);
             this.elements.selectionSections.month.appendChild(monthDom);
         }
     }
-    createMonthDom(monthIndex: number) {
+    #createMonthDom(monthIndex: number) {
         const monthDom = document.createElement('div');
         monthDom.classList.add('month-wrapper');
         const monthTextDom = document.createElement('div');
         monthTextDom.classList.add('month-name');
-        const monthName = this.inputType == InputTypes.jalali ? JalaliMonthList[monthIndex - 1] : GregorianMonthList[monthIndex - 1];
+        const monthName = this.inputType == InputTypes.jalali ? this.#jalaliMonthList[monthIndex - 1] : this.#gregorianMonthList[monthIndex - 1];
         monthTextDom.innerHTML = monthName;
         monthDom.appendChild(monthTextDom);
         monthDom.addEventListener('click', () => {
@@ -573,7 +598,7 @@ export class JBCalendarWebComponent extends HTMLElement {
     }
     #getWeekDayIndex(date: Date): number {
         if (this.inputType == InputTypes.jalali) {
-            return this.mapgaregorianDayofWeekToJalali(getJalaliDay(date));
+            return this.#mapGregorianDayOfWeekToJalali(getJalaliDay(date));
         }
         return getDay(date);
     }
@@ -591,16 +616,16 @@ export class JBCalendarWebComponent extends HTMLElement {
         return getYear(today) == year && getMonth(today) == month - 1 && getDate(today) == day;
     }
     fillMonthDaysDom(year: number, month: number, type: string) {
-        const firstDayOfMonthdate = this.#getDate(year, month, 1);
-        // const firstDayInWeek = this.inputType == InputTypes.jalali ? this.mapgaregorianDayofWeekToJalali(firstDayOfMonthdate.day()) : firstDayOfMonthdate.day() + 1;
-        const firstDayInWeek = this.#getWeekDayIndex(firstDayOfMonthdate);
+        const firstDayOfMonthDate = this.#getDate(year, month, 1);
+        // const firstDayInWeek = this.inputType == InputTypes.jalali ? this.mapGregorianDayOfWeekToJalali(firstDayOfMonthDate.day()) : firstDayOfMonthdate.day() + 1;
+        const firstDayInWeek = this.#getWeekDayIndex(firstDayOfMonthDate);
 
         this.elements.monthDayWrapper[type].innerHTML = "";
         for (let i = 1; i < firstDayInWeek; i++) {
             const emptyDayDom = this.createEmptyDayDom();
             this.elements.monthDayWrapper[type].appendChild(emptyDayDom);
         }
-        const dayInMonth = this.#getDaysInMonth(firstDayOfMonthdate);
+        const dayInMonth = this.#getDaysInMonth(firstDayOfMonthDate);
         for (let i = 1; i <= dayInMonth; i++) {
             const dayDate = this.#getDate(this.data.selectedYear, this.data.selectedMonth, i);
             const isToday = this.#isToday(i, this.data.selectedMonth, this.data.selectedYear);
@@ -750,7 +775,7 @@ export class JBCalendarWebComponent extends HTMLElement {
         // when date input type change this function get called
         this.setCalendarData();
         this.fillDayOfWeek();
-        this.fillMonthList();
+        this.#initMonthList();
     }
     localizeString(string: string): string {
         if (this.usePersianNumber) {
