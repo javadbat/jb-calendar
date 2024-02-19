@@ -105,7 +105,7 @@ document.querySelector('jb-calendar').setMonthList('GREGORIAN',['1','2','3','4',
 | -------------  | -------------                                                                                                       |
 | direction      | make component placing order to rtl  `<jb-calendar direction="rtl"></jb-calendar>`      | -->
 
-### set custome style
+### set custom style
 
 in some cases in your project you need to change default style of web-component for example you need different color or different border-radius and etc.    
 if you want to set a custom style to this web-component all you need is to set css variable in parent scope of web-component
