@@ -27,7 +27,7 @@ import {
   getDaysInMonth as getJalaliDaysInMonth,
   getDate as getJalaliDate,
 } from "date-fns-jalali";
-import { enToFaDigits } from "../../../common/js/PersianHelper.js";
+import { enToFaDigits } from "../../../common/scripts/persian-helper";
 
 const JalaliMonthList = [
   "فروردین",
