@@ -136,10 +136,10 @@
                         width: 32px;
                         user-select: none;
                         &.--disable{
+                            cursor: not-allowed;
                             .day-number-wrapper{
                                 color:var(--jb-calendar-day-text-color-disabled, #ddd);
                             }
-                            cursor: not-allowed;
                         }
                         &.--today{
                             .day-number-wrapper{
