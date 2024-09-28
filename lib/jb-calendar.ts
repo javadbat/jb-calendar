@@ -8,7 +8,7 @@ import {
   JBCalendarElements,
   JBCalendarSwipeGestureData,
   JBCalendarValue,
-} from "./types1";
+} from "./types";
 import {
   getYear,
   getMonth,
