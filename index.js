@@ -1,1 +1,1 @@
-import './dist/JBCalendar.js';
+import './dist/jb-calendar.js';

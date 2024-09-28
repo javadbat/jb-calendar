@@ -1,5 +1,5 @@
-import HTML from "./JBCalendar.html";
-import CSS from "./JBCalendar.scss";
+import HTML from "./jb-calendar.html";
+import CSS from "./jb-calendar.scss";
 import {
   Direction,
   InputType,
@@ -8,7 +8,7 @@ import {
   JBCalendarElements,
   JBCalendarSwipeGestureData,
   JBCalendarValue,
-} from "./Types";
+} from "./types1";
 import {
   getYear,
   getMonth,

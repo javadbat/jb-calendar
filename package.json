@@ -15,14 +15,14 @@
     "jalali",
     "web component"
   ],
-  "version": "4.1.1",
+  "version": "4.1.2",
   "bugs": "https://github.com/javadbat/jb-calendar/issues",
   "license": "MIT",
   "files": [
     "LICENSE",
     "README.md",
     "lib/",
-    "lib/Types.ts",
+    "lib/types.ts",
     "dist/",
     "**/*"
   ],
