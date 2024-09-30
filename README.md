@@ -83,11 +83,11 @@ if you not set this the default will be today year and month
 
 ## persian number
 
-you can set `usePersianNumber` so calendar number format change to persian number char for example in year instead of `1400` you will see `۱۴۰۰`.
+you can set `showPersianNumber` so calendar number format change to persian number char for example in year instead of `1400` you will see `۱۴۰۰`.
 
 ```javascript
 
-document.querySelector('jb-calendar').usePersianNumber = true;
+document.querySelector('jb-calendar').showPersianNumber = true;
 
 ```
 ## Change Month List
@@ -96,14 +96,20 @@ you may want to change the default month list for both  of Jalali and Gregorian 
 document.querySelector('jb-calendar').setMonthList('JALALI',['حَمَل','ثَور','جَوزا','سَرَطان','اَسَد','سُنبُله','میزان','عَقرَب','قَوس','جَدْی','دَلو','حوت']);
 document.querySelector('jb-calendar').setMonthList('GREGORIAN',['1','2','3','4','5','6','7','8','9','10','11','12']);
 ```
+## change direction
 
-## attribute
+jb-calendar get it's direction base on css direction (user agent direction actually) but because js has no way to detect css direction change we just apply direction when calendar mounted to the DOM tree. if in any case your app direction change for example on language change you may need to update calendar direction. to doing so just call `setupStyleBaseOnCssDirection method`
 
-<!-- ### other attribute
-
-| atribute name  | description                                                                                                         |
-| -------------  | -------------                                                                                                       |
-| direction      | make component placing order to rtl  `<jb-calendar direction="rtl"></jb-calendar>`      | -->
+```js
+//get direction automatically from user agent
+document.querySelector('jb-calendar').setupStyleBaseOnCssDirection();
+// provide direction manually
+document.querySelector('jb-calendar').setupStyleBaseOnCssDirection("ltr");
+document.querySelector('jb-calendar').setupStyleBaseOnCssDirection("rtl");
+// you can also do it like this too.
+document.querySelector('jb-calendar').direction = "rtl";
+document.querySelector('jb-calendar').setupStyleBaseOnCssDirection();
+```
 
 ### set custom style
 
@@ -129,3 +135,12 @@ if you want to set a custom style to this web-component all you need is to set c
 | --jb-calendar-day-color-hover            | day color hover default color is `#312d2d`                                                    |
 | --jb-calendar-month-color-hover          | day color hover default color is `#312d2d`                                                    |
 | --jb-calendar-year-color-hover           | day color hover default color is `#312d2d`                                                    |
+
+
+## Other Related Docs:
+
+- see [jb-calendar-react](https://github.com/javadbat/jb-calendar-react) if you want to use this component in react
+
+- see [All JB Design system Component List](https://github.com/javadbat/design-system/blob/master/docs/component-list.md) for more components
+
+- use [Contribution Guide](https://github.com/javadbat/design-system/blob/master/docs/contribution-guide.md) if you want to contribute in this component.

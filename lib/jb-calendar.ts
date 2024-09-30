@@ -215,28 +215,27 @@ export class JBCalendarWebComponent extends HTMLElement {
     this.#inputType = value;
     this.onInputTypeChange();
   }
-  #usePersianNumber = false;
-  get usePersianNumber() {
-    return this.#usePersianNumber;
+  #showPersianNumber = false;
+  get showPersianNumber() {
+    return this.#showPersianNumber;
   }
-  set usePersianNumber(value: boolean) {
+  set showPersianNumber(value: boolean) {
     if (typeof value !== "boolean") {
-      console.error("usePersianNumber must be boolean");
+      console.error("showPersianNumber must be boolean");
       return;
     }
-    this.#usePersianNumber = value;
+    this.#showPersianNumber = value;
     this.setCalendarData();
   }
   //for layout direction
   get cssDirection(): Direction {
     return getComputedStyle(this).direction as Direction;
   }
-  #direction: Direction = this.cssDirection;
+  #direction: Direction | null = null;
   get direction() {
-    return this.#direction;
+    return this.#direction?this.#direction:this.cssDirection;
   }
-  //TODO: make this works and public currenly user cant change direction by js and attribute
-  private set direction(dir: Direction) {
+  set direction(dir: Direction) {
     if (dir && (dir == "ltr" || dir == "rtl")) {
       this.#direction = dir;
     }
@@ -248,12 +247,10 @@ export class JBCalendarWebComponent extends HTMLElement {
     this.initCalendar();
   }
   connectedCallback() {
-    // standard web component event that called when all of dom is binded
+    // standard web component event that called when all of dom is bound
 
     this.callOnLoadEvent();
-    const dir = this.cssDirection;
-    this.direction = dir;
-    this.setupStyleBaseOnCssDirection(dir);
+    this.setupStyleBaseOnCssDirection();
     this.initCalendarLayout();
   }
   initCalendarLayout() {
@@ -261,9 +258,14 @@ export class JBCalendarWebComponent extends HTMLElement {
     this.fillDayOfWeek();
     this.setCalendarData();
   }
-  setupStyleBaseOnCssDirection(dir: Direction) {
+  /**
+   * @public its public because we cant detect css dir change by js so we have to let user change it manually  
+   * @description set elements direction base on current css direction or seated direction.
+   * @param dir 
+   */
+  setupStyleBaseOnCssDirection(dir: Direction = this.direction) {
     //change some calendar style base on css direction of the element
-    //TODO: use `:dir()` pesudo selector when supported by major browser. it supported now but still count all component as lrt even in rtl
+    //TODO: use `:dir()` pseudo selector when supported by major browser. it supported now but still count all component as lrt even in rtl
     if (dir == "ltr") {
       this.elements.navigatorTitle.nextButton.classList.add("--css-ltr");
       this.elements.navigatorTitle.prevButton.classList.add("--css-ltr");
@@ -953,7 +955,7 @@ export class JBCalendarWebComponent extends HTMLElement {
     this.#initMonthList();
   }
   localizeString(string: string): string {
-    if (this.usePersianNumber) {
+    if (this.showPersianNumber) {
       return enToFaDigits(string);
     } else {
       return string;
