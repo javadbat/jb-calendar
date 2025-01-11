@@ -28,7 +28,7 @@ import {
   getDate as getJalaliDate,
 } from "date-fns-jalali";
 import { enToFaDigits } from "../../../common/scripts/persian-helper";
-
+export * from './types.js';
 const JalaliMonthList = [
   "فروردین",
   "اردیبهشت",

@@ -1,11 +1,20 @@
 # jb-calendar
 
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/jb-calendar)
+[![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://raw.githubusercontent.com/javadbat/jb-calendar/main/LICENSE)
+[![NPM Downloads](https://img.shields.io/npm/dw/jb-calendar)](https://www.npmjs.com/package/jb-calendar)
+
 pure js jalali calendar interface web component
 sample:  <https://codepen.io/javadbat/pen/poRKYEY>
 
  - support jalali date as well as gregorian date
  - customizable theme with css variable so you can implement dark mode too
  - support typescript
+ 
+## using with JS frameworks
+
+to use this component in **react** see [`jb-calendar/react`](https://github.com/javadbat/jb-calendar/tree/main/react);
+
 ## installation
 
 ```bash
@@ -39,7 +48,7 @@ function myHOC(){
 
 you can write wrapper for it in any js framework you use and it will compatible with react, vue, angular, ...
 
-## dependancy
+## dependency
 
 we use `date-fns` and `date-fns-jalali` to manege calendar jalali data
 
@@ -139,7 +148,7 @@ if you want to set a custom style to this web-component all you need is to set c
 
 ## Other Related Docs:
 
-- see [jb-calendar-react](https://github.com/javadbat/jb-calendar-react) if you want to use this component in react
+- see [jb-calendar/react](https://github.com/javadbat/jb-calendar/tree/main/react) if you want to use this component in react
 
 - see [All JB Design system Component List](https://github.com/javadbat/design-system/blob/main/docs/component-list.md) for more components
 
