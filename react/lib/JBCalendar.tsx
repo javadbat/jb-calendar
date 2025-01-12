@@ -3,8 +3,6 @@ import 'jb-calendar';
 // eslint-disable-next-line no-duplicate-imports
 import { JBCalendarWebComponent, InputType } from 'jb-calendar';
 import { useBindEvent } from '../../../../common/hooks/use-event.js';
-
-
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace JSX {
