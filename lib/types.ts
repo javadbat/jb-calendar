@@ -1,5 +1,6 @@
 
-
+import type {EventTypeWithTarget} from 'jb-core';
+import type { JBCalendarWebComponent } from './jb-calendar';
 /* eslint-disable @typescript-eslint/no-namespace */
 export type JBCalendarValue = {
     day: number | null;
@@ -53,4 +54,5 @@ export type JBCalendarSwipeGestureData = {
     }
 }
 export type Direction = "rtl" | "ltr" ;
-export type InputType = 'JALALI' | 'GREGORIAN'
+export type InputType = 'JALALI' | 'GREGORIAN';
+export type JBCalendarEventType<TEvent> = EventTypeWithTarget<TEvent,JBCalendarWebComponent>;

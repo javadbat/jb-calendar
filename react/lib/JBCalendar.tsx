@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState, useImperativeHandle } from 'react';
 import 'jb-calendar';
 // eslint-disable-next-line no-duplicate-imports
 import { JBCalendarWebComponent, InputType } from 'jb-calendar';
-import { useBindEvent } from '../../../../common/hooks/use-event.js';
+import { EventProps, useEvents } from './events-hook.js';
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace JSX {
@@ -43,18 +43,14 @@ const JBCalendar = React.forwardRef((props:any, ref) => {
       element.current.setMonthList('JALALI',props.jalaliMonthList);
     }
   },[props.jalaliMonthList]);
-  function onSelect(e:CustomEvent) {
-    if (props.onSelect && e instanceof CustomEvent) {
-      props.onSelect(e);
-    }
-  }
-  useBindEvent(element, 'select', onSelect);
+
+  useEvents(element, props);
+  
   return (
     <jb-calendar ref={element}></jb-calendar>
   );
 });
-export type Props = {
-  onSelect: (e:CustomEvent)=>void,
+export type Props = EventProps & {
   value: string,
   jalaliMonthList: string[],
   inputType: InputType
