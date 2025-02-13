@@ -371,27 +371,13 @@ export class JBCalendarWebComponent extends HTMLElement {
     this.registerEventHandlers();
   }
   registerEventHandlers() {
-    this.elements.navigatorTitle.nextButton.addEventListener(
-      "click",
-      this.onNextButtonClicked.bind(this)
-    );
-    this.elements.navigatorTitle.prevButton.addEventListener(
-      "click",
-      this.onPrevButtonClicked.bind(this)
-    );
-    this.elements.navigatorTitle.year.addEventListener(
-      "click",
-      this.onNavigatorTitleYearClicked.bind(this)
-    );
-    this.elements.navigatorTitle.month.addEventListener(
-      "click",
-      this.onNavigatorTitleMonthClicked.bind(this)
-    );
+    this.elements.navigatorTitle.nextButton.addEventListener("click",this.onNextButtonClicked.bind(this));
+    this.elements.navigatorTitle.prevButton.addEventListener("click",this.onPrevButtonClicked.bind(this));
+    this.elements.navigatorTitle.year.addEventListener("click",this.onNavigatorTitleYearClicked.bind(this));
+    this.elements.navigatorTitle.month.addEventListener("click",this.onNavigatorTitleMonthClicked.bind(this));
     //add support for swiping
-    this.elements.selectionSections.day.addEventListener(
-      "touchstart",
-      this.onDayWrapperTouchStart.bind(this)
-    );
+    this.elements.selectionSections.day.addEventListener("touchstart",this.onDayWrapperTouchStart.bind(this)
+);
     this.elements.selectionSections.day.addEventListener(
       "touchmove",
       this.onDayWrapperTouchMove.bind(this)
