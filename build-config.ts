@@ -16,10 +16,9 @@ export const reactComponentList: ReactComponentBuildConfig[] = [
     name: "jb-calendar-react",
     path: "./react/lib/JBCalendar.tsx",
     outputPath: "./react/dist/JBCalendar.js",
-    external: ["jb-calendar", "prop-types", "react", "jb-core", "jb-core/react"],
+    external: ["jb-calendar", "react", "jb-core", "jb-core/react"],
     globals: {
       react: "React",
-      "prop-types": "PropTypes",
       "jb-core/react":"JBCoreReact"
     },
     umdName: "JBCalendarReact",
