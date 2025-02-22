@@ -9,6 +9,9 @@ export const webComponentList: WebComponentBuildConfig[] = [
     umdName: "JBCalendar",
     //because date-fns dont have any umd module export i have to do this so it doesn't exclude in umd build
     umdIncludes: ["date-fns", "date-fns-jalali"],
+    globals: {
+      "jb-core": "JBCore",
+    },
   },
 ];
 export const reactComponentList: ReactComponentBuildConfig[] = [
