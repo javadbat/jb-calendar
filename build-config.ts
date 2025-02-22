@@ -7,7 +7,7 @@ export const webComponentList: WebComponentBuildConfig[] = [
     outputPath: "./dist/jb-calendar.js",
     external: ["date-fns", "date-fns-jalali", "jb-core"],
     umdName: "JBCalendar",
-    //because date-fns dont have any umd module export i have to do this so it doenst exclude in umd build
+    //because date-fns dont have any umd module export i have to do this so it doesn't exclude in umd build
     umdIncludes: ["date-fns", "date-fns-jalali"],
   },
 ];
@@ -19,6 +19,8 @@ export const reactComponentList: ReactComponentBuildConfig[] = [
     external: ["jb-calendar", "react", "jb-core", "jb-core/react"],
     globals: {
       react: "React",
+      "jb-calendar": "JBCalendar",
+      "jb-core":"JBCore",
       "jb-core/react":"JBCoreReact"
     },
     umdName: "JBCalendarReact",
