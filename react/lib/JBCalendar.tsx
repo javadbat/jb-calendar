@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState, useImperativeHandle } from 'react';
 import 'jb-calendar';
 // eslint-disable-next-line no-duplicate-imports
-import { JBCalendarWebComponent, InputType } from 'jb-calendar';
+import { JBCalendarWebComponent, InputType, Direction } from 'jb-calendar';
 import { EventProps, useEvents } from './events-hook.js';
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -19,7 +19,7 @@ declare global {
   }
 }
 // eslint-disable-next-line react/display-name
-const JBCalendar = React.forwardRef((props:any, ref) => {
+const JBCalendar = React.forwardRef((props:Props, ref) => {
   const element = useRef<JBCalendarWebComponent>(null);
   const [refChangeCount, refChangeCountSetter] = useState(0);
   useImperativeHandle(
@@ -51,8 +51,9 @@ const JBCalendar = React.forwardRef((props:any, ref) => {
   );
 });
 export type Props = EventProps & {
-  value: string,
-  jalaliMonthList: string[],
-  inputType: InputType
+  value?: string,
+  jalaliMonthList?: string[],
+  inputType?: InputType,
+  direction?:Direction
 };
 export {JBCalendar};
