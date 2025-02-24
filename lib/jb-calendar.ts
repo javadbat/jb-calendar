@@ -304,9 +304,9 @@ export class JBCalendarWebComponent extends HTMLElement {
     // we set default value for selected year and month here becuase we want user config value and min max date ,... in on init so we update our dom and calendar base on them
     if (this.inputType == InputTypes.jalali) {
       this.data.selectedYear =
-        this.value.year || this.#defaultCalendarData.jalali.year;
+        this.value.year || this.data.selectedYear || this.#defaultCalendarData.jalali.year;
       this.data.selectedMonth =
-        this.value.month || this.#defaultCalendarData.jalali.month;
+        this.value.month || this.data.selectedMonth || this.#defaultCalendarData.jalali.month;
       this.data.yearSelectionRange = [
         this.data.selectedYear - 4,
         this.data.selectedYear + 7,
@@ -315,10 +315,8 @@ export class JBCalendarWebComponent extends HTMLElement {
       this.shadowRoot!.querySelector(".swipe-up-text")!.innerHTML =
         "نمایش سال‌ها";
     } else {
-      this.data.selectedYear =
-        this.value.year || this.#defaultCalendarData.gregorian.year;
-      this.data.selectedMonth =
-        this.value.month || this.#defaultCalendarData.gregorian.month;
+      this.data.selectedYear = this.value.year|| this.data.selectedYear || this.#defaultCalendarData.gregorian.year;
+      this.data.selectedMonth = this.value.month || this.data.selectedMonth || this.#defaultCalendarData.gregorian.month;
       this.data.yearSelectionRange = [
         this.data.selectedYear - 4,
         this.data.selectedYear + 7,
@@ -589,9 +587,9 @@ export class JBCalendarWebComponent extends HTMLElement {
           obj[prop] = value;
           onMonthChanged(value as number, obj.selectedMonth);
         }
-        if (prop == "yearSelectionRange") {
+        if (prop == "yearSelectionRange" && Array.isArray(value)) {
           obj[prop] = value;
-          onYearSelectionRangeChanged(value as number[]);
+          onYearSelectionRangeChanged(value);
         }
         return true;
       },
