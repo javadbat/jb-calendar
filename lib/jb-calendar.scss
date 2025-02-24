@@ -21,13 +21,7 @@
             justify-content: center;
             align-items: center;
             user-select: none;
-            //i dont know why but it execute even in rtl
-            // &:dir(ltr){
-            //     svg{
-            //         transform: scaleX(-1);
-            //     }
-            // }
-            //for backward compatibility on chrome you can set parent element direction attribute manually
+            /*we cna't use:dir() because it only catch dir attribute and not css dir*/
             &.--css-ltr {
                 svg{
                     transform: scaleX(-1);

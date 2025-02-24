@@ -239,6 +239,7 @@ export class JBCalendarWebComponent extends HTMLElement {
     if (dir && (dir == "ltr" || dir == "rtl")) {
       this.#direction = dir;
     }
+    this.setupStyleBaseOnCssDirection();
   }
   constructor() {
     super();
@@ -369,6 +370,7 @@ export class JBCalendarWebComponent extends HTMLElement {
       swipeupSymbol: shadowRoot.querySelector(".swipe-up-symbol")!,
     };
     this.registerEventHandlers();
+    window.matchMedia
   }
   registerEventHandlers() {
     this.elements.navigatorTitle.nextButton.addEventListener("click",this.onNextButtonClicked.bind(this));

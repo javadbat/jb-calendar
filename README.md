@@ -107,7 +107,7 @@ document.querySelector('jb-calendar').setMonthList('GREGORIAN',['1','2','3','4',
 ```
 ## change direction
 
-jb-calendar get it's direction base on css direction (user agent direction actually) but because js has no way to detect css direction change we just apply direction when calendar mounted to the DOM tree. if in any case your app direction change for example on language change you may need to update calendar direction. to doing so just call `setupStyleBaseOnCssDirection method`
+jb-calendar get it's direction base on css direction (user agent direction actually) but because in JavaScript there is no way to detect css direction change we just apply direction when calendar mounted to the DOM tree. if in any case your app direction change for example on language change you may need to update calendar direction. to doing so just call `setupStyleBaseOnCssDirection method` or set `calendarDom.direction = 'rtl' | 'ltr'` .
 
 ```js
 //get direction automatically from user agent
