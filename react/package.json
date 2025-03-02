@@ -24,7 +24,7 @@
     "dist/"
   ],
   "main": "index.js",
-  "types": "./dist/web-component/jb-calendar/react/lib/JBCalendar.d.ts",
+  "types": "./dist/JBCalendar.d.ts",
   "repository": {
 		"type": "git",
 		"url": "git@github.com:javadbat/jb-calendar.git"

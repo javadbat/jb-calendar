@@ -29,7 +29,7 @@
   ],
   "main": "index.js",
   "module":"index.js",
-  "types": "./dist/web-component/jb-calendar/lib/jb-calendar.d.ts",
+  "types": "./dist/jb-calendar.d.ts",
   "repository": {
 		"type": "git",
 		"url": "https://github.com/javadbat/jb-calendar"
