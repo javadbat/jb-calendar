@@ -28,6 +28,7 @@ import {
   getDate as getJalaliDate,
 } from "date-fns-jalali";
 import { enToFaDigits } from "jb-core";
+import {defineColors} from 'jb-core/theme';
 export * from './types.js';
 const JalaliMonthList = [
   "فروردین",
@@ -336,6 +337,7 @@ export class JBCalendarWebComponent extends HTMLElement {
   }
   initWebComponent() {
     const shadowRoot = this.attachShadow({ mode: "open" });
+    defineColors();
     const html = `<style>${CSS}</style>` + "\n" + HTML;
     const element = document.createElement("template");
     element.innerHTML = html;

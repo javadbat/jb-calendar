@@ -1,0 +1,22 @@
+:host{
+  --color: var(--jb-calendar-color,var(--jb-text-primary));
+  --arrow-button-bgcolor: var(--jb-calendar-arrow-button-bgcolor, var(--jb-neutral-10));
+  --arrow-fill-color: var(--jb-calendar-arrow-fill-color, var(--jb-neutral-6));
+  --day-text-color-disabled: var(--jb-calendar-day-text-color-disabled, var(--jb-neutral-8));
+  --day-text-color-today: var(--jb-calendar-day-text-color-today, var(--jb-green));
+  --day-bgcolor-selected: var(--jb-calendar-day-bgcolor-selected, var(--jb-neutral));
+  --day-color-selected: var(--jb-calendar-day-color-selected, var(--jb-text-contrast));
+  --day-bgcolor-selected-hover: var(--jb-calendar-day-bgcolor-selected-hover, var(--jb-neutral-2));
+  --day-color-selected-hover: var(--jb-calendar-day-color-selected-hover, var(--jb-text-contrast));
+  --day-bgcolor-hover: var(--jb-calendar-day-bgcolor-hover,var(--jb-neutral-10));
+  --day-color-hover: var(--jb-calendar-day-color-hover, var(--jb-text-primary));
+  --day-text-color: var(--jb-calendar-day-text-color, var(--jb-neutral-4));
+  --status-point-bgcolor-today: var(--jb-calendar-status-point-bgcolor-today, var(--jb-green));
+  --status-point-border-color: var(--jb-calendar-status-point-border-color, var(--jb-white));
+  --month-bgcolor-hover: var(--jb-calendar-month-bgcolor-hover, var(--jb-neutral-10));
+  --month-color-hover: var(--jb-calendar-month-color-hover, var(--jb-text-primary));
+  --year-bgcolor-hover: var(--jb-calendar-year-bgcolor-hover, var(--jb-neutral-10));
+  --year-color-hover: var(--jb-calendar-year-color-hover, var(--jb-text-primary));
+  --swipe-up-icon-color: var(--jb-calendar-arrow-fill-color, var(--arrow-fill-color));
+
+}

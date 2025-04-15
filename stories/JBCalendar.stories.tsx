@@ -3,7 +3,7 @@ import { JBCalendar, Props } from 'jb-calendar/react';
 import JBCalendarTest from './samples/JBCalendarTestPage';
 import JBCalendarCustomTheme from './samples/JBCalendarCustomTheme';
 import type { Meta, StoryObj } from '@storybook/react';
-
+import {addMonths} from 'date-fns';
 const meta: Meta<Props> = {
   title: "Example/JBCalendar",
   component: JBCalendar,
@@ -29,6 +29,13 @@ export const CustomMonthName: Story = {
 export const Gregorian: Story = {
   args: {
     inputType: 'GREGORIAN'
+  },
+};
+
+export const MinMax: Story = {
+  args: {
+    min: new Date(),
+    max: addMonths(new Date(),2)
   },
 };
 

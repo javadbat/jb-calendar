@@ -1,7 +1,9 @@
+@use './variables.css';
+
 .jb-calendar-web-component{
     width: 272px;
     height: auto;
-    color:var(--jb-calendar-color, #2a2d30);
+    color:var(--color);
     font-size: 16px;
     .navigator-section{
         height: 32px;
@@ -12,7 +14,7 @@
         justify-content: space-between;
         cursor: pointer;
         .arrow-btn{
-            background-color: var(--jb-calendar-arrow-button-bgcolor, #f6f8f9);
+            background-color: var(--arrow-button-bgcolor);
             width: 32px;
             height: 32px;
             border-radius: var(--jb-calendar-arrow-button-border-radius, 12px);
@@ -28,7 +30,7 @@
                 }
              }
             svg{
-                fill:var(--jb-calendar-arrow-fill-color, #97999a);
+                fill:var(--arrow-fill-color);
             }
         }
         .navigator-title{
@@ -129,15 +131,16 @@
                         height: 37px;
                         width: 32px;
                         user-select: none;
+                        cursor: pointer;
                         &.--disable{
                             cursor: not-allowed;
                             .day-number-wrapper{
-                                color:var(--jb-calendar-day-text-color-disabled, #ddd);
+                                color:var(--day-text-color-disabled);
                             }
                         }
                         &.--today{
                             .day-number-wrapper{
-                                color:var(--jb-calendar-day-text-color-today, #28BD48);;
+                                color:var(--day-text-color-today);;
                             }
                             .status-point{
                                 display: block;
@@ -145,29 +148,29 @@
                         }
                         &.--selected{
                             .day-number-wrapper{
-                                color: #fff;
-                                background-color: var(--jb-calendar-day-bgcolor-selected, #1e2832);
+                                color: var(--day-color-selected);
+                                background-color: var(--day-bgcolor-selected);
                                 
                             }
                             &:hover{
                                 .day-number-wrapper{
-                                    color:#fff;
-                                    background-color: var(--jb-calendar-day-bgcolor-selected-hover, #1e2832);
+                                    color: var(--day-color-selected-hover);
+                                    background-color: var(--day-bgcolor-selected-hover);
                                 }
                             }
                         }
                         &:hover{
                             .day-number-wrapper{
-                                background-color: var(--jb-calendar-day-bgcolor-hover, #f6f8f9) ;
-                                color: var(--jb-calendar-day-color-hover, #312d2d);
+                                background-color: var(--day-bgcolor-hover) ;
+                                color: var(--day-color-hover);
                             }
                         }
                         .day-number-wrapper{
                             width: 32px;
                             height: 32px;
                             border-radius: 12px;
-                            color:var(--jb-calendar-day-text-color, #868990);
-                            cursor: pointer;
+                            color:var(--day-text-color);
+                            
                             display: flex;
                             align-items: center;
                             justify-content: center;
@@ -183,13 +186,13 @@
                             position: absolute;
                             width: 10px;
                             height: 10px;
-                            background-color: var(--jb-calendar-status-point-bgcolor-today, #28BD48) ;
+                            background-color: var(--status-point-bgcolor-today) ;
                             border-radius: 6px;
                             bottom: 0px;
                             left: calc(50% - 5px);
                             display: none;
                             z-index: 1;
-                            border:1px solid var(--jb-calendar-status-point-border-color, #fff);
+                            border:1px solid var(--status-point-border-color);
                             box-sizing: border-box;
                         }
                     }
@@ -212,7 +215,7 @@
                 border-radius: 12px;
                 user-select: none;
                 &:hover{
-                    background-color: var(--jb-calendar-month-bgcolor-hover, #f6f8f9);
+                    background-color: var(--month-bgcolor-hover);
                 }
                 .month-name{
                     width: 100%;
@@ -221,7 +224,7 @@
                     justify-content: center;
                     align-items: center;
                     &:hover{
-                        color: var(--jb-calendar-month-color-hover, #312d2d);
+                        color: var(--month-color-hover);
                     }
                 }
             }
@@ -275,7 +278,7 @@
                     border-radius: 12px;
                     user-select: none;
                     &:hover{
-                        background-color: var(--jb-calendar-year-bgcolor-hover, #f6f8f9);
+                        background-color: var(--year-bgcolor-hover);
                     }
                     .year-number{
                         width: 100%;
@@ -284,7 +287,7 @@
                         justify-content: center;
                         align-items: center;
                         &:hover{
-                            color: var(--jb-calendar-year-color-hover, #312d2d);
+                            color: var(--year-color-hover)
                         }
                     }
                 }
@@ -308,7 +311,7 @@
                 font-size: 0.8rem;
             }
             .swipe-up-icon{
-                fill:var(--jb-calendar-arrow-fill-color, #97999a);
+                fill: var(--swipe-up-icon-color);
             }
         }
     }

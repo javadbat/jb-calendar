@@ -20,8 +20,10 @@ declare global {
 }
 // eslint-disable-next-line react/display-name
 const JBCalendar = React.forwardRef((props:Props, ref) => {
+  
   const element = useRef<JBCalendarWebComponent>(null);
   const [refChangeCount, refChangeCountSetter] = useState(0);
+
   useImperativeHandle(
     ref,
     () => (element ? element.current : {}),
@@ -35,25 +37,43 @@ const JBCalendar = React.forwardRef((props:Props, ref) => {
       element.current.inputType = props.inputType;
     }
   }, [props.inputType]);
+
   useEffect(()=>{
     element.current.setAttribute('direction', props.direction);
   },[props.direction]);
+
   useEffect(()=>{
     if(props.jalaliMonthList){
       element.current.setMonthList('JALALI',props.jalaliMonthList);
     }
   },[props.jalaliMonthList]);
 
+  useEffect(()=>{
+    if(element.current){
+      element.current.dateRestrictions.min = props.min;
+    }
+  },[element.current, props.min]);
+
+  useEffect(()=>{
+    if(element.current){
+      element.current.dateRestrictions.max = props.max;
+    }
+  },[element.current, props.max]);
+
   useEvents(element, props);
   
   return (
     <jb-calendar ref={element}></jb-calendar>
   );
+
 });
+
 export type Props = EventProps & {
   value?: string,
   jalaliMonthList?: string[],
   inputType?: InputType,
-  direction?:Direction
+  direction?:Direction,
+  min?:Date,
+  max?:Date,
 };
 export {JBCalendar};
