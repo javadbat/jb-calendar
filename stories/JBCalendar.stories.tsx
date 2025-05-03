@@ -5,7 +5,7 @@ import JBCalendarCustomTheme from './samples/JBCalendarCustomTheme';
 import type { Meta, StoryObj } from '@storybook/react';
 import {addMonths} from 'date-fns';
 const meta: Meta<Props> = {
-  title: "Example/JBCalendar",
+  title: "Components/JBCalendar",
   component: JBCalendar,
 };
 export default meta;

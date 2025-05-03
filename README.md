@@ -136,7 +136,7 @@ if you want to set a custom style to this web-component all you need is to set c
 | -------------                            | -------------                                                                                 |
 | --jb-calendar-color                      | general text color of component                                                               |
 | --jb-calendar-arrow-button-bgcolor       | background color of next and prev button                                                      |
-| --jb-calendar-arrow-button-border-radius | border radius of arrow buttons default is 12px                                                 | 
+| --jb-calendar-arrow-button-border-radius | border radius of arrow buttons                                                                | 
 | --jb-calendar-day-text-color             | day text color                                                                                |
 | --jb-calendar-day-text-color-disabled    | day text color when day in not available for select                                           |
 | --jb-calendar-day-text-color-today       | today day text color                                                                          |
@@ -148,9 +148,9 @@ if you want to set a custom style to this web-component all you need is to set c
 | --jb-calendar-month-bgcolor-hover        | background color of month in month list in hover state                                        |
 | --jb-calendar-year-bgcolor-hover         | background color of year in month list in hover state                                         |
 | --jb-calendar-arrow-fill-color           | next and prev arrow icon color                                                                |
-| --jb-calendar-day-color-hover            | day color hover default color is `#312d2d`                                                    |
-| --jb-calendar-month-color-hover          | day color hover default color is `#312d2d`                                                    |
-| --jb-calendar-year-color-hover           | day color hover default color is `#312d2d`                                                    |
+| --jb-calendar-day-color-hover            | day color hover                                                                               |
+| --jb-calendar-month-color-hover          | day color hover                                                                               |
+| --jb-calendar-year-color-hover           | day color hover                                                                               |
 
 
 ## Other Related Docs:

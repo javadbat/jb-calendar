@@ -17,7 +17,7 @@
             background-color: var(--arrow-button-bgcolor);
             width: 32px;
             height: 32px;
-            border-radius: var(--jb-calendar-arrow-button-border-radius, 12px);
+            border-radius: var(--arrow-button-border-radius);
             cursor: pointer;
             display: flex;
             justify-content: center;
@@ -168,7 +168,7 @@
                         .day-number-wrapper{
                             width: 32px;
                             height: 32px;
-                            border-radius: 12px;
+                            border-radius: var( --day-button-border-radius);
                             color:var(--day-text-color);
                             
                             display: flex;
@@ -212,7 +212,7 @@
                 width: 100%;
                 height: 32px;
                 cursor: pointer;
-                border-radius: 12px;
+                border-radius: var(--month-button-border-radius);
                 user-select: none;
                 &:hover{
                     background-color: var(--month-bgcolor-hover);
@@ -275,7 +275,7 @@
                     width: 100%;
                     height: 32px;
                     cursor: pointer;
-                    border-radius: 12px;
+                    border-radius: var(--year-button-border-radius);
                     user-select: none;
                     &:hover{
                         background-color: var(--year-bgcolor-hover);

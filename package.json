@@ -12,10 +12,12 @@
     "calendar",
     "jalali calendar",
     "shamsi",
+    "تقویم",
+    "شمسی",
     "jalali",
     "web component"
   ],
-  "version": "4.3.0",
+  "version": "4.4.0",
   "bugs": "https://github.com/javadbat/jb-calendar/issues",
   "license": "MIT",
   "files": [
@@ -35,8 +37,8 @@
 		"url": "https://github.com/javadbat/jb-calendar"
   },
   "dependencies": {
-    "date-fns": "^2.28.0",
-    "date-fns-jalali": "^2.28.0-1",
-    "jb-core":">=0.9.0"
+    "date-fns": "^4.1.0",
+    "date-fns-jalali": "^4.1.0-0",
+    "jb-core":">=0.14.0"
   }
 }

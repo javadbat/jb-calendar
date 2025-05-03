@@ -1,4 +1,10 @@
 :host{
+
+  --arrow-button-border-radius: var(--jb-calendar-arrow-button-border-radius, var(--jb-radius-sm));
+  --day-button-border-radius: var(--jb-calendar-day-button-border-radius, var(--jb-radius-sm));
+  --month-button-border-radius: var(--jb-calendar-month-button-border-radius, var(--jb-radius-sm));
+  --year-button-border-radius: var(--jb-calendar-year-button-border-radius, var(--jb-radius-sm));
+  /*colors*/
   --color: var(--jb-calendar-color,var(--jb-text-primary));
   --arrow-button-bgcolor: var(--jb-calendar-arrow-button-bgcolor, var(--jb-neutral-10));
   --arrow-fill-color: var(--jb-calendar-arrow-fill-color, var(--jb-neutral-6));
