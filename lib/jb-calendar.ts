@@ -265,7 +265,7 @@ export class JBCalendarWebComponent extends HTMLElement {
    */
   setupStyleBaseOnCssDirection(dir: Direction = this.direction) {
     //change some calendar style base on css direction of the element
-    //TODO: use `:dir()` pseudo selector when supported by major browser. it supported now but still count all component as lrt even in rtl
+    //TODO: use css `if()` when it become standard
     if (dir == "ltr") {
       this.elements.navigatorTitle.nextButton.classList.add("--css-ltr");
       this.elements.navigatorTitle.prevButton.classList.add("--css-ltr");
