@@ -1,4 +1,3 @@
-import HTML from "./jb-calendar.html";
 import CSS from "./jb-calendar.scss";
 import {Direction,InputType,
   JBCalendarData,
@@ -27,6 +26,7 @@ import {
 } from "date-fns-jalali";
 import { enToFaDigits } from "jb-core";
 import {registerDefaultVariables} from 'jb-core/theme';
+import { renderHTML } from "./render";
 export * from './types.js';
 const JalaliMonthList = [
   "فروردین",
@@ -336,7 +336,7 @@ export class JBCalendarWebComponent extends HTMLElement {
   initWebComponent() {
     const shadowRoot = this.attachShadow({ mode: "open" });
     registerDefaultVariables();
-    const html = `<style>${CSS}</style>` + "\n" + HTML;
+    const html = `<style>${CSS}</style>` + "\n" + renderHTML();
     const element = document.createElement("template");
     element.innerHTML = html;
     shadowRoot.appendChild(element.content.cloneNode(true));
