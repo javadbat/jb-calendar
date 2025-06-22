@@ -1,9 +1,10 @@
+'use client';
 import React, { useRef, useEffect, useState, useImperativeHandle } from 'react';
 import 'jb-calendar';
 // eslint-disable-next-line no-duplicate-imports
 import { JBCalendarWebComponent, InputType, Direction } from 'jb-calendar';
 import { EventProps, useEvents } from './events-hook.js';
-declare global {
+declare module "react" {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace JSX {
     interface IntrinsicElements {
