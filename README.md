@@ -17,7 +17,7 @@ to use this component in **react** see [`jb-calendar/react`](https://github.com/
 
 ## installation
 
-```bash
+```sh
 npm install jb-calendar
 ```
 

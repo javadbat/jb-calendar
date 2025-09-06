@@ -4,7 +4,10 @@ calendar component for react
 
 ## installation
 
-run `npm install jb-calendar` to install package with npm
+run following command to install package with npm
+```sh
+npm install jb-calendar
+```
 
 ## usage
 
