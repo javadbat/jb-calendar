@@ -1,12 +1,15 @@
 import React from 'react';
 import { JBCalendar, Props } from 'jb-calendar/react';
 import JBCalendarTest from './samples/JBCalendarTestPage';
-import JBCalendarCustomTheme from './samples/JBCalendarCustomTheme';
+import './styles/themes.css';
 import type { Meta, StoryObj } from '@storybook/react';
 import {addMonths} from 'date-fns';
 const meta: Meta<Props> = {
   title: "Components/JBCalendar",
   component: JBCalendar,
+  args:{
+    direction:'ltr',
+  }
 };
 export default meta;
 type Story = StoryObj<typeof JBCalendar>;
@@ -73,8 +76,8 @@ export const onMobile: Story = {
   },
 };
 
-const customThemeTemplate = (args) => (<JBCalendarCustomTheme {...args}></JBCalendarCustomTheme>);
-export const CustomTheme = customThemeTemplate.bind({});
-CustomTheme.args = {
-  inputType: 'GREGORIAN'
-};
+export const customTheme:Story = {
+  args:{
+    className:"dark-theme"
+  }
+}

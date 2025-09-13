@@ -1,4 +1,6 @@
-import CSS from "./jb-calendar.scss";
+import CSS from "./jb-calendar.css";
+import VariableCSS from './variables.css';
+
 import {Direction,InputType,
   JBCalendarData,
   JBCalendarDateRestrictions,
@@ -237,6 +239,7 @@ export class JBCalendarWebComponent extends HTMLElement {
   set direction(dir: Direction) {
     if (dir && (dir == "ltr" || dir == "rtl")) {
       this.#direction = dir;
+      this.style.direction = dir;
     }
     this.setupStyleBaseOnCssDirection();
   }
@@ -336,7 +339,7 @@ export class JBCalendarWebComponent extends HTMLElement {
   initWebComponent() {
     const shadowRoot = this.attachShadow({ mode: "open" });
     registerDefaultVariables();
-    const html = `<style>${CSS}</style>` + "\n" + renderHTML();
+    const html = `<style>${CSS} ${VariableCSS}</style>` + "\n" + renderHTML();
     const element = document.createElement("template");
     element.innerHTML = html;
     shadowRoot.appendChild(element.content.cloneNode(true));

@@ -40,7 +40,7 @@ const JBCalendar = React.forwardRef((props:Props, ref) => {
   }, [props.inputType]);
 
   useEffect(()=>{
-    element.current.setAttribute('direction', props.direction);
+    element.current.direction = props.direction;
   },[props.direction]);
 
   useEffect(()=>{
@@ -64,7 +64,7 @@ const JBCalendar = React.forwardRef((props:Props, ref) => {
   useEvents(element, props);
   
   return (
-    <jb-calendar ref={element}></jb-calendar>
+    <jb-calendar ref={element} class={props.className}></jb-calendar>
   );
 
 });
@@ -74,6 +74,7 @@ export type Props = EventProps & {
   jalaliMonthList?: string[],
   inputType?: InputType,
   direction?:Direction,
+  className:string,
   min?:Date,
   max?:Date,
 };

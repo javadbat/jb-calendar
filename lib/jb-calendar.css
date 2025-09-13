@@ -1,5 +1,8 @@
-@use './variables.css';
-
+:host{
+    display: block;
+    width: max-content;
+    height: max-content;
+}
 .jb-calendar-web-component{
     width: 272px;
     height: auto;
