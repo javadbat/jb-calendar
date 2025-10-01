@@ -29,35 +29,9 @@ import {
 import { enToFaDigits } from "jb-core";
 import {registerDefaultVariables} from 'jb-core/theme';
 import { renderHTML } from "./render";
+import { dictionary } from "./i18n";
+import { i18n } from "jb-core/i18n";
 export * from './types.js';
-const JalaliMonthList = [
-  "فروردین",
-  "اردیبهشت",
-  "خرداد",
-  "تیر",
-  "مرداد",
-  "شهریور",
-  "مهر",
-  "آبان",
-  "آذر",
-  "دی",
-  "بهمن",
-  "اسفند",
-];
-const GregorianMonthList = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
 
 const InputTypes: { [key: string]: InputType } = {
   jalali: "JALALI",
@@ -90,7 +64,7 @@ export class JBCalendarWebComponent extends HTMLElement {
     day: null,
   };
   #activeSection: JBCalendarSections | null = null;
-  #inputType: InputType = InputTypes.jalali;
+  #inputType: InputType = i18n.locale.calendar == "persian"?InputTypes.jalali:InputTypes.gregorian
   #defaultCalendarData = {
     jalali: {
       year: getJalaliYear(today),
@@ -101,8 +75,8 @@ export class JBCalendarWebComponent extends HTMLElement {
       month: getMonth(today) + 1,
     },
   };
-  #jalaliMonthList = JalaliMonthList;
-  #gregorianMonthList = GregorianMonthList;
+  #jalaliMonthList = dictionary.get(i18n,"jalaliMonthList");
+  #gregorianMonthList = dictionary.get(i18n,"gregorianMonthList");
 
   /**
    * @public change month labels to desired user label base on language or culture
@@ -216,7 +190,7 @@ export class JBCalendarWebComponent extends HTMLElement {
     this.#inputType = value;
     this.onInputTypeChange();
   }
-  #showPersianNumber = false;
+  #showPersianNumber = i18n.locale.numberingSystem == "arabext";
   get showPersianNumber() {
     return this.#showPersianNumber;
   }
@@ -287,8 +261,8 @@ export class JBCalendarWebComponent extends HTMLElement {
   }
   fillDayOfWeek() {
     //fill day of week bas on input type
-    const gregorianDayOfWeekArray = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
-    const jalaliDayOfWeekArray = ["ش", "ی", "د", "س", "چ", "پ", "ج"];
+    const gregorianDayOfWeekArray = dictionary.get(i18n,"gregorianDayOfWeek");
+    const jalaliDayOfWeekArray = dictionary.get(i18n,"jalaliDayOfWeek");
     const dayOfWeekArray =
       this.inputType == InputTypes.jalali
         ? jalaliDayOfWeekArray
@@ -303,7 +277,7 @@ export class JBCalendarWebComponent extends HTMLElement {
     }
   }
   setCalendarData() {
-    // we set default value for selected year and month here becuase we want user config value and min max date ,... in on init so we update our dom and calendar base on them
+    // we set default value for selected year and month here because we want user config value and min max date ,... in on init so we update our dom and calendar base on them
     if (this.inputType == InputTypes.jalali) {
       this.data.selectedYear =
         this.value.year || this.data.selectedYear || this.#defaultCalendarData.jalali.year;
@@ -428,7 +402,7 @@ export class JBCalendarWebComponent extends HTMLElement {
         this.elements.monthDayWrapper.prev.style.transform = `translateX(${deltaX}px)`;
         this.elements.monthDayWrapper.next.style.transform = `translateX(${deltaX}px)`;
       } else {
-        //if user swipe more vertically than horizentally we reset horizental swipe change
+        //if user swipe more vertically than horizontally we reset horizontal swipe change
         this.elements.monthDayWrapper.current.style.transform = `translateX(${0}px)`;
         this.elements.monthDayWrapper.prev.style.transform = `translateX(${0}px)`;
         this.elements.monthDayWrapper.next.style.transform = `translateX(${0}px)`;
@@ -457,7 +431,7 @@ export class JBCalendarWebComponent extends HTMLElement {
       const deltaX = clientX - this.#swipeGestureData.daysWrapper.startX;
       this.#swipeGestureData.daysWrapper.startX = null;
       if (Math.abs(deltaX) > 100) {
-        //detemine direcion of change
+        //determine direction of change
         let swipeDirection = deltaX > 0 ? "next" : "prev";
         if (this.direction == "ltr") {
           swipeDirection = deltaX > 0 ? "prev" : "next";
@@ -522,7 +496,7 @@ export class JBCalendarWebComponent extends HTMLElement {
       const deltaX = clientX - this.#swipeGestureData.yearsWrapper.startX;
       this.#swipeGestureData.yearsWrapper.startX = null;
 
-      //detemine direcion of change
+      //determine direction of change
       let swipeDirection = deltaX > 0 ? "next" : "prev";
       if (this.direction == "ltr") {
         swipeDirection = deltaX > 0 ? "prev" : "next";
@@ -548,7 +522,7 @@ export class JBCalendarWebComponent extends HTMLElement {
   }
   moveBackToPos(dom: HTMLElement) {
     if (dom) {
-      //remove all transform and changed pos from element and returned it to natrual place. used on drop event
+      //remove all transform and changed pos from element and returned it to natural place. used on drop event
       dom.style.transition = `transform 0.3s 0s ease`;
       //remove above assigned animation
       setTimeout(() => {

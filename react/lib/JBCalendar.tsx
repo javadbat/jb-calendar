@@ -64,7 +64,7 @@ const JBCalendar = React.forwardRef((props:Props, ref) => {
   useEvents(element, props);
   
   return (
-    <jb-calendar ref={element} class={props.className}></jb-calendar>
+    <jb-calendar ref={element} class={props.className} style={props.style}></jb-calendar>
   );
 
 });
@@ -74,7 +74,8 @@ export type Props = EventProps & {
   jalaliMonthList?: string[],
   inputType?: InputType,
   direction?:Direction,
-  className:string,
+  className?:string,
+  style?:React.CSSProperties
   min?:Date,
   max?:Date,
 };

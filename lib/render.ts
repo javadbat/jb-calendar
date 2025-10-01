@@ -1,8 +1,11 @@
+import { i18n } from "jb-core/i18n";
+import { dictionary } from "./i18n";
+
 export function renderHTML(): string {
   return /* html */ `
   <div class="jb-calendar-web-component">
     <section class="navigator-section">
-        <div class="prev-btn arrow-btn" title="قبل">
+        <div class="prev-btn arrow-btn" title="${dictionary.get(i18n,"prev")}">
             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit=""
                 preserveAspectRatio="xMidYMid meet">
                 <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
@@ -13,7 +16,7 @@ export function renderHTML(): string {
             <span class="year"></span>
             <span class="year-range"></span>
         </div>
-        <div class="next-btn arrow-btn" title="بعد">
+        <div class="next-btn arrow-btn" title="${dictionary.get(i18n,"next")}">
             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit=""
                 preserveAspectRatio="xMidYMid meet">
                 <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
@@ -52,9 +55,7 @@ export function renderHTML(): string {
                     </clipPath>
                 </defs>
             </svg>
-            <div class="swipe-up-text">
-                نمایش سال‌ها
-            </div>
+            <div class="swipe-up-text">${dictionary.get(i18n,"showAllYear")}</div>
         </div>
     </section>
   </div>

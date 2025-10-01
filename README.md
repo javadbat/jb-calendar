@@ -2,7 +2,9 @@
 
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/jb-calendar)
 [![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://raw.githubusercontent.com/javadbat/jb-calendar/main/LICENSE)
-[![NPM Downloads](https://img.shields.io/npm/dw/jb-calendar)](https://www.npmjs.com/package/jb-calendar)
+[![NPM Version](https://img.shields.io/npm/v/jb-calendar)](https://www.npmjs.com/package/jb-calendar)
+![GitHub Created At](https://img.shields.io/github/created-at/javadbat/jb-calendar)
+
 
 pure js jalali calendar interface web component
 sample:  <https://codepen.io/javadbat/pen/poRKYEY>
@@ -11,9 +13,13 @@ sample:  <https://codepen.io/javadbat/pen/poRKYEY>
  - customizable theme with css variable so you can implement dark mode too
  - support typescript
  
+## Demo
+
+- [Storybook](https://javadbat.github.io/design-system/?path=/docs/components-jbcalendar)
+
 ## using with JS frameworks
 
-to use this component in **react** see [`jb-calendar/react`](https://github.com/javadbat/jb-calendar/tree/main/react);
+- [<img src="https://img.shields.io/badge/jb--calendar/react-000.svg?logo=react&logoColor=%2361DAFB" height="30" />](https://github.com/javadbat/jb-calendar/tree/main/react)
 
 ## installation
 

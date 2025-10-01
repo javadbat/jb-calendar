@@ -17,7 +17,7 @@
     "jalali",
     "web component"
   ],
-  "version": "4.4.0",
+  "version": "5.0.0",
   "bugs": "https://github.com/javadbat/jb-calendar/issues",
   "license": "MIT",
   "files": [
@@ -39,6 +39,6 @@
   "dependencies": {
     "date-fns": "^4.1.0",
     "date-fns-jalali": "^4.1.0-0",
-    "jb-core":">=0.14.0"
+    "jb-core":">=0.18.1"
   }
 }
