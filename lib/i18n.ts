@@ -23,7 +23,7 @@ export type JBCalendarDictionary = {
 export const dictionary = new JBDictionary<JBCalendarDictionary>({
   "fa":{
     jalaliMonthList:["فروردین","اردیبهشت","خرداد","تیر","مرداد","شهریور","مهر","آبان","آذر","دی","بهمن","اسفند"],
-    gregorianMonthList:["ژانویه","فوریه","مارس","می","ژوئن","ژوئیه","اوت","سپتامبر","اکتبر","نوامبر","دسامبر"],
+    gregorianMonthList:["ژانویه","فوریه","مارس", "آپریل","می","ژوئن","ژوئیه","اوت","سپتامبر","اکتبر","نوامبر","دسامبر"],
     jalaliDayOfWeek:["ش", "ی", "د", "س", "چ", "پ", "ج"],
     gregorianDayOfWeek:["ی", "د", "س", "چ", "پ", "ج","ش"],
     next:"بعدی",
