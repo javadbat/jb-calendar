@@ -1,7 +1,8 @@
 
 import type {EventTypeWithTarget} from 'jb-core';
 import type { JBCalendarWebComponent } from './jb-calendar';
-/* eslint-disable @typescript-eslint/no-namespace */
+
+export type JBCalendarSections = "DAY" | "MONTH" | "YEAR";
 export type JBCalendarValue = {
     day: number | null;
     month: number | null;

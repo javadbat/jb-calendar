@@ -7,6 +7,7 @@ import {Direction,InputType,
   JBCalendarElements,
   JBCalendarSwipeGestureData,
   JBCalendarValue,
+  type JBCalendarSections,
 } from "./types";
 import {
   getYear,
@@ -37,11 +38,7 @@ const InputTypes: { [key: string]: InputType } = {
   jalali: "JALALI",
   gregorian: "GREGORIAN",
 };
-export enum JBCalendarSections {
-  day = "DAY",
-  month = "MONTH",
-  year = "YEAR",
-}
+
 export type {JBCalendarValue};
 const today = new Date();
 if (HTMLElement == undefined) {
@@ -151,7 +148,7 @@ export class JBCalendarWebComponent extends HTMLElement {
   }
   get activeSection(): JBCalendarSections {
     // determine we want to see day picker or month picker ,...
-    return this.#activeSection || JBCalendarSections.day;
+    return this.#activeSection || "DAY";
   }
   set activeSection(value: JBCalendarSections) {
     if (value == this.#activeSection) {
@@ -466,9 +463,9 @@ export class JBCalendarWebComponent extends HTMLElement {
       if (Math.abs(deltaY) > 70) {
         if (deltaY > 0) {
           //on swipe down
-          this.activeSection = JBCalendarSections.month;
+          this.activeSection = "MONTH";
         } else {
-          this.activeSection = JBCalendarSections.year;
+          this.activeSection = "YEAR";
         }
       }
     }
@@ -619,7 +616,7 @@ export class JBCalendarWebComponent extends HTMLElement {
   }
   initCalendar() {
     if (!this.#activeSection) {
-      this.activeSection = JBCalendarSections.day;
+      this.activeSection = "DAY";
     }
   }
   #mapGregorianDayOfWeekToJalali(dayNumber: number) {
@@ -660,7 +657,7 @@ export class JBCalendarWebComponent extends HTMLElement {
     monthDom.appendChild(monthTextDom);
     monthDom.addEventListener("click", () => {
       this.data.selectedYear = year;
-      this.activeSection = JBCalendarSections.month;
+      this.activeSection = "MONTH";
     });
     return monthDom;
   }
@@ -684,7 +681,7 @@ export class JBCalendarWebComponent extends HTMLElement {
     monthDom.appendChild(monthTextDom);
     monthDom.addEventListener("click", () => {
       this.data.selectedMonth = monthIndex;
-      this.activeSection = JBCalendarSections.day;
+      this.activeSection = "DAY";
     });
     return monthDom;
   }
@@ -900,15 +897,15 @@ export class JBCalendarWebComponent extends HTMLElement {
   }
   onNavigatorTitleYearClicked() {
     if (
-      this.activeSection == JBCalendarSections.day ||
-      this.activeSection == JBCalendarSections.month
+      this.activeSection == "DAY" ||
+      this.activeSection == "MONTH"
     ) {
-      this.activeSection = JBCalendarSections.year;
+      this.activeSection = "YEAR";
     }
   }
   onNavigatorTitleMonthClicked() {
-    if (this.activeSection == JBCalendarSections.day) {
-      this.activeSection = JBCalendarSections.month;
+    if (this.activeSection == "DAY") {
+      this.activeSection = "MONTH";
     }
   }
   onInputTypeChange() {
