@@ -1,13 +1,13 @@
 import CSS from "./jb-calendar.css";
 import VariableCSS from './variables.css';
 
-import {Direction,InputType,
+import type {Direction,InputType,
   JBCalendarData,
   JBCalendarDateRestrictions,
   JBCalendarElements,
   JBCalendarSwipeGestureData,
   JBCalendarValue,
-  type JBCalendarSections,
+  JBCalendarSections,
 } from "./types";
 import {
   getYear,
