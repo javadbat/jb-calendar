@@ -48,10 +48,10 @@ export const MinMax: Story = {
 
 export const valueTest: Story = {
   render: () => {
-    const [selectedValueYear, selectedValueYearSetter] = useState<number|null>(null);
-    const [selectedValueMonth, selectedValueMonthSetter] = useState<number|null>(null);
-    const [selectedValueDay, selectedValueDaySetter] = useState<number|null>(null);
-    function setValue(value:JBCalendarValue) {
+    const [selectedValueYear, selectedValueYearSetter] = useState<number | null>(null);
+    const [selectedValueMonth, selectedValueMonthSetter] = useState<number | null>(null);
+    const [selectedValueDay, selectedValueDaySetter] = useState<number | null>(null);
+    function setValue(value: JBCalendarValue) {
       selectedValueYearSetter(value.year);
       selectedValueMonthSetter(value.month);
       selectedValueDaySetter(value.day);
@@ -69,13 +69,12 @@ export const valueTest: Story = {
 
 export const RightToLeft: Story = {
   args: {
-    inputType:'JALALI',
+    inputType: 'JALALI',
     direction: 'rtl',
   },
-  parameters: {
-    themes: {
-      themeOverride: 'rtl'
-    }
+  globals: {
+    locale: "fa",
+    dir: "rtl"
   },
 };
 export const RTLGregorian: Story = {
@@ -83,10 +82,9 @@ export const RTLGregorian: Story = {
     direction: 'rtl',
     inputType: 'GREGORIAN'
   },
-  parameters: {
-    themes: {
-      themeOverride: 'rtl'
-    }
+  globals: {
+    locale: "fa",
+    dir: "rtl"
   },
 };
 
