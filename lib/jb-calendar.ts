@@ -308,7 +308,7 @@ export class JBCalendarWebComponent extends HTMLElement {
     this.dispatchEvent(event);
   }
   initWebComponent() {
-    const shadowRoot = this.attachShadow({ mode: "open" });
+    const shadowRoot = this.attachShadow({ mode: "open",serializable:true, clonable:true, });
     registerDefaultVariables();
     const html = `<style>${CSS} ${VariableCSS}</style>` + "\n" + renderHTML();
     const element = document.createElement("template");
