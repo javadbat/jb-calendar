@@ -9,25 +9,22 @@ pure js jalali calendar interface web component
 sample:  <https://codepen.io/javadbat/pen/poRKYEY>
 
  - support jalali date as well as gregorian date
- - customizable theme with css variable so you can implement dark mode too
+ - customizable theme with CSS variable so you can implement dark mode too
  - support typescript
  
 ## Demo
 
 - [Storybook](https://javadbat.github.io/design-system/?path=/docs/components-jbcalendar)
 
-## using with JS frameworks
-
+## Using With JS Frameworks
 - [<img src="https://img.shields.io/badge/React.js-jb--calendar%2Freact-000.svg?logo=react&logoColor=%2361DAFB" height="30" />](https://github.com/javadbat/jb-calendar/tree/main/react)
 
-## installation
-
+## Installation
 ```sh
 npm install jb-calendar
 ```
 
-## usage
-
+## Usage
 ```html
     <jb-calendar></jb-calendar>
 ```
@@ -57,10 +54,9 @@ you can write wrapper for it in any js framework you use and it will compatible 
 
 we use `date-fns` and `date-fns-jalali` to manege calendar jalali data
 
-## events
-
+## Events
 ```js
-//when defualt property are defined best time for impl your config like min and max date
+//when default property are defined best time for impl your config like min and max date
 document.querySelector('jb-calendar').addEventListener('init',this.onCalendarElementInitiated);
 
 //when calendar init all property and function and dom created and bind successully
@@ -112,14 +108,14 @@ dateRestrictions.max = new Date();
 ```
 
 ## Change Month List
-you may want to change the default month list for both  of Jalali and Gregorian calendars base on your country month labels. here how you can do it:
+you may want to change the default month list for both  of Jalali and Gregorian calendars based on your country month labels. here how you can do it:
 ```js
 document.querySelector('jb-calendar').setMonthList('JALALI',['حَمَل','ثَور','جَوزا','سَرَطان','اَسَد','سُنبُله','میزان','عَقرَب','قَوس','جَدْی','دَلو','حوت']);
 document.querySelector('jb-calendar').setMonthList('GREGORIAN',['1','2','3','4','5','6','7','8','9','10','11','12']);
 ```
 ## change direction
 
-jb-calendar get it's direction base on css direction (user agent direction actually) but because in JavaScript there is no way to detect css direction change we just apply direction when calendar mounted to the DOM tree. if in any case your app direction change for example on language change you may need to update calendar direction. to doing so just call `setupStyleBaseOnCssDirection method` or set `calendarDom.direction = 'rtl' | 'ltr'` .
+jb-calendar get it's direction based on css direction (user agent direction actually) but because in JavaScript there is no way to detect css direction change we just apply direction when calendar mounted to the DOM tree. if in any case your app direction change for example on language change you may need to update calendar direction. to doing so just call `setupStyleBaseOnCssDirection method` or set `calendarDom.direction = 'rtl' | 'ltr'` .
 
 ```js
 //get direction automatically from user agent
@@ -135,9 +131,9 @@ document.querySelector('jb-calendar').setupStyleBaseOnCssDirection();
 ### set custom style
 
 in some cases in your project you need to change default style of web-component for example you need different color or different border-radius and etc.    
-if you want to set a custom style to this web-component all you need is to set css variable in parent scope of web-component
+if you want to set a custom style to this web-component all you need is to set CSS variable in parent scope of web-component
 
-| css variable name                        | description                                                                                   |
+| CSS variable name                        | description                                                                                   |
 | -------------                            | -------------                                                                                 |
 | --jb-calendar-color                      | general text color of component                                                               |
 | --jb-calendar-arrow-button-bgcolor       | background color of next and prev button                                                      |
@@ -156,10 +152,14 @@ if you want to set a custom style to this web-component all you need is to set c
 | --jb-calendar-day-color-hover            | day color hover                                                                               |
 | --jb-calendar-month-color-hover          | day color hover                                                                               |
 | --jb-calendar-year-color-hover           | day color hover                                                                               |
+| --jb-calendar-day-button-border-radius | Customize day button border radius. |
+| --jb-calendar-day-color-selected | Customize day color selected. |
+| --jb-calendar-day-color-selected-hover | Customize day color selected hover. |
+| --jb-calendar-month-button-border-radius | Customize month button border radius. |
+| --jb-calendar-year-button-border-radius | Customize year button border radius. |
 
 
-## Other Related Docs:
-
+## Related Docs
 - see [jb-calendar/react](https://github.com/javadbat/jb-calendar/tree/main/react) if you want to use this component in react
 
 - see [All JB Design system Component List](https://javadbat.github.io/design-system/) for more components

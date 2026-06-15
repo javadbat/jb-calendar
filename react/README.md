@@ -7,15 +7,13 @@
 
 calendar component for react 
 
-## installation
-
+## Installation
 run following command to install package with npm
 ```sh
 npm install jb-calendar
 ```
 
-## usage
-
+## Usage
 use below syntax in your render function.
 
 ```jsx
@@ -23,3 +21,7 @@ import {JBCalendar} from 'jb-calendar/react';
 
 <JBCalendar></JBCalendar>
 ```
+
+## Shared Documentation
+
+For web-component behavior, events, slots, and CSS variables, see [`jb-calendar`](https://github.com/javadbat/jb-calendar).
