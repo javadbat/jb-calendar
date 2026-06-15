@@ -5,7 +5,6 @@
 [![NPM Version](https://img.shields.io/npm/v/jb-calendar)](https://www.npmjs.com/package/jb-calendar)
 ![GitHub Created At](https://img.shields.io/github/created-at/javadbat/jb-calendar)
 
-
 pure js jalali calendar interface web component
 sample:  <https://codepen.io/javadbat/pen/poRKYEY>
 
