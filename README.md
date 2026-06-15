@@ -18,7 +18,7 @@ sample:  <https://codepen.io/javadbat/pen/poRKYEY>
 
 ## using with JS frameworks
 
-- [<img src="https://img.shields.io/badge/jb--calendar/react-000.svg?logo=react&logoColor=%2361DAFB" height="30" />](https://github.com/javadbat/jb-calendar/tree/main/react)
+- [<img src="https://img.shields.io/badge/React.js-jb--calendar%2Freact-000.svg?logo=react&logoColor=%2361DAFB" height="30" />](https://github.com/javadbat/jb-calendar/tree/main/react)
 
 ## installation
 
