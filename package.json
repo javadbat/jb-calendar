@@ -23,6 +23,7 @@
   "files": [
     "LICENSE",
     "README.md",
+    "custom-elements.json",
     "lib/",
     "dist/",
     "index.js",
@@ -32,6 +33,7 @@
   "main": "index.js",
   "module":"index.js",
   "types": "./dist/jb-calendar.d.ts",
+  "customElements": "custom-elements.json",
   "repository": {
 		"type": "git",
 		"url": "https://github.com/javadbat/jb-calendar"

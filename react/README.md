@@ -5,23 +5,124 @@
 [![NPM Version](https://img.shields.io/npm/v/jb-calendar-react)](https://www.npmjs.com/package/jb-calendar-react)
 ![GitHub Created At](https://img.shields.io/github/created-at/javadbat/jb-calendar)
 
-calendar component for react 
+React wrapper for `jb-calendar`, an inline Jalali/Gregorian calendar picker.
+
+## Demo
+
+- [Storybook](https://javadbat.github.io/design-system/?path=/docs/components-jbcalendar)
 
 ## Installation
-run following command to install package with npm
+
 ```sh
 npm install jb-calendar
 ```
 
-## Usage
-use below syntax in your render function.
+```jsx
+import { JBCalendar } from 'jb-calendar/react';
+
+<JBCalendar />;
+```
+
+## When to use
+
+Use `JBCalendar` when a React view needs an inline calendar picker with Jalali/Gregorian support.
+
+Use `jb-date-input` when you need a form input field with label, validation, and text entry.
+
+## Props
+
+| prop | type | description |
+| --- | --- | --- |
+| `min` | `Date` | Minimum selectable date. Sets `dateRestrictions.min`. |
+| `max` | `Date` | Maximum selectable date. Sets `dateRestrictions.max`. |
+| `jalaliMonthList` | `string[]` | Custom Jalali month labels. Must contain exactly 12 labels. |
+| `onSelect` | `(event) => void` | Fired when the user selects an enabled day. Read `event.target.value`. |
+| `inputType` | `'JALALI' \| 'GREGORIAN'` | Typed by the wrapper, but not actively synchronized by the hook. Prefer setting it through a ref. |
+| `direction` | `'rtl' \| 'ltr'` | Typed by the wrapper, but not actively synchronized by the hook. Prefer setting it through a ref when direction changes after mount. |
+
+## Selection
+
+`onSelect` receives the DOM event. The selected value is on `event.target.value`.
 
 ```jsx
-import {JBCalendar} from 'jb-calendar/react';
+<JBCalendar
+  onSelect={(event) => {
+    console.log(event.target.value);
+  }}
+/>
+```
 
-<JBCalendar></JBCalendar>
+Use a ref for imperative APIs such as `select`, `inputType`, `showPersianNumber`, and `setMonthList`.
+
+```jsx
+import { useEffect, useRef } from 'react';
+import { JBCalendar } from 'jb-calendar/react';
+
+function Calendar() {
+  const calendarRef = useRef(null);
+
+  useEffect(() => {
+    calendarRef.current.inputType = 'GREGORIAN';
+    calendarRef.current.select(2026, 6, 16);
+  }, []);
+
+  return <JBCalendar ref={calendarRef} />;
+}
+```
+
+## Date restrictions
+
+```jsx
+<JBCalendar
+  min={new Date(2026, 0, 1)}
+  max={new Date(2026, 11, 31)}
+/>
+```
+
+## Custom Jalali month labels
+
+```jsx
+<JBCalendar
+  jalaliMonthList={[
+    'حمل',
+    'ثور',
+    'جوزا',
+    'سرطان',
+    'اسد',
+    'سنبله',
+    'میزان',
+    'عقرب',
+    'قوس',
+    'جدی',
+    'دلو',
+    'حوت',
+  ]}
+/>
+```
+
+## Custom style
+
+The React component uses the same CSS variables as the web component.
+
+```css
+.booking-calendar {
+  --jb-calendar-day-bgcolor-selected: var(--jb-primary);
+  --jb-calendar-day-color-selected: var(--jb-white);
+}
+```
+
+```jsx
+<JBCalendar className="booking-calendar" />
 ```
 
 ## Shared Documentation
 
-For web-component behavior, events, slots, and CSS variables, see [`jb-calendar`](https://github.com/javadbat/jb-calendar).
+For web-component behavior, methods, events, CSS variables, and the full API, see [`jb-calendar`](https://github.com/javadbat/jb-calendar).
+
+## AI agent notes
+
+- Import `JBCalendar` from `jb-calendar/react`; the wrapper imports and registers the underlying `jb-calendar` web component.
+- Use `onSelect` and read `event.target.value`; the event has no `detail`.
+- Use `min`, `max`, and `jalaliMonthList` for the props actively wired by the wrapper hooks.
+- Use a ref for `select()`, `inputType`, `showPersianNumber`, `direction`, `setMonthList()`, and `setupStyleBaseOnCssDirection()`.
+- Use `jb-date-input` instead of `JBCalendar` when the UI must behave as a form input.

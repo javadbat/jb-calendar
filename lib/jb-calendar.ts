@@ -601,10 +601,10 @@ export class JBCalendarWebComponent extends HTMLElement {
       this.select(
         getJalaliYear(today),
         getJalaliMonth(today) + 1,
-        getJalaliDay(today)
+        getJalaliDate(today)
       );
     } else {
-      this.select(getYear(today), getMonth(today) + 1, getDay(today));
+      this.select(getYear(today), getMonth(today) + 1, getDate(today));
     }
   }
   select(year: number, month: number, day: number) {

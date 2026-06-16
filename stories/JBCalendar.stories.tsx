@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { JBCalendar, Props } from 'jb-calendar/react';
+import { JBCalendar, type Props } from 'jb-calendar/react';
 import './styles/themes.css';
 import type { Meta, StoryObj } from '@storybook/react';
 import { addMonths } from 'date-fns';
@@ -91,7 +91,7 @@ export const RTLGregorian: Story = {
 export const onMobile: Story = {
   parameters: {
     viewport: {
-      defaultViewport: 'mobile1'
+      defaultViewport: 'mobile2'
     }
   },
 };

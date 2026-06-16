@@ -1,0 +1,299 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "README.md",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "lib/jb-calendar.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Jalali and Gregorian calendar picker web component with day, month, and year navigation, date restrictions, localized month/day labels, RTL/LTR support, and CSS variable customization.",
+          "name": "JBCalendarWebComponent",
+          "tagName": "jb-calendar",
+          "customElement": true,
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "attributes": [],
+          "members": [
+            {
+              "kind": "field",
+              "name": "value",
+              "description": "Selected calendar date in the active input type. Set year, month, and day together.",
+              "type": {
+                "text": "JBCalendarValue"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "inputType",
+              "description": "Calendar date system used for input and displayed values.",
+              "type": {
+                "text": "'JALALI' | 'GREGORIAN'"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "activeSection",
+              "description": "Visible selection section: day grid, month grid, or year grid.",
+              "type": {
+                "text": "'DAY' | 'MONTH' | 'YEAR'"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "showPersianNumber",
+              "description": "When true, renders calendar numbers with Persian digits.",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "direction",
+              "description": "Calendar layout direction. Set to rtl or ltr, or leave unset to use computed CSS direction.",
+              "type": {
+                "text": "'rtl' | 'ltr'"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "cssDirection",
+              "description": "Computed CSS direction of the host element.",
+              "type": {
+                "text": "'rtl' | 'ltr'"
+              },
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "defaultCalendarData",
+              "description": "Default visible Jalali and Gregorian year/month used when no value is selected.",
+              "type": {
+                "text": "{ jalali: { year: number; month: number }; gregorian: { year: number; month: number } }"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "dateRestrictions",
+              "description": "Mutable min/max Date restrictions. Set dateRestrictions.min and dateRestrictions.max.",
+              "type": {
+                "text": "JBCalendarDateRestrictions"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "data",
+              "description": "Internal visible calendar data: selectedYear, selectedMonth, and yearSelectionRange.",
+              "type": {
+                "text": "JBCalendarData"
+              }
+            }
+          ],
+          "methods": [
+            {
+              "name": "select",
+              "description": "Selects a date in the current inputType and updates value.",
+              "parameters": [
+                {
+                  "name": "year",
+                  "type": {
+                    "text": "number"
+                  }
+                },
+                {
+                  "name": "month",
+                  "type": {
+                    "text": "number"
+                  }
+                },
+                {
+                  "name": "day",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "selectToday",
+              "description": "Selects today in the current inputType."
+            },
+            {
+              "name": "setMonthList",
+              "description": "Overrides the 12 month labels for JALALI or GREGORIAN calendars.",
+              "parameters": [
+                {
+                  "name": "inputType",
+                  "type": {
+                    "text": "'JALALI' | 'GREGORIAN'"
+                  }
+                },
+                {
+                  "name": "monthList",
+                  "type": {
+                    "text": "string[]"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "setupStyleBaseOnCssDirection",
+              "description": "Refreshes direction-sensitive layout classes from the provided direction or computed host direction.",
+              "parameters": [
+                {
+                  "name": "dir",
+                  "type": {
+                    "text": "'rtl' | 'ltr'"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "checkIsDayDisable",
+              "description": "Checks whether a Date is valid against dateRestrictions.min and dateRestrictions.max.",
+              "parameters": [
+                {
+                  "name": "dayDate",
+                  "type": {
+                    "text": "Date"
+                  }
+                }
+              ],
+              "return": {
+                "type": {
+                  "text": "{ min: boolean; max: boolean; isAllValid: boolean }"
+                }
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "init",
+              "description": "Dispatched during construction after default properties are initialized. Use it for early configuration when listening before construction is possible."
+            },
+            {
+              "name": "load",
+              "description": "Dispatched from connectedCallback before layout initialization."
+            },
+            {
+              "name": "select",
+              "description": "Dispatched when the user selects an enabled day. The event has no detail; read event.target.value."
+            }
+          ],
+          "slots": [],
+          "cssParts": [],
+          "cssProperties": [
+            {
+              "name": "--jb-calendar-color",
+              "description": "General text color."
+            },
+            {
+              "name": "--jb-calendar-arrow-button-bgcolor",
+              "description": "Navigator arrow button background color."
+            },
+            {
+              "name": "--jb-calendar-arrow-button-border-radius",
+              "description": "Navigator arrow button border radius."
+            },
+            {
+              "name": "--jb-calendar-arrow-fill-color",
+              "description": "Navigator arrow icon color."
+            },
+            {
+              "name": "--jb-calendar-day-text-color",
+              "description": "Normal day text color."
+            },
+            {
+              "name": "--jb-calendar-day-text-color-disabled",
+              "description": "Disabled day text color."
+            },
+            {
+              "name": "--jb-calendar-day-text-color-today",
+              "description": "Today day text color."
+            },
+            {
+              "name": "--jb-calendar-day-bgcolor-selected",
+              "description": "Selected day background color."
+            },
+            {
+              "name": "--jb-calendar-day-color-selected",
+              "description": "Selected day text color."
+            },
+            {
+              "name": "--jb-calendar-day-bgcolor-selected-hover",
+              "description": "Selected day hover background color."
+            },
+            {
+              "name": "--jb-calendar-day-color-selected-hover",
+              "description": "Selected day hover text color."
+            },
+            {
+              "name": "--jb-calendar-day-bgcolor-hover",
+              "description": "Day hover background color."
+            },
+            {
+              "name": "--jb-calendar-day-color-hover",
+              "description": "Day hover text color."
+            },
+            {
+              "name": "--jb-calendar-day-button-border-radius",
+              "description": "Day button border radius."
+            },
+            {
+              "name": "--jb-calendar-status-point-bgcolor-today",
+              "description": "Today status point background color."
+            },
+            {
+              "name": "--jb-calendar-status-point-border-color",
+              "description": "Today status point border color."
+            },
+            {
+              "name": "--jb-calendar-month-bgcolor-hover",
+              "description": "Month hover background color."
+            },
+            {
+              "name": "--jb-calendar-month-color-hover",
+              "description": "Month hover text color."
+            },
+            {
+              "name": "--jb-calendar-month-button-border-radius",
+              "description": "Month button border radius."
+            },
+            {
+              "name": "--jb-calendar-year-bgcolor-hover",
+              "description": "Year hover background color."
+            },
+            {
+              "name": "--jb-calendar-year-color-hover",
+              "description": "Year hover text color."
+            },
+            {
+              "name": "--jb-calendar-year-button-border-radius",
+              "description": "Year button border radius."
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "JBCalendarWebComponent",
+          "declaration": {
+            "name": "JBCalendarWebComponent",
+            "module": "lib/jb-calendar.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "jb-calendar",
+          "declaration": {
+            "name": "JBCalendarWebComponent",
+            "module": "lib/jb-calendar.ts"
+          }
+        }
+      ]
+    }
+  ]
+}
