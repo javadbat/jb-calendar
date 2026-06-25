@@ -25,7 +25,7 @@ const JBCalendar = React.forwardRef((props:Props, ref) => {
 
   useImperativeHandle(
     ref,
-    () => (element ? element.current : null),
+    () => element.current??null,
     [element],
   );
 
