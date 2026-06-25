@@ -6,22 +6,22 @@ export type JBCalendarAttributes = {
   max?:Date,
   jalaliMonthList?: string[],
 }
-export function useJBCalendarAttribute(element: RefObject<JBCalendarWebComponent>, props: JBCalendarAttributes) {
+export function useJBCalendarAttribute(element: RefObject<JBCalendarWebComponent | null>, props: JBCalendarAttributes) {
   useEffect(()=>{
     if(props.jalaliMonthList){
-      element.current.setMonthList('JALALI',props.jalaliMonthList);
+      element.current?.setMonthList('JALALI',props.jalaliMonthList);
     }
   },[props.jalaliMonthList, element]);
 
   useEffect(()=>{
-    if(element.current){
-      element.current.dateRestrictions.min = props.min;
+    if(element.current && element.current){
+      element.current.dateRestrictions.min = props.min??null;
     }
   },[element.current, props.min]);
 
   useEffect(()=>{
     if(element.current){
-      element.current.dateRestrictions.max = props.max;
+      element.current.dateRestrictions.max = props.max??null;
     }
   },[element.current, props.max]);
 }
