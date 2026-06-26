@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { JBCalendar, type Props } from 'jb-calendar/react';
+import { JBCalendar } from 'jb-calendar/react';
 import './styles/themes.css';
 import type { Meta, StoryObj } from '@storybook/react';
 import { addMonths } from 'date-fns';
 import type { JBCalendarValue } from 'jb-calendar';
-const meta: Meta<Props> = {
+const meta = {
   title: "Components/JBCalendar",
   component: JBCalendar,
   args: {
     direction: 'ltr',
   }
-};
+} satisfies Meta<typeof JBCalendar>;
 export default meta;
-type Story = StoryObj<typeof JBCalendar>;
+type Story = StoryObj<typeof meta>;
 
 export const Normal: Story = {
   args: {
