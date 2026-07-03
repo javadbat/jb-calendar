@@ -248,7 +248,7 @@ Set CSS variables in the parent scope of the component.
 jb-calendar {
   --jb-calendar-day-bgcolor-selected: var(--jb-primary);
   --jb-calendar-day-color-selected: var(--jb-white);
-  --jb-calendar-arrow-button-border-radius: 999px;
+  --jb-calendar-arrow-button-border-radius: 62.4375rem;
 }
 ```
 
