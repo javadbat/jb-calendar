@@ -79,6 +79,14 @@ function Calendar() {
 />
 ```
 
+## Default visible month
+
+When no date is selected, the calendar opens on its internal default month. Use a ref for lower-level web-component APIs such as `select()` when you need to move the visible month imperatively.
+
+## Persian numbers and direction
+
+The web component can display Persian digits and supports both RTL and LTR direction. In React, use a ref for `showPersianNumber` or direction changes that must be applied after mount.
+
 ## Custom Jalali month labels
 
 ```jsx
@@ -114,6 +122,18 @@ The React component uses the same CSS variables as the web component.
 ```jsx
 <JBCalendar className="booking-calendar" />
 ```
+
+## Slots and CSS parts
+
+The React wrapper exposes the same slots, CSS parts, and CSS variables as `jb-calendar`. Use JSX children with `slot="..."` for custom slotted content and style the host with the same CSS variables documented in the web-component README.
+
+## Accessibility notes
+
+`JBCalendar` keeps the web component keyboard and selection behavior. Give the surrounding form or section an accessible label when the calendar purpose is not obvious from nearby text.
+
+## Dependencies
+
+`JBCalendar` registers and uses the underlying `jb-calendar` web component. Date conversion behavior comes from the same dependency chain as the web-component package.
 
 ## Shared Documentation
 
