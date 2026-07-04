@@ -114,7 +114,7 @@ The React component uses the same CSS variables as the web component.
 
 ```css
 .booking-calendar {
-  --jb-calendar-day-bgcolor-selected: var(--jb-primary);
+  --jb-calendar-day-bg-color-selected: var(--jb-primary);
   --jb-calendar-day-color-selected: var(--jb-white);
 }
 ```

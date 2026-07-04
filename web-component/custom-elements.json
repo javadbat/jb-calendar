@@ -190,7 +190,7 @@
               "description": "General text color."
             },
             {
-              "name": "--jb-calendar-arrow-button-bgcolor",
+              "name": "--jb-calendar-arrow-button-bg-color",
               "description": "Navigator arrow button background color."
             },
             {
@@ -214,7 +214,7 @@
               "description": "Today day text color."
             },
             {
-              "name": "--jb-calendar-day-bgcolor-selected",
+              "name": "--jb-calendar-day-bg-color-selected",
               "description": "Selected day background color."
             },
             {
@@ -222,7 +222,7 @@
               "description": "Selected day text color."
             },
             {
-              "name": "--jb-calendar-day-bgcolor-selected-hover",
+              "name": "--jb-calendar-day-bg-color-selected-hover",
               "description": "Selected day hover background color."
             },
             {
@@ -230,7 +230,7 @@
               "description": "Selected day hover text color."
             },
             {
-              "name": "--jb-calendar-day-bgcolor-hover",
+              "name": "--jb-calendar-day-bg-color-hover",
               "description": "Day hover background color."
             },
             {
@@ -242,7 +242,7 @@
               "description": "Day button border radius."
             },
             {
-              "name": "--jb-calendar-status-point-bgcolor-today",
+              "name": "--jb-calendar-status-point-bg-color-today",
               "description": "Today status point background color."
             },
             {
@@ -250,7 +250,7 @@
               "description": "Today status point border color."
             },
             {
-              "name": "--jb-calendar-month-bgcolor-hover",
+              "name": "--jb-calendar-month-bg-color-hover",
               "description": "Month hover background color."
             },
             {
@@ -262,7 +262,7 @@
               "description": "Month button border radius."
             },
             {
-              "name": "--jb-calendar-year-bgcolor-hover",
+              "name": "--jb-calendar-year-bg-color-hover",
               "description": "Year hover background color."
             },
             {

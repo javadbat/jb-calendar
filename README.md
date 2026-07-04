@@ -222,31 +222,31 @@ Set CSS variables in the parent scope of the component.
 | CSS variable name | description |
 | --- | --- |
 | `--jb-calendar-color` | General text color. |
-| `--jb-calendar-arrow-button-bgcolor` | Navigator arrow button background color. |
+| `--jb-calendar-arrow-button-bg-color` | Navigator arrow button background color. |
 | `--jb-calendar-arrow-button-border-radius` | Navigator arrow button border radius. |
 | `--jb-calendar-arrow-fill-color` | Navigator arrow icon color. |
 | `--jb-calendar-day-text-color` | Normal day text color. |
 | `--jb-calendar-day-text-color-disabled` | Disabled day text color. |
 | `--jb-calendar-day-text-color-today` | Today day text color. |
-| `--jb-calendar-day-bgcolor-selected` | Selected day background color. |
+| `--jb-calendar-day-bg-color-selected` | Selected day background color. |
 | `--jb-calendar-day-color-selected` | Selected day text color. |
-| `--jb-calendar-day-bgcolor-selected-hover` | Selected day hover background color. |
+| `--jb-calendar-day-bg-color-selected-hover` | Selected day hover background color. |
 | `--jb-calendar-day-color-selected-hover` | Selected day hover text color. |
-| `--jb-calendar-day-bgcolor-hover` | Day hover background color. |
+| `--jb-calendar-day-bg-color-hover` | Day hover background color. |
 | `--jb-calendar-day-color-hover` | Day hover text color. |
 | `--jb-calendar-day-button-border-radius` | Day button border radius. |
-| `--jb-calendar-status-point-bgcolor-today` | Today status point background color. |
+| `--jb-calendar-status-point-bg-color-today` | Today status point background color. |
 | `--jb-calendar-status-point-border-color` | Today status point border color. |
-| `--jb-calendar-month-bgcolor-hover` | Month hover background color. |
+| `--jb-calendar-month-bg-color-hover` | Month hover background color. |
 | `--jb-calendar-month-color-hover` | Month hover text color. |
 | `--jb-calendar-month-button-border-radius` | Month button border radius. |
-| `--jb-calendar-year-bgcolor-hover` | Year hover background color. |
+| `--jb-calendar-year-bg-color-hover` | Year hover background color. |
 | `--jb-calendar-year-color-hover` | Year hover text color. |
 | `--jb-calendar-year-button-border-radius` | Year button border radius. |
 
 ```css
 jb-calendar {
-  --jb-calendar-day-bgcolor-selected: var(--jb-primary);
+  --jb-calendar-day-bg-color-selected: var(--jb-primary);
   --jb-calendar-day-color-selected: var(--jb-white);
   --jb-calendar-arrow-button-border-radius: 62.4375rem;
 }
