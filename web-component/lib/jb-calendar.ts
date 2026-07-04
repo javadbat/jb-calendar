@@ -131,13 +131,15 @@ export class JBCalendarWebComponent extends HTMLElement {
         this.shadowRoot!.querySelector(`.--selected`);
       if (prevSelectedDayDom !== null) {
         prevSelectedDayDom.classList.remove("--selected");
+        prevSelectedDayDom.part.remove("selected-day");
       }
       if (this.data.selectedYear == year && this.data.selectedMonth == month) {
-        const dayDom = this.shadowRoot!.querySelector(
+        const dayDom: HTMLDivElement | null = this.shadowRoot!.querySelector(
           `.day-wrapper[day-number="${day}"]`
         );
         if (dayDom) {
           dayDom.classList.add("--selected");
+          dayDom.part.add("selected-day");
         }
       }
     } else {
@@ -269,6 +271,7 @@ export class JBCalendarWebComponent extends HTMLElement {
       //day of week dom
       const dowDom = document.createElement("div");
       dowDom.classList.add("week-day");
+      dowDom.part.add("week-day");
       dowDom.innerHTML = dayOfWeekArray[i];
       this.elements.dayOfWeekWrapper.appendChild(dowDom);
     }
@@ -651,8 +654,10 @@ export class JBCalendarWebComponent extends HTMLElement {
   createYearDom(year: number) {
     const monthDom = document.createElement("div");
     monthDom.classList.add("year-wrapper");
+    monthDom.part.add("year");
     const monthTextDom = document.createElement("div");
     monthTextDom.classList.add("year-number");
+    monthTextDom.part.add("year-number");
     monthTextDom.innerHTML = this.localizeString(year.toString());
     monthDom.appendChild(monthTextDom);
     monthDom.addEventListener("click", () => {
@@ -671,8 +676,10 @@ export class JBCalendarWebComponent extends HTMLElement {
   #createMonthDom(monthIndex: number) {
     const monthDom = document.createElement("div");
     monthDom.classList.add("month-wrapper");
+    monthDom.part.add("month");
     const monthTextDom = document.createElement("div");
     monthTextDom.classList.add("month-name");
+    monthTextDom.part.add("month-name");
     const monthName =
       this.inputType == InputTypes.jalali
         ? this.#jalaliMonthList[monthIndex - 1]
@@ -805,6 +812,7 @@ export class JBCalendarWebComponent extends HTMLElement {
   createEmptyDayDom() {
     const dayDom = document.createElement("div");
     dayDom.classList.add("empty-day");
+    dayDom.part.add("empty-day");
     return dayDom;
   }
   createDayDom(
@@ -818,22 +826,28 @@ export class JBCalendarWebComponent extends HTMLElement {
     //create dom
     const dayDom = document.createElement("div");
     dayDom.classList.add("day-wrapper");
+    dayDom.part.add("day");
     dayDom.setAttribute("day-number", dayNumber.toString());
     if (isToday) {
       dayDom.classList.add("--today");
+      dayDom.part.add("today-day");
     }
     if (isSelected) {
       dayDom.classList.add("--selected");
+      dayDom.part.add("selected-day");
     }
     //
     const dayNumberWrapperDom = document.createElement("div");
     dayNumberWrapperDom.classList.add("day-number-wrapper");
+    dayNumberWrapperDom.part.add("day-button");
     //
     const dayNumberDom = document.createElement("div");
     dayNumberDom.classList.add("day-number");
+    dayNumberDom.part.add("day-number");
     dayNumberDom.innerHTML = this.localizeString(dayNumber.toString());
     const statusPoint = document.createElement("div");
     statusPoint.classList.add("status-point");
+    statusPoint.part.add("status-point");
     //
     dayNumberWrapperDom.appendChild(dayNumberDom);
     dayDom.appendChild(statusPoint);
@@ -845,6 +859,7 @@ export class JBCalendarWebComponent extends HTMLElement {
       });
     } else {
       dayDom.classList.add("--disable");
+      dayDom.part.add("disabled-day");
     }
     return dayDom;
   }

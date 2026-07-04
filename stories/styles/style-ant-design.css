@@ -1,0 +1,40 @@
+.ant-calendar {
+padding: 1.25rem;
+    justify-self: center;
+    width: max-content;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    overflow: hidden;
+    border-radius: var(--custom-calendar-radius, 1.5rem);
+    box-sizing: border-box;
+
+background: #ffffff;
+    box-shadow:
+        0 0.375rem 1rem oklch(0% 0 0 / 0.12),
+        inset 0 0 0 1px #f0f0f0;
+
+    --custom-calendar-radius: 0.5rem;
+    --jb-calendar-color: #262626;
+    --jb-calendar-arrow-button-bg-color: #f5f5f5;
+    --jb-calendar-arrow-button-border-radius: 0.375rem;
+    --jb-calendar-arrow-fill-color: #1677ff;
+    --jb-calendar-day-button-border-radius: 0.375rem;
+    --jb-calendar-month-button-border-radius: 0.375rem;
+    --jb-calendar-year-button-border-radius: 0.375rem;
+    --jb-calendar-day-text-color: #595959;
+    --jb-calendar-day-text-color-disabled: #bfbfbf;
+    --jb-calendar-day-text-color-today: #1677ff;
+    --jb-calendar-day-bg-color-hover: #e6f4ff;
+    --jb-calendar-day-color-hover: #1677ff;
+    --jb-calendar-day-bg-color-selected: #1677ff;
+    --jb-calendar-day-bg-color-selected-hover: #4096ff;
+    --jb-calendar-day-color-selected: #ffffff;
+    --jb-calendar-day-color-selected-hover: #ffffff;
+    --jb-calendar-status-point-bg-color-today: #52c41a;
+    --jb-calendar-status-point-border-color: #ffffff;
+    --jb-calendar-month-bg-color-hover: #e6f4ff;
+    --jb-calendar-month-color-hover: #1677ff;
+    --jb-calendar-year-bg-color-hover: #e6f4ff;
+    --jb-calendar-year-color-hover: #1677ff;
+}

@@ -1,0 +1,47 @@
+.carbon-style jb-calendar,
+jb-calendar.carbon-calendar {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    height: auto;
+    padding: 1.25rem;
+    overflow: hidden;
+    background: var(--jb-surface);
+    border-radius: 0;
+    box-shadow:
+        0 0.75rem 1.5rem oklch(0% 0 0 / 0.26),
+        inset 0 0 0 1px #393939;
+    box-sizing: border-box;
+
+    --jb-calendar-color: var(--jb-text-primary);
+    --jb-calendar-arrow-button-bg-color: var(--jb-surface-hover);
+    --jb-calendar-arrow-button-border-radius: 0;
+    --jb-calendar-arrow-fill-color: var(--jb-focus-color);
+    --jb-calendar-day-button-border-radius: 0;
+    --jb-calendar-month-button-border-radius: 0;
+    --jb-calendar-year-button-border-radius: 0;
+    --jb-calendar-day-text-color: #e0e0e0;
+    --jb-calendar-day-text-color-disabled: var(--jb-text-disabled);
+    --jb-calendar-day-text-color-today: var(--jb-success);
+    --jb-calendar-day-bg-color-hover: var(--jb-surface-hover);
+    --jb-calendar-day-color-hover: var(--jb-text-contrast);
+    --jb-calendar-day-bg-color-selected: var(--jb-primary);
+    --jb-calendar-day-bg-color-selected-hover: var(--jb-primary-hover);
+    --jb-calendar-day-color-selected: var(--jb-text-contrast);
+    --jb-calendar-day-color-selected-hover: var(--jb-text-contrast);
+    --jb-calendar-status-point-bg-color-today: var(--jb-success);
+    --jb-calendar-status-point-border-color: var(--jb-surface);
+    --jb-calendar-month-bg-color-hover: var(--jb-surface-hover);
+    --jb-calendar-month-color-hover: var(--jb-focus-color);
+    --jb-calendar-year-bg-color-hover: var(--jb-surface-hover);
+    --jb-calendar-year-color-hover: var(--jb-focus-color);
+}
+
+.carbon-calendar::part(navigator) {
+    border-bottom: 1px solid #393939;
+    padding-bottom: 0.75rem;
+}
+
+.carbon-calendar::part(disabled-day) {
+    opacity: 0.42;
+}

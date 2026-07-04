@@ -183,7 +183,164 @@
             }
           ],
           "slots": [],
-          "cssParts": [],
+          "cssParts": [
+            {
+              "name": "root",
+              "description": "Root calendar wrapper inside the shadow DOM."
+            },
+            {
+              "name": "navigator",
+              "description": "Top navigator section."
+            },
+            {
+              "name": "arrow-button",
+              "description": "Shared navigator arrow button part."
+            },
+            {
+              "name": "prev-button",
+              "description": "Previous navigator arrow button."
+            },
+            {
+              "name": "next-button",
+              "description": "Next navigator arrow button."
+            },
+            {
+              "name": "navigator-title",
+              "description": "Navigator title wrapper."
+            },
+            {
+              "name": "navigator-month",
+              "description": "Navigator month label."
+            },
+            {
+              "name": "navigator-year",
+              "description": "Navigator year label."
+            },
+            {
+              "name": "navigator-year-range",
+              "description": "Navigator year range label."
+            },
+            {
+              "name": "calendar",
+              "description": "Calendar selection area wrapper."
+            },
+            {
+              "name": "day-section",
+              "description": "Day selection section."
+            },
+            {
+              "name": "week-day-wrapper",
+              "description": "Weekday label row wrapper."
+            },
+            {
+              "name": "week-day",
+              "description": "Weekday label item."
+            },
+            {
+              "name": "month-day-container",
+              "description": "Container for month day wrappers."
+            },
+            {
+              "name": "month-day-wrapper",
+              "description": "Shared wrapper for day grid pages."
+            },
+            {
+              "name": "current-month-day-wrapper",
+              "description": "Current month day grid wrapper."
+            },
+            {
+              "name": "prev-month-day-wrapper",
+              "description": "Previous month day grid wrapper."
+            },
+            {
+              "name": "next-month-day-wrapper",
+              "description": "Next month day grid wrapper."
+            },
+            {
+              "name": "empty-day",
+              "description": "Empty day grid placeholder."
+            },
+            {
+              "name": "day",
+              "description": "Day item wrapper."
+            },
+            {
+              "name": "today-day",
+              "description": "Day item when it represents today."
+            },
+            {
+              "name": "selected-day",
+              "description": "Day item when it is selected."
+            },
+            {
+              "name": "disabled-day",
+              "description": "Day item when it is disabled by date restrictions."
+            },
+            {
+              "name": "day-button",
+              "description": "Day clickable visual surface."
+            },
+            {
+              "name": "day-number",
+              "description": "Day number label."
+            },
+            {
+              "name": "status-point",
+              "description": "Today status point marker."
+            },
+            {
+              "name": "month-section",
+              "description": "Month selection section."
+            },
+            {
+              "name": "month",
+              "description": "Month item wrapper."
+            },
+            {
+              "name": "month-name",
+              "description": "Month item label."
+            },
+            {
+              "name": "year-section",
+              "description": "Year selection section."
+            },
+            {
+              "name": "years-wrapper",
+              "description": "Shared wrapper for year grid pages."
+            },
+            {
+              "name": "current-years-wrapper",
+              "description": "Current year grid wrapper."
+            },
+            {
+              "name": "prev-years-wrapper",
+              "description": "Previous year grid wrapper."
+            },
+            {
+              "name": "next-years-wrapper",
+              "description": "Next year grid wrapper."
+            },
+            {
+              "name": "year",
+              "description": "Year item wrapper."
+            },
+            {
+              "name": "year-number",
+              "description": "Year item label."
+            },
+            {
+              "name": "swipe-up",
+              "description": "Swipe-up hint wrapper."
+            },
+            {
+              "name": "swipe-up-icon",
+              "description": "Swipe-up hint icon."
+            },
+            {
+              "name": "swipe-up-text",
+              "description": "Swipe-up hint text."
+            }
+          ],
           "cssProperties": [
             {
               "name": "--jb-calendar-color",

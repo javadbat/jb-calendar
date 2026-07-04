@@ -1,0 +1,529 @@
+import { Meta, Source, Story, Title } from '@storybook/addon-docs/blocks';
+import * as StyleStories from './Styles.stories';
+import antDesignThemeCss from '../../../docs/styles/ant-design.css?raw';
+import auroraThemeCss from '../../../docs/styles/aurora.css?raw';
+import bootstrapThemeCss from '../../../docs/styles/bootstrap.css?raw';
+import candyThemeCss from '../../../docs/styles/candy.css?raw';
+import carbonThemeCss from '../../../docs/styles/carbon.css?raw';
+import cupertinoThemeCss from '../../../docs/styles/cupertino.css?raw';
+import fluentThemeCss from '../../../docs/styles/fluent.css?raw';
+import forestThemeCss from '../../../docs/styles/forest.css?raw';
+import materialThemeCss from '../../../docs/styles/material.css?raw';
+import porcelainThemeCss from '../../../docs/styles/porcelain.css?raw';
+import sunsetThemeCss from '../../../docs/styles/sunset.css?raw';
+import terminalThemeCss from '../../../docs/styles/terminal.css?raw';
+import antDesignCalendarCss from './styles/style-ant-design.css?raw';
+import auroraCalendarCss from './styles/style-aurora.css?raw';
+import bootstrapCalendarCss from './styles/style-bootstrap.css?raw';
+import candyCalendarCss from './styles/style-candy.css?raw';
+import carbonCalendarCss from './styles/style-carbon.css?raw';
+import cupertinoCalendarCss from './styles/style-cupertino.css?raw';
+import fluentCalendarCss from './styles/style-fluent.css?raw';
+import forestCalendarCss from './styles/style-forest.css?raw';
+import materialCalendarCss from './styles/style-material.css?raw';
+import porcelainCalendarCss from './styles/style-porcelain.css?raw';
+import sunsetCalendarCss from './styles/style-sunset.css?raw';
+import terminalCalendarCss from './styles/style-terminal.css?raw';
+
+<Meta title="Components/JBCalendar/Styling" />
+
+<Title>Styling</Title>
+
+`JBCalendar` styling is theme-driven. General design tokens are documented in the core theme pages. The shared files in [`docs/styles`](https://github.com/javadbat/design-system/tree/main/docs/styles) are reusable example theme packs built from those common token ideas, and component-specific style files live beside each component's stories.
+
+## Live Gallery
+
+Start with the gallery to compare the available styling directions. Each item applies one class directly to `JBCalendar`, so the examples stay scoped and easy to copy.
+
+<Story of={StyleStories.Gallery} />
+
+<Source of={StyleStories.Gallery} />
+
+## Common Design Tokens
+
+Use the core theme docs as the source of truth for shared design-system variables:
+
+- [Theme Colors](../../jb-core/theme/stories/colors.mdx) explains the general color palette variables, default colors, customization approaches, and color generation helpers.
+- [Theme Sizes](../../jb-core/theme/stories/sizes.mdx) explains shared size and radius variables.
+
+Calendar recipes should use those common tokens where possible, then map them into `--jb-calendar-*` variables only where the calendar needs a component-specific value.
+
+## Styling Model
+
+Use three layers when styling calendar examples:
+
+- Common design tokens are documented in [Theme Colors](../../jb-core/theme/stories/colors.mdx) and [Theme Sizes](../../jb-core/theme/stories/sizes.mdx).
+- Reusable example theme packs live in [`docs/styles`](https://github.com/javadbat/design-system/tree/main/docs/styles) and can be shared across components.
+- Component recipe files live in [`modules/jb-calendar/stories/styles`](https://github.com/javadbat/design-system/tree/main/modules/jb-calendar/stories/styles).
+- Public component variables use the `--jb-calendar-*` prefix and are the stable styling API.
+
+Each example uses one shared example theme pack from [`docs/styles`](https://github.com/javadbat/design-system/tree/main/docs/styles) and one calendar-specific recipe from [`modules/jb-calendar/stories/styles`](https://github.com/javadbat/design-system/tree/main/modules/jb-calendar/stories/styles). The style story applies both classes directly to `JBCalendar`.
+
+## Recommended Customization Path
+
+1. Use `--jb-calendar-*` variables first for component internals.
+2. Use host styles for the outside surface: background, padding, shadow, border, and component-level border radius.
+3. Use common theme variables from [Theme Colors](../../jb-core/theme/stories/colors.mdx) and [Theme Sizes](../../jb-core/theme/stories/sizes.mdx) when the style should align with the design system.
+4. Put reusable theme-pack values in [`docs/styles`](https://github.com/javadbat/design-system/tree/main/docs/styles) only when they should be shared by multiple component demos.
+5. Add a new component variable only when a needed internal part cannot be customized with the current public variables.
+
+Use `::part(...)` sparingly for exposed surfaces and state tokens that need styling beyond variables, such as `::part(disabled-day)`, `::part(today-day)`, or `::part(navigator)`. The Material, Fluent, Carbon, Candy, and Terminal recipes include small examples.
+
+## Parts And Surfaces
+
+<table>
+  <thead>
+    <tr>
+      <th>Part</th>
+      <th>Element</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>root</code></td>
+      <td>Root wrapper</td>
+      <td>Main wrapper inside the shadow DOM.</td>
+    </tr>
+    <tr>
+      <td><code>navigator</code></td>
+      <td>Navigator section</td>
+      <td>Contains the previous button, title, and next button.</td>
+    </tr>
+    <tr>
+      <td><code>arrow-button</code>, <code>prev-button</code>, <code>next-button</code></td>
+      <td>Navigator buttons</td>
+      <td><code>arrow-button</code> targets both buttons; <code>prev-button</code> and <code>next-button</code> target each side.</td>
+    </tr>
+    <tr>
+      <td><code>navigator-title</code>, <code>navigator-month</code>, <code>navigator-year</code>, <code>navigator-year-range</code></td>
+      <td>Navigator labels</td>
+      <td>Month, year, and year-range labels shown for the active section.</td>
+    </tr>
+    <tr>
+      <td><code>calendar</code></td>
+      <td>Selection area</td>
+      <td>Wrapper for day, month, year, and swipe-up sections.</td>
+    </tr>
+    <tr>
+      <td><code>day-section</code>, <code>week-day-wrapper</code>, <code>week-day</code></td>
+      <td>Day section and weekday labels</td>
+      <td>Use for the visible day-selection structure and weekday label row.</td>
+    </tr>
+    <tr>
+      <td><code>month-day-container</code>, <code>month-day-wrapper</code>, <code>current-month-day-wrapper</code>, <code>prev-month-day-wrapper</code>, <code>next-month-day-wrapper</code></td>
+      <td>Day grid wrappers</td>
+      <td><code>month-day-wrapper</code> targets all day grids; current, previous, and next wrappers are also exposed.</td>
+    </tr>
+    <tr>
+      <td><code>empty-day</code>, <code>day</code>, <code>today-day</code>, <code>selected-day</code>, <code>disabled-day</code></td>
+      <td>Day items</td>
+      <td><code>today-day</code>, <code>selected-day</code>, and <code>disabled-day</code> are state-specific part tokens added to the day item.</td>
+    </tr>
+    <tr>
+      <td><code>day-button</code>, <code>day-number</code>, <code>status-point</code></td>
+      <td>Day item internals</td>
+      <td>Targets the day visual surface, number label, and today marker.</td>
+    </tr>
+    <tr>
+      <td><code>month-section</code>, <code>month</code>, <code>month-name</code></td>
+      <td>Month selection</td>
+      <td>Targets the month section, each month item, and the month label.</td>
+    </tr>
+    <tr>
+      <td><code>year-section</code>, <code>years-wrapper</code>, <code>current-years-wrapper</code>, <code>prev-years-wrapper</code>, <code>next-years-wrapper</code></td>
+      <td>Year selection wrappers</td>
+      <td><code>years-wrapper</code> targets all year grids; current, previous, and next wrappers are also exposed.</td>
+    </tr>
+    <tr>
+      <td><code>year</code>, <code>year-number</code></td>
+      <td>Year items</td>
+      <td>Targets each year item and its label.</td>
+    </tr>
+    <tr>
+      <td><code>swipe-up</code>, <code>swipe-up-icon</code>, <code>swipe-up-text</code></td>
+      <td>Swipe-up hint</td>
+      <td>Targets the hint shown near the year-selection control.</td>
+    </tr>
+  </tbody>
+</table>
+
+## CSS Variables
+
+### Size And Shape
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Controls</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>--jb-calendar-arrow-button-border-radius</code></td>
+      <td>Navigator arrow button radius</td>
+      <td><code>var(--jb-radius-sm)</code></td>
+    </tr>
+    <tr>
+      <td><code>--jb-calendar-day-button-border-radius</code></td>
+      <td>Day button radius</td>
+      <td><code>var(--jb-radius-sm)</code></td>
+    </tr>
+    <tr>
+      <td><code>--jb-calendar-month-button-border-radius</code></td>
+      <td>Month button radius</td>
+      <td><code>var(--jb-radius-sm)</code></td>
+    </tr>
+    <tr>
+      <td><code>--jb-calendar-year-button-border-radius</code></td>
+      <td>Year button radius</td>
+      <td><code>var(--jb-radius-sm)</code></td>
+    </tr>
+  </tbody>
+</table>
+
+### Theme And Color
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Controls</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>--jb-calendar-color</code></td>
+      <td>Main calendar text color</td>
+      <td><code>var(--jb-text-primary)</code></td>
+    </tr>
+    <tr>
+      <td><code>--jb-calendar-arrow-button-bg-color</code></td>
+      <td>Navigator arrow button background</td>
+      <td><code>var(--jb-neutral-10)</code></td>
+    </tr>
+    <tr>
+      <td><code>--jb-calendar-arrow-fill-color</code></td>
+      <td>Navigator arrow icon and swipe icon color</td>
+      <td><code>var(--jb-neutral-6)</code></td>
+    </tr>
+    <tr>
+      <td><code>--jb-calendar-day-text-color</code></td>
+      <td>Normal day text color</td>
+      <td><code>var(--jb-neutral-4)</code></td>
+    </tr>
+    <tr>
+      <td><code>--jb-calendar-day-text-color-disabled</code></td>
+      <td>Disabled day text color</td>
+      <td><code>var(--jb-neutral-8)</code></td>
+    </tr>
+    <tr>
+      <td><code>--jb-calendar-status-point-border-color</code></td>
+      <td>Today status point border color</td>
+      <td><code>var(--jb-white)</code></td>
+    </tr>
+  </tbody>
+</table>
+
+### State
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Controls</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>--jb-calendar-day-text-color-today</code></td>
+      <td>Today day text color</td>
+      <td><code>var(--jb-green)</code></td>
+    </tr>
+    <tr>
+      <td><code>--jb-calendar-day-bg-color-hover</code></td>
+      <td>Day hover background</td>
+      <td><code>var(--jb-neutral-10)</code></td>
+    </tr>
+    <tr>
+      <td><code>--jb-calendar-day-color-hover</code></td>
+      <td>Day hover text color</td>
+      <td><code>var(--jb-text-primary)</code></td>
+    </tr>
+    <tr>
+      <td><code>--jb-calendar-day-bg-color-selected</code></td>
+      <td>Selected day background</td>
+      <td><code>var(--jb-neutral)</code></td>
+    </tr>
+    <tr>
+      <td><code>--jb-calendar-day-color-selected</code></td>
+      <td>Selected day text color</td>
+      <td><code>var(--jb-text-contrast)</code></td>
+    </tr>
+    <tr>
+      <td><code>--jb-calendar-day-bg-color-selected-hover</code></td>
+      <td>Selected day hover background</td>
+      <td><code>var(--jb-neutral-2)</code></td>
+    </tr>
+    <tr>
+      <td><code>--jb-calendar-day-color-selected-hover</code></td>
+      <td>Selected day hover text color</td>
+      <td><code>var(--jb-text-contrast)</code></td>
+    </tr>
+    <tr>
+      <td><code>--jb-calendar-status-point-bg-color-today</code></td>
+      <td>Today status point background</td>
+      <td><code>var(--jb-green)</code></td>
+    </tr>
+    <tr>
+      <td><code>--jb-calendar-month-bg-color-hover</code></td>
+      <td>Month hover background</td>
+      <td><code>var(--jb-neutral-10)</code></td>
+    </tr>
+    <tr>
+      <td><code>--jb-calendar-month-color-hover</code></td>
+      <td>Month hover text color</td>
+      <td><code>var(--jb-text-primary)</code></td>
+    </tr>
+    <tr>
+      <td><code>--jb-calendar-year-bg-color-hover</code></td>
+      <td>Year hover background</td>
+      <td><code>var(--jb-neutral-10)</code></td>
+    </tr>
+    <tr>
+      <td><code>--jb-calendar-year-color-hover</code></td>
+      <td>Year hover text color</td>
+      <td><code>var(--jb-text-primary)</code></td>
+    </tr>
+  </tbody>
+</table>
+
+### Demo-Only Variables
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Used by</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>--custom-calendar-radius</code></td>
+      <td>Story recipe host classes</td>
+      <td>Demo helper only. It is not part of the <code>JBCalendar</code> public API.</td>
+    </tr>
+  </tbody>
+</table>
+
+## Starter Recipe
+
+Use this minimal recipe when a product only needs brand color alignment.
+
+```css
+jb-calendar.brand-calendar {
+  border-radius: 1rem;
+
+  --jb-calendar-color: #111827;
+  --jb-calendar-arrow-fill-color: #2563eb;
+  --jb-calendar-day-text-color-today: #2563eb;
+  --jb-calendar-day-bg-color-selected: #2563eb;
+  --jb-calendar-day-color-selected: #ffffff;
+  --jb-calendar-status-point-bg-color-today: #f59e0b;
+}
+```
+
+## Style Recipes
+
+### Carbon
+
+Use `carbon-style carbon-calendar` directly on the calendar host when you want to style one calendar with shared Carbon tokens and calendar-specific styling.
+
+<Story of={StyleStories.Carbon} />
+
+<Source of={StyleStories.Carbon} />
+
+#### Shared Tokens
+
+<Source code={carbonThemeCss} language="css" />
+
+#### Calendar CSS
+
+<Source code={carbonCalendarCss} language="css" />
+
+### Aurora
+
+<Story of={StyleStories.Aurora} />
+
+<Source of={StyleStories.Aurora} />
+
+#### Shared Tokens
+
+<Source code={auroraThemeCss} language="css" />
+
+#### Calendar CSS
+
+<Source code={auroraCalendarCss} language="css" />
+
+### Forest
+
+<Story of={StyleStories.Forest} />
+
+<Source of={StyleStories.Forest} />
+
+#### Shared Tokens
+
+<Source code={forestThemeCss} language="css" />
+
+#### Calendar CSS
+
+<Source code={forestCalendarCss} language="css" />
+
+### Sunset
+
+<Story of={StyleStories.Sunset} />
+
+<Source of={StyleStories.Sunset} />
+
+#### Shared Tokens
+
+<Source code={sunsetThemeCss} language="css" />
+
+#### Calendar CSS
+
+<Source code={sunsetCalendarCss} language="css" />
+
+### Porcelain
+
+<Story of={StyleStories.Porcelain} />
+
+<Source of={StyleStories.Porcelain} />
+
+#### Shared Tokens
+
+<Source code={porcelainThemeCss} language="css" />
+
+#### Calendar CSS
+
+<Source code={porcelainCalendarCss} language="css" />
+
+### Candy
+
+<Story of={StyleStories.Candy} />
+
+<Source of={StyleStories.Candy} />
+
+#### Shared Tokens
+
+<Source code={candyThemeCss} language="css" />
+
+#### Calendar CSS
+
+<Source code={candyCalendarCss} language="css" />
+
+### Terminal
+
+<Story of={StyleStories.Terminal} />
+
+<Source of={StyleStories.Terminal} />
+
+#### Shared Tokens
+
+<Source code={terminalThemeCss} language="css" />
+
+#### Calendar CSS
+
+<Source code={terminalCalendarCss} language="css" />
+
+### Material
+
+<Story of={StyleStories.Material} />
+
+<Source of={StyleStories.Material} />
+
+#### Shared Tokens
+
+<Source code={materialThemeCss} language="css" />
+
+#### Calendar CSS
+
+<Source code={materialCalendarCss} language="css" />
+
+### Fluent
+
+<Story of={StyleStories.Fluent} />
+
+<Source of={StyleStories.Fluent} />
+
+#### Shared Tokens
+
+<Source code={fluentThemeCss} language="css" />
+
+#### Calendar CSS
+
+<Source code={fluentCalendarCss} language="css" />
+
+### Bootstrap
+
+<Story of={StyleStories.Bootstrap} />
+
+<Source of={StyleStories.Bootstrap} />
+
+#### Shared Tokens
+
+<Source code={bootstrapThemeCss} language="css" />
+
+#### Calendar CSS
+
+<Source code={bootstrapCalendarCss} language="css" />
+
+### Cupertino
+
+<Story of={StyleStories.Cupertino} />
+
+<Source of={StyleStories.Cupertino} />
+
+#### Shared Tokens
+
+<Source code={cupertinoThemeCss} language="css" />
+
+#### Calendar CSS
+
+<Source code={cupertinoCalendarCss} language="css" />
+
+### Ant Design
+
+<Story of={StyleStories.AntDesign} />
+
+<Source of={StyleStories.AntDesign} />
+
+#### Shared Tokens
+
+<Source code={antDesignThemeCss} language="css" />
+
+#### Calendar CSS
+
+<Source code={antDesignCalendarCss} language="css" />
+
+## Theme File Pattern
+
+Use [Theme Colors](../../jb-core/theme/stories/colors.mdx) and [Theme Sizes](../../jb-core/theme/stories/sizes.mdx) as the common design-token guides. Theme-pack files should keep reusable demo variables in [`docs/styles`](https://github.com/javadbat/design-system/tree/main/docs/styles), then each component should keep its own style CSS in its story [`styles`](https://github.com/javadbat/design-system/tree/main/modules/jb-calendar/stories/styles) folder.
+
+```css
+/* https://github.com/javadbat/design-system/blob/main/docs/styles/carbon.css */
+.theme-name-style {
+  /* shared design-system variables */
+}
+
+/* https://github.com/javadbat/design-system/blob/main/modules/jb-calendar/stories/styles/style-carbon.css */
+jb-calendar.theme-name-calendar {
+  /* calendar-specific variables */
+}
+```
+
+This keeps common theme tokens reusable and lets each component page show only the CSS it needs.

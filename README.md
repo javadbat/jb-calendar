@@ -213,36 +213,13 @@ calendar.direction = 'rtl';
 
 ## Slots and CSS parts
 
-`jb-calendar` does not currently expose public slots or CSS parts.
+`jb-calendar` does not currently expose public slots. It exposes CSS parts for navigator, day, month, year, and swipe-up hint internals; see [Styling](https://javadbat.github.io/design-system/?path=/docs/components-jbcalendar-styling).
 
 ## Custom style
 
 Set CSS variables in the parent scope of the component.
 
-| CSS variable name | description |
-| --- | --- |
-| `--jb-calendar-color` | General text color. |
-| `--jb-calendar-arrow-button-bg-color` | Navigator arrow button background color. |
-| `--jb-calendar-arrow-button-border-radius` | Navigator arrow button border radius. |
-| `--jb-calendar-arrow-fill-color` | Navigator arrow icon color. |
-| `--jb-calendar-day-text-color` | Normal day text color. |
-| `--jb-calendar-day-text-color-disabled` | Disabled day text color. |
-| `--jb-calendar-day-text-color-today` | Today day text color. |
-| `--jb-calendar-day-bg-color-selected` | Selected day background color. |
-| `--jb-calendar-day-color-selected` | Selected day text color. |
-| `--jb-calendar-day-bg-color-selected-hover` | Selected day hover background color. |
-| `--jb-calendar-day-color-selected-hover` | Selected day hover text color. |
-| `--jb-calendar-day-bg-color-hover` | Day hover background color. |
-| `--jb-calendar-day-color-hover` | Day hover text color. |
-| `--jb-calendar-day-button-border-radius` | Day button border radius. |
-| `--jb-calendar-status-point-bg-color-today` | Today status point background color. |
-| `--jb-calendar-status-point-border-color` | Today status point border color. |
-| `--jb-calendar-month-bg-color-hover` | Month hover background color. |
-| `--jb-calendar-month-color-hover` | Month hover text color. |
-| `--jb-calendar-month-button-border-radius` | Month button border radius. |
-| `--jb-calendar-year-bg-color-hover` | Year hover background color. |
-| `--jb-calendar-year-color-hover` | Year hover text color. |
-| `--jb-calendar-year-button-border-radius` | Year button border radius. |
+For complete styling guidance, live examples, and copyable style recipes, see [Styling](https://javadbat.github.io/design-system/?path=/docs/components-jbcalendar-styling).
 
 ```css
 jb-calendar {

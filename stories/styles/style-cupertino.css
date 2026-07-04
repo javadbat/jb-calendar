@@ -1,0 +1,41 @@
+.cupertino-calendar {
+padding: 1.25rem;
+    justify-self: center;
+    width: max-content;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    overflow: hidden;
+    border-radius: var(--custom-calendar-radius, 1.5rem);
+    box-sizing: border-box;
+
+background: oklch(99% 0.01 250 / 0.92);
+    box-shadow:
+        0 1rem 2.5rem oklch(45% 0.05 250 / 0.18),
+        inset 0 0 0 1px oklch(90% 0.01 250 / 0.8);
+    backdrop-filter: blur(1.25rem);
+
+    --custom-calendar-radius: 1.25rem;
+    --jb-calendar-color: #1d1d1f;
+    --jb-calendar-arrow-button-bg-color: #f2f2f7;
+    --jb-calendar-arrow-button-border-radius: 0.625rem;
+    --jb-calendar-arrow-fill-color: #007aff;
+    --jb-calendar-day-button-border-radius: 999px;
+    --jb-calendar-month-button-border-radius: 0.75rem;
+    --jb-calendar-year-button-border-radius: 0.75rem;
+    --jb-calendar-day-text-color: #3a3a3c;
+    --jb-calendar-day-text-color-disabled: #c7c7cc;
+    --jb-calendar-day-text-color-today: #ff3b30;
+    --jb-calendar-day-bg-color-hover: #e5e5ea;
+    --jb-calendar-day-color-hover: #1d1d1f;
+    --jb-calendar-day-bg-color-selected: #007aff;
+    --jb-calendar-day-bg-color-selected-hover: #006ee6;
+    --jb-calendar-day-color-selected: #ffffff;
+    --jb-calendar-day-color-selected-hover: #ffffff;
+    --jb-calendar-status-point-bg-color-today: #ff3b30;
+    --jb-calendar-status-point-border-color: #f9f9fb;
+    --jb-calendar-month-bg-color-hover: #e5e5ea;
+    --jb-calendar-month-color-hover: #007aff;
+    --jb-calendar-year-bg-color-hover: #e5e5ea;
+    --jb-calendar-year-color-hover: #007aff;
+}
