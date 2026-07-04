@@ -1,1 +1,1 @@
-export * from './dist/jb-calendar.js';
+export * from './web-component/dist/jb-calendar.js';

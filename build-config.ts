@@ -3,8 +3,9 @@ import type { ReactComponentBuildConfig, WebComponentBuildConfig } from "../../t
 export const webComponentList: WebComponentBuildConfig[] = [
   {
     name: "jb-calendar",
-    path: "./lib/jb-calendar.ts",
-    outputPath: "./dist/jb-calendar.js",
+    path: "./web-component/lib/jb-calendar.ts",
+    outputPath: "./web-component/dist/jb-calendar.js",
+    tsConfigPath: "./web-component/tsconfig.json",
     external: ["date-fns", "date-fns-jalali", "jb-core", "jb-core/theme", "jb-core/i18n"],
     umdName: "JBCalendar",
     //because date-fns dont have any umd module export i have to do this so it doesn't exclude in umd build
