@@ -87,6 +87,11 @@ export const Gallery: Story = {
   ),
 };
 
+export const Default: Story = {
+  name: "Default",
+  render: () => <JBCalendar></JBCalendar>,
+};
+
 export const Carbon: Story = {
   name: "Carbon",
   render: () => <JBCalendar className="carbon-style"></JBCalendar>,
