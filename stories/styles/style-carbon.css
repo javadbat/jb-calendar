@@ -1,18 +1,5 @@
-.carbon-style jb-calendar,
-jb-calendar.carbon-calendar {
-    display: block;
-    width: max-content;
-    max-width: 100%;
-    height: auto;
-    padding: 1.25rem;
-    overflow: hidden;
-    background: var(--jb-surface);
-    border-radius: 0;
-    box-shadow:
-        0 0.75rem 1.5rem oklch(0% 0 0 / 0.26),
-        inset 0 0 0 1px #393939;
-    box-sizing: border-box;
-
+jb-date-input.carbon-style::part(calendar),
+jb-calendar.carbon-style {
     --jb-calendar-color: var(--jb-text-primary);
     --jb-calendar-arrow-button-bg-color: var(--jb-surface-hover);
     --jb-calendar-arrow-button-border-radius: 0;
@@ -37,11 +24,27 @@ jb-calendar.carbon-calendar {
     --jb-calendar-year-color-hover: var(--jb-focus-color);
 }
 
-.carbon-calendar::part(navigator) {
-    border-bottom: 1px solid #393939;
+jb-date-input.carbon-style::part(calendar),
+jb-calendar.carbon-style {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    height: auto;
+    padding: 1.25rem;
+    overflow: hidden;
+    border-radius: 0;
+    background: var(--jb-surface);
+    box-shadow:
+        0 0.75rem 1.5rem oklch(0% 0 0 / 0.26),
+        inset 0 0 0 1px var(--jb-surface-hover);
+    box-sizing: border-box;
+}
+jb-date-input.carbon-style::part(navigator),
+jb-calendar.carbon-style::part(navigator) {
+    border-bottom: 1px solid var(--jb-surface-hover);
     padding-bottom: 0.75rem;
 }
-
-.carbon-calendar::part(disabled-day) {
+jb-date-input.carbon-style::part(disabled-day),
+jb-calendar.carbon-style::part(disabled-day) {
     opacity: 0.42;
 }

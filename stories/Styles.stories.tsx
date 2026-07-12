@@ -1,6 +1,6 @@
 import React from 'react';
 import { JBCalendar } from 'jb-calendar/react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import '../../../docs/styles/ant-design.css';
 import '../../../docs/styles/aurora.css';
 import '../../../docs/styles/bootstrap.css';
@@ -35,18 +35,18 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const styleSamples = [
-  { name: "Carbon", className: "carbon-style carbon-calendar" },
-  { name: "Aurora", className: "aurora-style aurora-calendar" },
-  { name: "Forest", className: "forest-style forest-calendar" },
-  { name: "Sunset", className: "sunset-style sunset-calendar" },
-  { name: "Porcelain", className: "porcelain-style porcelain-calendar" },
-  { name: "Candy", className: "candy-style candy-calendar" },
-  { name: "Terminal", className: "terminal-style terminal-calendar" },
-  { name: "Material", className: "material-style material-calendar" },
-  { name: "Fluent", className: "fluent-style fluent-calendar" },
-  { name: "Bootstrap", className: "bootstrap-style bootstrap-calendar" },
-  { name: "Cupertino", className: "cupertino-style cupertino-calendar" },
-  { name: "Ant Design", className: "ant-design-style ant-calendar" },
+  { name: "Carbon", className: "carbon-style" },
+  { name: "Aurora", className: "aurora-style" },
+  { name: "Forest", className: "forest-style" },
+  { name: "Sunset", className: "sunset-style" },
+  { name: "Porcelain", className: "porcelain-style" },
+  { name: "Candy", className: "candy-style" },
+  { name: "Terminal", className: "terminal-style" },
+  { name: "Material", className: "material-style" },
+  { name: "Fluent", className: "fluent-style" },
+  { name: "Bootstrap", className: "bootstrap-style" },
+  { name: "Cupertino", className: "cupertino-style" },
+  { name: "Ant Design", className: "ant-design-style" },
 ];
 
 export const Gallery: Story = {
@@ -89,60 +89,60 @@ export const Gallery: Story = {
 
 export const Carbon: Story = {
   name: "Carbon",
-  render: () => <JBCalendar className="carbon-style carbon-calendar"></JBCalendar>,
+  render: () => <JBCalendar className="carbon-style"></JBCalendar>,
 };
 
 export const Aurora: Story = {
   name: "Aurora",
-  render: () => <JBCalendar className="aurora-style aurora-calendar"></JBCalendar>,
+  render: () => <JBCalendar className="aurora-style"></JBCalendar>,
 };
 
 export const Forest: Story = {
   name: "Forest",
-  render: () => <JBCalendar className="forest-style forest-calendar"></JBCalendar>,
+  render: () => <JBCalendar className="forest-style"></JBCalendar>,
 };
 
 export const Sunset: Story = {
   name: "Sunset",
-  render: () => <JBCalendar className="sunset-style sunset-calendar"></JBCalendar>,
+  render: () => <JBCalendar className="sunset-style"></JBCalendar>,
 };
 
 export const Porcelain: Story = {
   name: "Porcelain",
-  render: () => <JBCalendar className="porcelain-style porcelain-calendar"></JBCalendar>,
+  render: () => <JBCalendar className="porcelain-style"></JBCalendar>,
 };
 
 export const Candy: Story = {
   name: "Candy",
-  render: () => <JBCalendar className="candy-style candy-calendar"></JBCalendar>,
+  render: () => <JBCalendar className="candy-style"></JBCalendar>,
 };
 
 export const Terminal: Story = {
   name: "Terminal",
-  render: () => <JBCalendar className="terminal-style terminal-calendar"></JBCalendar>,
+  render: () => <JBCalendar className="terminal-style"></JBCalendar>,
 };
 
 export const Material: Story = {
   name: "Material",
-  render: () => <JBCalendar className="material-style material-calendar"></JBCalendar>,
+  render: () => <JBCalendar className="material-style"></JBCalendar>,
 };
 
 export const Fluent: Story = {
   name: "Fluent",
-  render: () => <JBCalendar className="fluent-style fluent-calendar"></JBCalendar>,
+  render: () => <JBCalendar className="fluent-style"></JBCalendar>,
 };
 
 export const Bootstrap: Story = {
   name: "Bootstrap",
-  render: () => <JBCalendar className="bootstrap-style bootstrap-calendar"></JBCalendar>,
+  render: () => <JBCalendar className="bootstrap-style"></JBCalendar>,
 };
 
 export const Cupertino: Story = {
   name: "Cupertino",
-  render: () => <JBCalendar className="cupertino-style cupertino-calendar"></JBCalendar>,
+  render: () => <JBCalendar className="cupertino-style"></JBCalendar>,
 };
 
 export const AntDesign: Story = {
   name: "Ant Design",
-  render: () => <JBCalendar className="ant-design-style ant-calendar"></JBCalendar>,
+  render: () => <JBCalendar className="ant-design-style"></JBCalendar>,
 };

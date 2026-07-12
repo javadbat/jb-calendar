@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Changed
+
+- Standardized theme recipes on `jb-calendar.<theme>-style` and composed `jb-date-input.<theme>-style::part(calendar)` selectors.
+- Refined Aurora calendar elevation so the composed date-input popover owns the outer shadow without a duplicate calendar shadow.
+
 ## 5.1.0
 
 ### Added

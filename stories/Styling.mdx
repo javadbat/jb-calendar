@@ -45,6 +45,7 @@ Use the core theme docs as the source of truth for shared design-system variable
 
 - [Theme Colors](../../jb-core/theme/stories/colors.mdx) explains the general color palette variables, default colors, customization approaches, and color generation helpers.
 - [Theme Sizes](../../jb-core/theme/stories/sizes.mdx) explains shared size and radius variables.
+- [Theme Custom Galleries](https://javadbat.github.io/design-system/?path=/docs/theme-custom-material--docs) gathers the shared custom style recipes across components.
 
 Calendar recipes should use those common tokens where possible, then map them into `--jb-calendar-*` variables only where the calendar needs a component-specific value.
 
@@ -342,7 +343,7 @@ jb-calendar.brand-calendar {
 
 ### Carbon
 
-Use `carbon-style carbon-calendar` directly on the calendar host when you want to style one calendar with shared Carbon tokens and calendar-specific styling.
+Use `carbon-style carbon-style` directly on the calendar host when you want to style one calendar with shared Carbon tokens and calendar-specific styling.
 
 <Story of={StyleStories.Carbon} />
 

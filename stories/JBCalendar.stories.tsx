@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { JBCalendar } from 'jb-calendar/react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { addMonths, getDaysInMonth as getGregorianDaysInMonth } from 'date-fns';
 import { getDaysInMonth as getJalaliDaysInMonth, newDate as newJalaliDate } from 'date-fns-jalali';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
