@@ -7,6 +7,8 @@ export type JBCalendarDictionary = {
   next:string,
   prev:string,
   showAllYear:string,
+  calendar:string,
+  days:string,
 }
 
 /**
@@ -28,7 +30,9 @@ export const dictionary = new JBDictionary<JBCalendarDictionary>({
     gregorianDayOfWeek:["ی", "د", "س", "چ", "پ", "ج","ش"],
     next:"بعدی",
     prev:"قبلی",
-    showAllYear:"نمایش همه سال‌ها"
+    showAllYear:"نمایش همه سال‌ها",
+    calendar:"تقویم",
+    days:"روزها"
   },
   "en":{
     jalaliMonthList:["Farvardin","Ordibehesht","Khordad","Tir","Mordad","Shahrivar","Mehr","Aban","Azar","Dey","Bahman","Esfand"],
@@ -37,6 +41,8 @@ export const dictionary = new JBDictionary<JBCalendarDictionary>({
     gregorianDayOfWeek:["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
     next:"next",
     prev:"previous",
-    showAllYear:"Show all years"
+    showAllYear:"Show all years",
+    calendar:"Calendar",
+    days:"Days"
   }
 });

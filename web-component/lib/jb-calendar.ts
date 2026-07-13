@@ -46,6 +46,7 @@ if (HTMLElement == undefined) {
   console.error("you cant render web component on a server side");
 }
 export class JBCalendarWebComponent extends HTMLElement {
+  #internals?: ElementInternals;
   #swipeGestureData: JBCalendarSwipeGestureData = {
     daysWrapper: {
       startX: null,
@@ -125,6 +126,7 @@ export class JBCalendarWebComponent extends HTMLElement {
       this.#value.year = year;
       this.#value.month = month;
       this.#value.day = day;
+      if (this.#internals) this.#internals.ariaDescription = `${year}-${month}-${day}`;
       this.data.selectedYear = year;
       this.data.selectedMonth = month;
       const prevSelectedDayDom: HTMLDivElement | null =
@@ -132,6 +134,7 @@ export class JBCalendarWebComponent extends HTMLElement {
       if (prevSelectedDayDom !== null) {
         prevSelectedDayDom.classList.remove("--selected");
         prevSelectedDayDom.part.remove("selected-day");
+        prevSelectedDayDom.setAttribute("aria-pressed", "false");
       }
       if (this.data.selectedYear == year && this.data.selectedMonth == month) {
         const dayDom: HTMLDivElement | null = this.shadowRoot!.querySelector(
@@ -140,6 +143,7 @@ export class JBCalendarWebComponent extends HTMLElement {
         if (dayDom) {
           dayDom.classList.add("--selected");
           dayDom.part.add("selected-day");
+          dayDom.setAttribute("aria-pressed", "true");
         }
       }
     } else {
@@ -218,6 +222,11 @@ export class JBCalendarWebComponent extends HTMLElement {
   }
   constructor() {
     super();
+    if (typeof this.attachInternals === "function") {
+      this.#internals = this.attachInternals();
+      this.#internals.role = "group";
+      this.#internals.ariaLabel = dictionary.get(i18n, "calendar");
+    }
     this.initWebComponent();
     this.initProps();
     this.initCalendar();
@@ -653,6 +662,8 @@ export class JBCalendarWebComponent extends HTMLElement {
   }
   createYearDom(year: number) {
     const monthDom = document.createElement("div");
+    monthDom.setAttribute("role", "button");
+    monthDom.setAttribute("aria-label", year.toString());
     monthDom.classList.add("year-wrapper");
     monthDom.part.add("year");
     const monthTextDom = document.createElement("div");
@@ -675,6 +686,7 @@ export class JBCalendarWebComponent extends HTMLElement {
   }
   #createMonthDom(monthIndex: number) {
     const monthDom = document.createElement("div");
+    monthDom.setAttribute("role", "button");
     monthDom.classList.add("month-wrapper");
     monthDom.part.add("month");
     const monthTextDom = document.createElement("div");
@@ -685,6 +697,7 @@ export class JBCalendarWebComponent extends HTMLElement {
         ? this.#jalaliMonthList[monthIndex - 1]
         : this.#gregorianMonthList[monthIndex - 1];
     monthTextDom.innerHTML = monthName;
+    monthDom.setAttribute("aria-label", monthName);
     monthDom.appendChild(monthTextDom);
     monthDom.addEventListener("click", () => {
       this.data.selectedMonth = monthIndex;
@@ -811,6 +824,7 @@ export class JBCalendarWebComponent extends HTMLElement {
   }
   createEmptyDayDom() {
     const dayDom = document.createElement("div");
+    dayDom.setAttribute("aria-hidden", "true");
     dayDom.classList.add("empty-day");
     dayDom.part.add("empty-day");
     return dayDom;
@@ -825,6 +839,11 @@ export class JBCalendarWebComponent extends HTMLElement {
   ) {
     //create dom
     const dayDom = document.createElement("div");
+    dayDom.setAttribute("role", "button");
+    dayDom.setAttribute("aria-label", `${year}-${month}-${dayNumber}`);
+    dayDom.setAttribute("aria-pressed", isSelected ? "true" : "false");
+    dayDom.setAttribute("aria-disabled", isDisable ? "true" : "false");
+    if (isToday) dayDom.setAttribute("aria-current", "date");
     dayDom.classList.add("day-wrapper");
     dayDom.part.add("day");
     dayDom.setAttribute("day-number", dayNumber.toString());
