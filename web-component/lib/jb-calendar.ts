@@ -129,7 +129,7 @@ export class JBCalendarWebComponent extends HTMLElement {
       if (this.#internals) this.#internals.ariaDescription = `${year}-${month}-${day}`;
       this.data.selectedYear = year;
       this.data.selectedMonth = month;
-      const prevSelectedDayDom: HTMLDivElement | null =
+      const prevSelectedDayDom: HTMLButtonElement | null =
         this.shadowRoot!.querySelector(`.--selected`);
       if (prevSelectedDayDom !== null) {
         prevSelectedDayDom.classList.remove("--selected");
@@ -137,7 +137,7 @@ export class JBCalendarWebComponent extends HTMLElement {
         prevSelectedDayDom.setAttribute("aria-pressed", "false");
       }
       if (this.data.selectedYear == year && this.data.selectedMonth == month) {
-        const dayDom: HTMLDivElement | null = this.shadowRoot!.querySelector(
+        const dayDom: HTMLButtonElement | null = this.shadowRoot!.querySelector(
           `.day-wrapper[day-number="${day}"]`
         );
         if (dayDom) {
@@ -322,7 +322,7 @@ export class JBCalendarWebComponent extends HTMLElement {
   initWebComponent() {
     const shadowRoot = this.attachShadow({ mode: "open",serializable:true, clonable:true, });
     registerDefaultVariables();
-    const html = `<style>${CSS} ${VariableCSS}</style>` + "\n" + renderHTML();
+    const html = `<style>${CSS} ${VariableCSS}</style>\n${renderHTML()}`;
     const element = document.createElement("template");
     element.innerHTML = html;
     shadowRoot.appendChild(element.content.cloneNode(true));
@@ -661,12 +661,13 @@ export class JBCalendarWebComponent extends HTMLElement {
     }
   }
   createYearDom(year: number) {
-    const monthDom = document.createElement("div");
-    monthDom.setAttribute("role", "button");
+    const monthDom = document.createElement("button");
+    monthDom.type = "button";
+    monthDom.tabIndex = -1;
     monthDom.setAttribute("aria-label", year.toString());
     monthDom.classList.add("year-wrapper");
     monthDom.part.add("year");
-    const monthTextDom = document.createElement("div");
+    const monthTextDom = document.createElement("span");
     monthTextDom.classList.add("year-number");
     monthTextDom.part.add("year-number");
     monthTextDom.innerHTML = this.localizeString(year.toString());
@@ -685,11 +686,12 @@ export class JBCalendarWebComponent extends HTMLElement {
     }
   }
   #createMonthDom(monthIndex: number) {
-    const monthDom = document.createElement("div");
-    monthDom.setAttribute("role", "button");
+    const monthDom = document.createElement("button");
+    monthDom.type = "button";
+    monthDom.tabIndex = -1;
     monthDom.classList.add("month-wrapper");
     monthDom.part.add("month");
-    const monthTextDom = document.createElement("div");
+    const monthTextDom = document.createElement("span");
     monthTextDom.classList.add("month-name");
     monthTextDom.part.add("month-name");
     const monthName =
@@ -838,11 +840,12 @@ export class JBCalendarWebComponent extends HTMLElement {
     isDisable: boolean
   ) {
     //create dom
-    const dayDom = document.createElement("div");
-    dayDom.setAttribute("role", "button");
+    const dayDom = document.createElement("button");
+    dayDom.type = "button";
+    dayDom.tabIndex = -1;
     dayDom.setAttribute("aria-label", `${year}-${month}-${dayNumber}`);
     dayDom.setAttribute("aria-pressed", isSelected ? "true" : "false");
-    dayDom.setAttribute("aria-disabled", isDisable ? "true" : "false");
+    dayDom.disabled = isDisable;
     if (isToday) dayDom.setAttribute("aria-current", "date");
     dayDom.classList.add("day-wrapper");
     dayDom.part.add("day");
@@ -856,15 +859,15 @@ export class JBCalendarWebComponent extends HTMLElement {
       dayDom.part.add("selected-day");
     }
     //
-    const dayNumberWrapperDom = document.createElement("div");
+    const dayNumberWrapperDom = document.createElement("span");
     dayNumberWrapperDom.classList.add("day-number-wrapper");
     dayNumberWrapperDom.part.add("day-button");
     //
-    const dayNumberDom = document.createElement("div");
+    const dayNumberDom = document.createElement("span");
     dayNumberDom.classList.add("day-number");
     dayNumberDom.part.add("day-number");
     dayNumberDom.innerHTML = this.localizeString(dayNumber.toString());
-    const statusPoint = document.createElement("div");
+    const statusPoint = document.createElement("span");
     statusPoint.classList.add("status-point");
     statusPoint.part.add("status-point");
     //

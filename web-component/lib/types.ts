@@ -27,11 +27,11 @@ export type JBCalendarElements = {
     dayOfWeekWrapper: HTMLDivElement;
     navigatorTitle: {
         wrapper: HTMLDivElement;
-        month: HTMLSpanElement;
-        year: HTMLSpanElement;
+        month: HTMLButtonElement;
+        year: HTMLButtonElement;
         yearRange: HTMLSpanElement;
-        nextButton: HTMLDivElement;
-        prevButton: HTMLDivElement;
+        nextButton: HTMLButtonElement;
+        prevButton: HTMLButtonElement;
     },
     swipeupSymbol:HTMLDivElement;
 }

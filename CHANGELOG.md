@@ -4,6 +4,7 @@
 
 ### Changed
 
+- Calendar navigation, day, month, and year controls now use native buttons with visible keyboard focus and native disabled semantics.
 - Standardized theme recipes on `jb-calendar.<theme>-style` and composed `jb-date-input.<theme>-style::part(calendar)` selectors.
 - Refined Aurora calendar elevation so the composed date-input popover owns the outer shadow without a duplicate calendar shadow.
 

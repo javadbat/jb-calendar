@@ -7,6 +7,18 @@
     outline: 2px solid var(--jb-calendar-focus-ring-color, Highlight);
     outline-offset: 2px;
 }
+:where(.arrow-btn, .month, .year, .day-wrapper, .month-wrapper, .year-wrapper) {
+    all: unset;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+:where(.arrow-btn, .month, .year, .day-wrapper, .month-wrapper, .year-wrapper):disabled {
+    cursor: default;
+}
+:where(.arrow-btn, .month, .year, .day-wrapper, .month-wrapper, .year-wrapper):focus-visible {
+    outline: 2px solid var(--jb-calendar-focus-ring-color, Highlight);
+    outline-offset: 2px;
+}
 .jb-calendar-web-component{
     width: 17rem;
     height: auto;

@@ -5,23 +5,23 @@ export function renderHTML(): string {
   return /* html */ `
   <div class="jb-calendar-web-component" part="root">
     <section class="navigator-section" part="navigator">
-        <div class="prev-btn arrow-btn" part="arrow-button prev-button" role="button" aria-label="${dictionary.get(i18n,"prev")}" title="${dictionary.get(i18n,"prev")}">
+        <button class="prev-btn arrow-btn" part="arrow-button prev-button" type="button" tabindex="-1" aria-label="${dictionary.get(i18n,"prev")}" title="${dictionary.get(i18n,"prev")}">
             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" aria-hidden="true"
                 preserveAspectRatio="xMidYMid meet">
                 <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
             </svg>
-        </div>
+        </button>
         <div class="navigator-title" part="navigator-title">
-            <span class="month" part="navigator-month" role="button"></span>
-            <span class="year" part="navigator-year" role="button"></span>
+            <button class="month" part="navigator-month" type="button" tabindex="-1"></button>
+            <button class="year" part="navigator-year" type="button" tabindex="-1"></button>
             <span class="year-range" part="navigator-year-range"></span>
         </div>
-        <div class="next-btn arrow-btn" part="arrow-button next-button" role="button" aria-label="${dictionary.get(i18n,"next")}" title="${dictionary.get(i18n,"next")}">
+        <button class="next-btn arrow-btn" part="arrow-button next-button" type="button" tabindex="-1" aria-label="${dictionary.get(i18n,"next")}" title="${dictionary.get(i18n,"next")}">
             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" aria-hidden="true"
                 preserveAspectRatio="xMidYMid meet">
                 <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
             </svg>
-        </div>
+        </button>
 
     </section>
     <section class="calendar-section" part="calendar">
