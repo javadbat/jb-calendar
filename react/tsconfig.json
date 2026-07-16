@@ -12,5 +12,5 @@
         "**/*.spec.ts",
         "dist",
     ],
-    "extends":"jb-core/configs/tsconfig-react.json"
+    "extends": "jb-core/configs/tsconfig-react.json"
 }

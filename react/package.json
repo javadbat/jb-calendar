@@ -3,9 +3,9 @@
   "description": "calendar react component",
   "type": "module",
   "author": {
-		"name": "mohammad javad bathaei",
-		"email": "javadbat@gmail.com"
-	},
+    "name": "mohammad javad bathaei",
+    "email": "javadbat@gmail.com"
+  },
   "keywords": [
     "jb",
     "jb-calendar",
@@ -26,8 +26,8 @@
   "main": "index.js",
   "types": "./dist/JBCalendar.d.ts",
   "repository": {
-		"type": "git",
-		"url": "git@github.com:javadbat/jb-calendar.git"
+    "type": "git",
+    "url": "git@github.com:javadbat/jb-calendar.git"
   },
   "dependencies": {
     "jb-calendar": ">=4.1.5"

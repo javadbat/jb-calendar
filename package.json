@@ -3,9 +3,9 @@
   "description": "jalali calendar interface web component",
   "type": "module",
   "author": {
-		"name": "mohammad javad bathaei",
-		"email": "javadbat@gmail.com"
-	},
+    "name": "mohammad javad bathaei",
+    "email": "javadbat@gmail.com"
+  },
   "keywords": [
     "jb",
     "jb-calendar",
@@ -31,7 +31,7 @@
     "react/dist/"
   ],
   "main": "index.js",
-  "module":"index.js",
+  "module": "index.js",
   "types": "./web-component/dist/jb-calendar.d.ts",
   "exports": {
     ".": {
@@ -46,12 +46,12 @@
   },
   "customElements": "web-component/custom-elements.json",
   "repository": {
-		"type": "git",
-		"url": "https://github.com/javadbat/jb-calendar"
+    "type": "git",
+    "url": "https://github.com/javadbat/jb-calendar"
   },
   "dependencies": {
     "date-fns": "^4.1.0",
     "date-fns-jalali": "^4.1.0-0",
-    "jb-core":">=0.29.0"
+    "jb-core": ">=0.29.0"
   }
 }
