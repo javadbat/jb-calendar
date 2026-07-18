@@ -1,6 +1,6 @@
 jb-date-input.aurora-style::part(calendar),
 jb-calendar.aurora-style {
-    --custom-calendar-radius: 1.75rem;
+    --custom-calendar-radius: 1.25rem;
     --jb-calendar-color: var(--jb-text-primary);
     --jb-calendar-arrow-button-bg-color: var(--jb-border-color);
     --jb-calendar-arrow-button-border-radius: 999px;
@@ -27,7 +27,7 @@ jb-calendar.aurora-style {
 
 jb-date-input.aurora-style::part(calendar),
 jb-calendar.aurora-style {
-    padding: 1.25rem;
+    padding: 1rem;
     justify-self: center;
     width: max-content;
     max-width: 100%;

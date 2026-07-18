@@ -1,7 +1,7 @@
 jb-date-input.ant-design-style::part(calendar),
 jb-calendar.ant-design-style {
     --jb-calendar-color: var(--jb-text-primary);
-    --jb-calendar-arrow-button-bg-color: var(--jb-background);
+    --jb-calendar-arrow-button-bg-color: transparent;
     --jb-calendar-arrow-button-border-radius: 0.375rem;
     --jb-calendar-arrow-fill-color: var(--jb-focus-color);
     --jb-calendar-day-button-border-radius: 0.375rem;
@@ -26,17 +26,17 @@ jb-calendar.ant-design-style {
 
 jb-date-input.ant-design-style::part(calendar),
 jb-calendar.ant-design-style {
-    padding: 1.25rem;
+    padding: 0.5rem;
     justify-self: center;
     width: max-content;
     max-width: 100%;
     display: block;
     overflow: hidden;
-    border-radius: var(--custom-calendar-radius, 1.5rem);
+    border-radius: var(--custom-calendar-radius, 0.5rem);
     box-sizing: border-box;
     box-shadow:
         0 0.375rem 1rem oklch(0% 0 0 / 0.12),
-        inset 0 0 0 1px var(--jb-border-color);
+        inset 0 0 0 1px rgb(5 5 5 / 0.06);
 
     --custom-calendar-radius: 0.5rem;
     background: var(--jb-surface);

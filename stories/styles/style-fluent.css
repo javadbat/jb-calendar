@@ -26,22 +26,22 @@ jb-calendar.fluent-style {
 
 jb-date-input.fluent-style::part(calendar),
 jb-calendar.fluent-style{
-    padding: 1.25rem;
+    padding: 1rem;
     justify-self: center;
     width: max-content;
     max-width: 100%;
     height: auto;
     display: block;
     overflow: hidden;
-    border-radius: var(--custom-calendar-radius, 1.5rem);
+    border-radius: var(--custom-calendar-radius, 0.5rem);
     box-sizing: border-box;
 
-background: var(--jb-surface);
+    background: var(--jb-surface);
     box-shadow:
-        0 0.25rem 0.875rem oklch(0% 0 0 / 0.12),
+        0 0.2rem 0.625rem oklch(0% 0 0 / 0.1),
         inset 0 0 0 1px var(--jb-border-color);
 
-    --custom-calendar-radius: 0.75rem;
+    --custom-calendar-radius: 0.5rem;
 }
 jb-date-input.fluent-style::part(navigator),
 jb-calendar.fluent-style::part(navigator) {

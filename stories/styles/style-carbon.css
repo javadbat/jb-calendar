@@ -9,14 +9,14 @@ jb-calendar.carbon-style {
     --jb-calendar-year-button-border-radius: 0;
     --jb-calendar-day-text-color: #e0e0e0;
     --jb-calendar-day-text-color-disabled: var(--jb-text-disabled);
-    --jb-calendar-day-text-color-today: var(--jb-success);
+    --jb-calendar-day-text-color-today: var(--jb-focus-color);
     --jb-calendar-day-bg-color-hover: var(--jb-surface-hover);
     --jb-calendar-day-color-hover: var(--jb-text-contrast);
     --jb-calendar-day-bg-color-selected: var(--jb-primary);
     --jb-calendar-day-bg-color-selected-hover: var(--jb-primary-hover);
     --jb-calendar-day-color-selected: var(--jb-text-contrast);
     --jb-calendar-day-color-selected-hover: var(--jb-text-contrast);
-    --jb-calendar-status-point-bg-color-today: var(--jb-success);
+    --jb-calendar-status-point-bg-color-today: var(--jb-primary);
     --jb-calendar-status-point-border-color: var(--jb-surface);
     --jb-calendar-month-bg-color-hover: var(--jb-surface-hover);
     --jb-calendar-month-color-hover: var(--jb-focus-color);
@@ -30,13 +30,13 @@ jb-calendar.carbon-style {
     width: max-content;
     max-width: 100%;
     height: auto;
-    padding: 1.25rem;
+    padding: 1rem;
     overflow: hidden;
     border-radius: 0;
     background: var(--jb-surface);
     box-shadow:
-        0 0.75rem 1.5rem oklch(0% 0 0 / 0.26),
-        inset 0 0 0 1px var(--jb-surface-hover);
+        0 0.5rem 1rem oklch(0% 0 0 / 0.24),
+        inset 0 0 0 1px var(--jb-border-color);
     box-sizing: border-box;
 }
 jb-date-input.carbon-style::part(navigator),

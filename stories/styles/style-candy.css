@@ -1,6 +1,6 @@
 jb-date-input.candy-style::part(calendar),
 jb-calendar.candy-style {
-    padding: var(--candy-calendar-padding, 1.25rem);
+    padding: var(--candy-calendar-padding, 1rem);
     justify-self: center;
     width: max-content;
     max-width: 100%;
@@ -15,10 +15,10 @@ jb-calendar.candy-style {
                 radial-gradient(circle at 86% 20%, #d9f3ff 0%, transparent 30%),
                 linear-gradient(145deg, var(--jb-background), var(--jb-surface))));
     box-shadow: var(--candy-calendar-box-shadow,
-            0 1.25rem 2.75rem oklch(72% 0.08 330 / 0.22),
+            0 0.9rem 2rem oklch(72% 0.08 330 / 0.18),
             inset 0 0 0 1px var(--jb-border-color));
 
-    --custom-calendar-radius: 2rem;
+    --custom-calendar-radius: 1.5rem;
 
 }
 
