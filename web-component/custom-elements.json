@@ -347,14 +347,6 @@
               "description": "General text color."
             },
             {
-              "name": "--jb-calendar-arrow-button-bg-color",
-              "description": "Navigator arrow button background color."
-            },
-            {
-              "name": "--jb-calendar-arrow-button-border-radius",
-              "description": "Navigator arrow button border radius."
-            },
-            {
               "name": "--jb-calendar-arrow-fill-color",
               "description": "Navigator arrow icon color."
             },

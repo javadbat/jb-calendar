@@ -6,7 +6,7 @@ export const webComponentList: WebComponentBuildConfig[] = [
     path: "./web-component/lib/jb-calendar.ts",
     outputPath: "./web-component/dist/jb-calendar.js",
     tsConfigPath: "./web-component/tsconfig.json",
-    external: ["date-fns", "date-fns-jalali", "jb-core", "jb-core/theme", "jb-core/i18n"],
+    external: ["date-fns","jb-button", "jb-icons/arrow","date-fns-jalali", "jb-core", "jb-core/theme", "jb-core/i18n"],
     umdName: "JBCalendar",
     //because date-fns dont have any umd module export i have to do this so it doesn't exclude in umd build
     umdIncludes: ["date-fns", "date-fns-jalali"],

@@ -25,8 +25,6 @@ jb-calendar.candy-style {
 jb-date-input.candy-style::part(calendar),
 jb-calendar.candy-style {
     --jb-calendar-color: var(--jb-text-primary);
-    --jb-calendar-arrow-button-bg-color: var(--jb-text-contrast);
-    --jb-calendar-arrow-button-border-radius: 999px;
     --jb-calendar-arrow-fill-color: var(--jb-focus-color);
     --jb-calendar-day-button-border-radius: 999px;
     --jb-calendar-month-button-border-radius: 999px;

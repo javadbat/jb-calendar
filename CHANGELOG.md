@@ -1,5 +1,12 @@
 # Changelog
 
+## unreleased
+
+### Changed
+
+- Breaking: replace arrow buttons icon with jb-icons/arrow
+- Breaking: replace arrow buttons icon with jb-button
+
 ## [5.2.0] 2.26-07-18
 
 ### Changed

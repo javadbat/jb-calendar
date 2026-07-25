@@ -1,12 +1,10 @@
 :host{
   /* Size */
-  --arrow-button-border-radius: var(--jb-calendar-arrow-button-border-radius, var(--jb-radius-sm));
   --day-button-border-radius: var(--jb-calendar-day-button-border-radius, var(--jb-radius-sm));
   --month-button-border-radius: var(--jb-calendar-month-button-border-radius, var(--jb-radius-sm));
   --year-button-border-radius: var(--jb-calendar-year-button-border-radius, var(--jb-radius-sm));
   /* Theme/Color */
   --color: var(--jb-calendar-color,var(--jb-text-primary));
-  --arrow-button-bg-color: var(--jb-calendar-arrow-button-bg-color, var(--jb-neutral-10));
   --arrow-fill-color: var(--jb-calendar-arrow-fill-color, var(--jb-neutral-6));
   --day-text-color-disabled: var(--jb-calendar-day-text-color-disabled, var(--jb-neutral-8));
   --day-text-color-today: var(--jb-calendar-day-text-color-today, var(--jb-green));

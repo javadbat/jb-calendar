@@ -1,8 +1,6 @@
 jb-date-input.terminal-style::part(calendar),
 jb-calendar.terminal-style {
     --jb-calendar-color: var(--jb-text-primary);
-    --jb-calendar-arrow-button-bg-color: var(--jb-surface-hover);
-    --jb-calendar-arrow-button-border-radius: 0.25rem;
     --jb-calendar-arrow-fill-color: var(--jb-focus-color);
     --jb-calendar-day-button-border-radius: 0.25rem;
     --jb-calendar-month-button-border-radius: 0.25rem;

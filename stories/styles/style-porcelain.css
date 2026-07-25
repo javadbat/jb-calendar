@@ -1,8 +1,6 @@
 jb-date-input.porcelain-style::part(calendar),
 jb-calendar.porcelain-style {
     --jb-calendar-color: var(--jb-text-primary);
-    --jb-calendar-arrow-button-bg-color: #dcebf7;
-    --jb-calendar-arrow-button-border-radius: 0.625rem;
     --jb-calendar-arrow-fill-color: var(--jb-focus-color);
     --jb-calendar-day-button-border-radius: 0.5rem;
     --jb-calendar-month-button-border-radius: 0.5rem;

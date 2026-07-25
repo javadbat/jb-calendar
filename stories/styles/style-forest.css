@@ -1,8 +1,6 @@
 jb-date-input.forest-style::part(calendar),
 jb-calendar.forest-style {
     --jb-calendar-color: var(--jb-text-primary);
-    --jb-calendar-arrow-button-bg-color: oklch(94% 0.06 105 / 0.16);
-    --jb-calendar-arrow-button-border-radius: 0.75rem;
     --jb-calendar-arrow-fill-color: var(--jb-focus-color);
     --jb-calendar-day-button-border-radius: 0.65rem;
     --jb-calendar-month-button-border-radius: 0.75rem;

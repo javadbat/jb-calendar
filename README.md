@@ -227,7 +227,6 @@ For complete styling guidance, live examples, and copyable style recipes, see [S
 jb-calendar {
   --jb-calendar-day-bg-color-selected: var(--jb-primary);
   --jb-calendar-day-color-selected: var(--jb-white);
-  --jb-calendar-arrow-button-border-radius: 62.4375rem;
 }
 ```
 
