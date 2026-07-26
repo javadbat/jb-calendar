@@ -52,6 +52,7 @@
   "dependencies": {
     "date-fns": "^4.1.0",
     "date-fns-jalali": "^4.1.0-0",
-    "jb-core": ">=0.30.0"
+    "jb-core": "^0.30.0",
+    "jb-icons": "^2.0.0"
   }
 }

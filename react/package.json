@@ -30,6 +30,6 @@
     "url": "git@github.com:javadbat/jb-calendar.git"
   },
   "dependencies": {
-    "jb-calendar": ">=4.1.5"
+    "jb-calendar": "^4.1.5"
   }
 }

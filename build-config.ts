@@ -14,6 +14,7 @@ export const webComponentList: WebComponentBuildConfig[] = [
       "jb-core": "JBCore",
       "jb-core/theme":"JBCoreTheme",
       "jb-core/i18n":"JBCoreI18N",
+      "jb-icons/arrow": "JBIconArrow",
     },
   },
 ];
