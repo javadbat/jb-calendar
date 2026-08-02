@@ -22,7 +22,7 @@ Use [`jb-date-input`](https://github.com/javadbat/jb-date-input) when you need a
 
 ## Demo
 
-- [Storybook](https://javadbat.github.io/design-system/?path=/docs/components-jbcalendar)
+- [Demo](https://javadbat.github.io/design-system/?path=/docs/components-jbcalendar)
 - [CodePen](https://codepen.io/javadbat/pen/poRKYEY)
 
 ## Using With JS Frameworks
@@ -55,14 +55,14 @@ import 'jb-calendar';
 
 | name | type | readonly | description |
 | --- | --- | --- | --- |
-| `value` | `JBCalendarValue` | no | Selected date in the active `inputType`. Set `year`, `month`, and `day` together. |
-| `inputType` | `'JALALI' \| 'GREGORIAN'` | no | Calendar date system used for input and displayed values. |
+| `value` | `JBCalendarValue` | no | Selected date in the active `inputType`. Set `year`, `month`, and `day` together. [Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--value-test) |
+| `inputType` | `'JALALI' \| 'GREGORIAN'` | no | Calendar date system used for input and displayed values. [Jalali Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--jalali) · [Gregorian Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--gregorian) |
 | `activeSection` | `'DAY' \| 'MONTH' \| 'YEAR'` | no | Visible selection section. |
-| `showPersianNumber` | `boolean` | no | Renders numbers with Persian digits when `true`. |
-| `direction` | `'rtl' \| 'ltr'` | no | Calendar layout direction. Leave unset to use computed CSS direction. |
+| `showPersianNumber` | `boolean` | no | Renders numbers with Persian digits when `true`. [Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--persian-numbers) |
+| `direction` | `'rtl' \| 'ltr'` | no | Calendar layout direction. Leave unset to use computed CSS direction. [RTL Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--right-to-left) |
 | `cssDirection` | `'rtl' \| 'ltr'` | yes | Computed CSS direction of the host. |
-| `defaultCalendarData` | `{ jalali, gregorian }` | no | Default visible year/month used when no date is selected. |
-| `dateRestrictions` | `{ min: Date \| null; max: Date \| null }` | no | Mutable min/max date restriction object. Set `dateRestrictions.min` and `dateRestrictions.max`. |
+| `defaultCalendarData` | `{ jalali, gregorian }` | no | Default visible year/month used when no date is selected. [Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--default-visible-month) |
+| `dateRestrictions` | `{ min: Date \| null; max: Date \| null }` | no | Mutable min/max date restriction object. Set `dateRestrictions.min` and `dateRestrictions.max`. [Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--min-max) |
 | `data` | `JBCalendarData` | no | Internal visible calendar state: `selectedYear`, `selectedMonth`, and `yearSelectionRange`. |
 
 ```ts
@@ -77,11 +77,11 @@ type JBCalendarValue = {
 
 | name | returns | description |
 | --- | --- | --- |
-| `select(year, month, day)` | `void` | Selects a date in the current `inputType` and updates `value`. |
-| `selectToday()` | `void` | Selects today in the current `inputType`. |
-| `setMonthList(inputType, monthList)` | `void` | Replaces the 12 month labels for `JALALI` or `GREGORIAN`. |
-| `setupStyleBaseOnCssDirection(dir?)` | `void` | Refreshes direction-sensitive layout classes from `dir` or computed host direction. |
-| `checkIsDayDisable(dayDate)` | `{ min; max; isAllValid }` | Checks whether a `Date` is valid against min/max restrictions. |
+| `select(year, month, day)` | `void` | Selects a date in the current `inputType` and updates `value`. [Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--imperative-selection) |
+| `selectToday()` | `void` | Selects today in the current `inputType`. [Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--imperative-selection) |
+| `setMonthList(inputType, monthList)` | `void` | Replaces the 12 month labels for `JALALI` or `GREGORIAN`. [Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--custom-month-name) |
+| `setupStyleBaseOnCssDirection(dir?)` | `void` | Refreshes direction-sensitive layout classes from `dir` or computed host direction. [Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--right-to-left) |
+| `checkIsDayDisable(dayDate)` | `{ min; max; isAllValid }` | Checks whether a `Date` is valid against min/max restrictions. [Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--min-max) |
 
 ### Events
 
@@ -89,7 +89,7 @@ type JBCalendarValue = {
 | --- | --- | --- |
 | `init` | none | Dispatched during construction after default properties are initialized. |
 | `load` | none | Dispatched from `connectedCallback` before layout initialization. |
-| `select` | none | Dispatched when the user selects an enabled day. Read `event.target.value`. |
+| `select` | none | Dispatched when the user selects an enabled day. Read `event.target.value`. [Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--value-test) |
 
 ```js
 const calendar = document.querySelector('jb-calendar');
@@ -100,6 +100,8 @@ calendar.addEventListener('select', (event) => {
 ```
 
 ## Select a date
+
+Use `select()` or set `value` to choose a date programmatically; see the [imperative selection Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--imperative-selection). User selection events expose the date through `event.target.value`; see the [selection event Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--value-test).
 
 ```js
 const calendar = document.querySelector('jb-calendar');
@@ -120,7 +122,7 @@ calendar.value = {
 
 ## Jalali and Gregorian input
 
-Set `inputType` to `JALALI` or `GREGORIAN`.
+Set `inputType` to `JALALI` or `GREGORIAN`; see the [Jalali Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--jalali) or [Gregorian Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--gregorian).
 
 ```js
 const calendar = document.querySelector('jb-calendar');
@@ -131,10 +133,14 @@ calendar.select(2026, 6, 16);
 
 ## Default visible month
 
-`defaultCalendarData` controls the year and month shown before the user selects a date.
+`defaultCalendarData` controls the year and month shown before the user selects a date. Configure it before connecting the element so the initial layout uses the supplied month.
+
+`defaultCalendarData` configuration is shown in the [configured initial-month Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--default-visible-month).
 
 ```js
-document.querySelector('jb-calendar').defaultCalendarData = {
+const calendar = document.createElement('jb-calendar');
+
+calendar.defaultCalendarData = {
   gregorian: {
     year: 2026,
     month: 6,
@@ -144,9 +150,13 @@ document.querySelector('jb-calendar').defaultCalendarData = {
     month: 3,
   },
 };
+
+document.body.append(calendar);
 ```
 
 ## Persian numbers
+
+Set `showPersianNumber` to render Persian digits; see the [Persian-digit Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--persian-numbers).
 
 ```js
 document.querySelector('jb-calendar').showPersianNumber = true;
@@ -154,7 +164,7 @@ document.querySelector('jb-calendar').showPersianNumber = true;
 
 ## Min and max restrictions
 
-Set restrictions with JavaScript `Date` objects. The dates are compared against the currently rendered date system internally.
+Set restrictions with JavaScript `Date` objects. The dates are compared against the currently rendered date system internally; see the [restricted date-range Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--min-max).
 
 ```js
 const calendar = document.querySelector('jb-calendar');
@@ -165,7 +175,7 @@ calendar.dateRestrictions.max = new Date(2026, 11, 31);
 
 ## Change month labels
 
-Use `setMonthList` with exactly 12 labels.
+Use `setMonthList` with exactly 12 labels; see the [custom Jalali month-label Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--custom-month-name).
 
 ```js
 const calendar = document.querySelector('jb-calendar');
@@ -203,7 +213,7 @@ calendar.setMonthList('GREGORIAN', [
 
 ## Direction
 
-The component reads CSS direction when it mounts. If your app changes direction after mount, call `setupStyleBaseOnCssDirection()` or set `direction`.
+The component reads CSS direction when it mounts. If your app changes direction after mount, call `setupStyleBaseOnCssDirection()` or set `direction`; see the [RTL Jalali Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--right-to-left) or [RTL Gregorian Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--rtl-gregorian).
 
 ```js
 const calendar = document.querySelector('jb-calendar');
@@ -215,13 +225,13 @@ calendar.direction = 'rtl';
 
 ## Slots and CSS parts
 
-`jb-calendar` does not currently expose public slots. It exposes CSS parts for navigator, day, month, year, and swipe-up hint internals; see [Styling](https://javadbat.github.io/design-system/?path=/docs/components-jbcalendar-styling).
+`jb-calendar` does not currently expose public slots. It exposes CSS parts for navigator, day, month, year, and swipe-up hint internals; see [Styling](https://javadbat.github.io/design-system/?path=/docs/components-jbcalendar-styling) and the [CSS-part styling Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar-style--gallery).
 
 ## Custom style
 
 Set CSS variables in the parent scope of the component.
 
-For complete styling guidance, live examples, and copyable style recipes, see [Styling](https://javadbat.github.io/design-system/?path=/docs/components-jbcalendar-styling).
+For complete styling guidance, live examples, and copyable style recipes, see [Styling](https://javadbat.github.io/design-system/?path=/docs/components-jbcalendar-styling) and the [style gallery Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar-style--gallery).
 
 ```css
 jb-calendar {
@@ -232,7 +242,7 @@ jb-calendar {
 
 ## Accessibility notes
 
-- Navigator buttons have localized `title` attributes.
+- Navigator buttons have localized `title` attributes; inspect the interactive calendar [Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--normal).
 - Day, month, and year choices are rendered as clickable elements inside shadow DOM.
 - The component is an inline calendar UI, not a form-associated input. Use `jb-date-input` when native form input behavior is required.
 

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { JBCalendar } from 'jb-calendar/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { addMonths, getDaysInMonth as getGregorianDaysInMonth } from 'date-fns';
+import { addMonths, getDate, getDaysInMonth as getGregorianDaysInMonth, getMonth, getYear } from 'date-fns';
 import { getDaysInMonth as getJalaliDaysInMonth, newDate as newJalaliDate } from 'date-fns-jalali';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
-import type { JBCalendarValue } from 'jb-calendar';
+import type { JBCalendarValue, JBCalendarWebComponent } from 'jb-calendar';
 import { getCalendar, getCurrentDays, getDay, getMonthNames, getShadow } from './test-utils';
 const meta = {
   title: "Components/JBCalendar",
@@ -20,8 +20,105 @@ const jalaliMonthList = ["Farvardin", "Ordibehesht", "Khordad", "Tir", "Mordad",
 const gregorianMonthList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const customJalaliMonthList = ['حَمَل', 'ثَور', 'جَوزا', 'سَرَطان', 'اَسَد', 'سُنبُله', 'میزان', 'عَقرَب', 'قَوس', 'جَدْی', 'دَلو', 'حوت'];
 
+function ImperativeSelectionExample() {
+  const calendarRef = React.useRef<JBCalendarWebComponent>(null);
+  const [selectedValue, setSelectedValue] = useState<JBCalendarValue>({ year: null, month: null, day: null });
+
+  function syncSelectedValue() {
+    if (calendarRef.current) {
+      setSelectedValue({ ...calendarRef.current.value });
+    }
+  }
+
+  return (
+    <div style={{ display: 'grid', gap: '1rem', justifyItems: 'start' }}>
+      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+        <button type="button" onClick={() => {
+          calendarRef.current?.select(2026, 6, 16);
+          syncSelectedValue();
+        }}>Select June 16, 2026</button>
+        <button type="button" onClick={() => {
+          calendarRef.current?.selectToday();
+          syncSelectedValue();
+        }}>Select today</button>
+      </div>
+      <output data-testid="imperative-value">{selectedValue.year ?? '—'} / {selectedValue.month ?? '—'} / {selectedValue.day ?? '—'}</output>
+      <JBCalendar ref={calendarRef} inputType="GREGORIAN" />
+    </div>
+  );
+}
+
+function DefaultVisibleMonthExample() {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const calendar = document.createElement('jb-calendar') as JBCalendarWebComponent;
+    calendar.defaultCalendarData = {
+      gregorian: { year: 2026, month: 6 },
+      jalali: { year: 1405, month: 3 },
+    };
+    calendar.inputType = 'GREGORIAN';
+    containerRef.current?.append(calendar);
+
+    return () => calendar.remove();
+  }, []);
+
+  return <div ref={containerRef} />;
+}
+
+function PersianNumbersExample() {
+  const calendarRef = React.useRef<JBCalendarWebComponent>(null);
+
+  React.useEffect(() => {
+    if (calendarRef.current) {
+      calendarRef.current.showPersianNumber = true;
+    }
+  }, []);
+
+  return <JBCalendar ref={calendarRef} inputType="JALALI" />;
+}
+
 export const Normal: Story = {
   args: {
+  }
+};
+export const ImperativeSelection: Story = {
+  render: () => <ImperativeSelectionExample />,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const calendar = getCalendar(canvasElement);
+
+    await userEvent.click(canvas.getByRole('button', { name: 'Select June 16, 2026' }));
+
+    expect(calendar.value).toEqual({ year: 2026, month: 6, day: 16 });
+    expect(canvas.getByTestId('imperative-value')).toHaveTextContent('2026 / 6 / 16');
+
+    await userEvent.click(canvas.getByRole('button', { name: 'Select today' }));
+
+    const today = new Date();
+    const todayValue = { year: getYear(today), month: getMonth(today) + 1, day: getDate(today) };
+    expect(calendar.value).toEqual(todayValue);
+    expect(canvas.getByTestId('imperative-value')).toHaveTextContent(`${todayValue.year} / ${todayValue.month} / ${todayValue.day}`);
+  }
+};
+export const DefaultVisibleMonth: Story = {
+  render: () => <DefaultVisibleMonthExample />,
+  play: async ({ canvasElement }) => {
+    await waitFor(() => {
+      const calendar = getCalendar(canvasElement);
+      expect(calendar.data.selectedYear).toBe(2026);
+      expect(calendar.data.selectedMonth).toBe(6);
+    });
+  }
+};
+export const PersianNumbers: Story = {
+  render: () => <PersianNumbersExample />,
+  play: async ({ canvasElement }) => {
+    const calendar = getCalendar(canvasElement);
+
+    await waitFor(() => {
+      expect(getDay(calendar, 1)).toHaveTextContent('۱');
+    });
   }
 };
 export const Jalali: Story = {
