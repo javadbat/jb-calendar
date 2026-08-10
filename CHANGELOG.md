@@ -4,6 +4,7 @@
 
 ### Changed
 
+- Updated component color defaults to use the shared semantic content and surface tokens.
 - Breaking: replace arrow buttons icon with jb-icons/arrow
 - Breaking: replace arrow buttons icon with jb-button
 
