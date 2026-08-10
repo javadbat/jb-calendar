@@ -9,9 +9,9 @@
   --day-text-color-disabled: var(--jb-calendar-day-text-color-disabled, var(--jb-neutral-8));
   --day-text-color-today: var(--jb-calendar-day-text-color-today, var(--jb-green));
   --day-bg-color-selected: var(--jb-calendar-day-bg-color-selected, var(--jb-neutral));
-  --day-color-selected: var(--jb-calendar-day-color-selected, var(--jb-text-contrast));
+  --day-color-selected: var(--jb-calendar-day-color-selected, var(--jb-text-inverse));
   --day-bg-color-selected-hover: var(--jb-calendar-day-bg-color-selected-hover, var(--jb-neutral-2));
-  --day-color-selected-hover: var(--jb-calendar-day-color-selected-hover, var(--jb-text-contrast));
+  --day-color-selected-hover: var(--jb-calendar-day-color-selected-hover, var(--jb-text-inverse));
   --day-bg-color-hover: var(--jb-calendar-day-bg-color-hover,var(--jb-neutral-10));
   --day-color-hover: var(--jb-calendar-day-color-hover, var(--jb-text-primary));
   --day-text-color: var(--jb-calendar-day-text-color, var(--jb-neutral-4));

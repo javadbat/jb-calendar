@@ -9,11 +9,11 @@ jb-calendar.carbon-style {
     --jb-calendar-day-text-color-disabled: var(--jb-text-disabled);
     --jb-calendar-day-text-color-today: var(--jb-focus-color);
     --jb-calendar-day-bg-color-hover: var(--jb-surface-hover);
-    --jb-calendar-day-color-hover: var(--jb-text-contrast);
+    --jb-calendar-day-color-hover: var(--jb-text-inverse);
     --jb-calendar-day-bg-color-selected: var(--jb-primary);
     --jb-calendar-day-bg-color-selected-hover: var(--jb-primary-hover);
-    --jb-calendar-day-color-selected: var(--jb-text-contrast);
-    --jb-calendar-day-color-selected-hover: var(--jb-text-contrast);
+    --jb-calendar-day-color-selected: var(--jb-text-inverse);
+    --jb-calendar-day-color-selected-hover: var(--jb-text-inverse);
     --jb-calendar-status-point-bg-color-today: var(--jb-primary);
     --jb-calendar-status-point-border-color: var(--jb-surface);
     --jb-calendar-month-bg-color-hover: var(--jb-surface-hover);

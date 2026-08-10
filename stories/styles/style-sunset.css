@@ -12,8 +12,8 @@ jb-calendar.sunset-style {
     --jb-calendar-day-color-hover: #ffffff;
     --jb-calendar-day-bg-color-selected: var(--jb-focus-color);
     --jb-calendar-day-bg-color-selected-hover: var(--jb-primary-hover);
-    --jb-calendar-day-color-selected: var(--jb-text-contrast);
-    --jb-calendar-day-color-selected-hover: var(--jb-text-contrast);
+    --jb-calendar-day-color-selected: var(--jb-text-inverse);
+    --jb-calendar-day-color-selected-hover: var(--jb-text-inverse);
     --jb-calendar-status-point-bg-color-today: var(--jb-success);
     --jb-calendar-status-point-border-color: var(--jb-background);
     --jb-calendar-month-bg-color-hover: var(--jb-surface-hover);
