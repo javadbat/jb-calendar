@@ -1,22 +1,22 @@
 jb-date-input.aurora-style::part(calendar),
 jb-calendar.aurora-style {
     --custom-calendar-radius: 1.25rem;
-    --jb-calendar-color: var(--jb-text-primary);
+    --jb-calendar-color: var(--jb-content-primary);
     --jb-calendar-arrow-fill-color: var(--jb-focus-color);
     --jb-calendar-day-button-border-radius: 0.8rem;
     --jb-calendar-month-button-border-radius: 0.85rem;
     --jb-calendar-year-button-border-radius: 0.85rem;
-    --jb-calendar-day-text-color: var(--jb-text-secondary);
+    --jb-calendar-day-text-color: var(--jb-content-secondary);
     --jb-calendar-day-text-color-disabled: var(--jb-text-disabled);
     --jb-calendar-day-text-color-today: var(--jb-focus-color);
     --jb-calendar-day-bg-color-hover: var(--jb-border-color);
     --jb-calendar-day-color-hover: #ffffff;
     --jb-calendar-day-bg-color-selected: var(--jb-focus-color);
     --jb-calendar-day-bg-color-selected-hover: var(--jb-primary-hover);
-    --jb-calendar-day-color-selected: var(--jb-text-inverse);
-    --jb-calendar-day-color-selected-hover: var(--jb-text-inverse);
+    --jb-calendar-day-color-selected: var(--jb-content-inverse);
+    --jb-calendar-day-color-selected-hover: var(--jb-content-inverse);
     --jb-calendar-status-point-bg-color-today: var(--jb-success);
-    --jb-calendar-status-point-border-color: var(--jb-background);
+    --jb-calendar-status-point-border-color: var(--jb-surface-secondary);
     --jb-calendar-month-bg-color-hover: var(--jb-border-color);
     --jb-calendar-month-color-hover: var(--jb-focus-color);
     --jb-calendar-year-bg-color-hover: var(--jb-border-color);
@@ -39,5 +39,5 @@ jb-calendar.aurora-style {
     background: var(--jb-calendar-surface-bg,
             radial-gradient(circle at 18% 10%, oklch(82% 0.12 185 / 0.28), transparent 32%),
             radial-gradient(circle at 88% 14%, oklch(75% 0.13 330 / 0.24), transparent 30%),
-            linear-gradient(145deg, var(--jb-background) 0%, var(--jb-surface) 58%, #111827 100%));
+            linear-gradient(145deg, var(--jb-surface-secondary) 0%, var(--jb-surface-primary) 58%, #111827 100%));
 }

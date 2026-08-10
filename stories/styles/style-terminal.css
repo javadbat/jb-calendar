@@ -1,21 +1,21 @@
 jb-date-input.terminal-style::part(calendar),
 jb-calendar.terminal-style {
-    --jb-calendar-color: var(--jb-text-primary);
+    --jb-calendar-color: var(--jb-content-primary);
     --jb-calendar-arrow-fill-color: var(--jb-focus-color);
     --jb-calendar-day-button-border-radius: 0.25rem;
     --jb-calendar-month-button-border-radius: 0.25rem;
     --jb-calendar-year-button-border-radius: 0.25rem;
-    --jb-calendar-day-text-color: var(--jb-text-secondary);
+    --jb-calendar-day-text-color: var(--jb-content-secondary);
     --jb-calendar-day-text-color-disabled: var(--jb-text-disabled);
     --jb-calendar-day-text-color-today: var(--jb-success);
     --jb-calendar-day-bg-color-hover: var(--jb-surface-hover);
     --jb-calendar-day-color-hover: #e9fff1;
     --jb-calendar-day-bg-color-selected: var(--jb-focus-color);
     --jb-calendar-day-bg-color-selected-hover: var(--jb-primary-hover);
-    --jb-calendar-day-color-selected: var(--jb-text-inverse);
-    --jb-calendar-day-color-selected-hover: var(--jb-text-inverse);
+    --jb-calendar-day-color-selected: var(--jb-content-inverse);
+    --jb-calendar-day-color-selected-hover: var(--jb-content-inverse);
     --jb-calendar-status-point-bg-color-today: var(--jb-success);
-    --jb-calendar-status-point-border-color: var(--jb-background);
+    --jb-calendar-status-point-border-color: var(--jb-surface-secondary);
     --jb-calendar-month-bg-color-hover: var(--jb-surface-hover);
     --jb-calendar-month-color-hover: var(--jb-focus-color);
     --jb-calendar-year-bg-color-hover: var(--jb-surface-hover);
@@ -35,7 +35,7 @@ jb-calendar.terminal-style {
     box-sizing: border-box;
 
     background: var(--jb-calendar-surface-bg,
-            linear-gradient(180deg, var(--jb-surface), var(--jb-background)));
+            linear-gradient(180deg, var(--jb-surface-primary), var(--jb-surface-secondary)));
     box-shadow:
         0 1rem 2rem oklch(0% 0 0 / 0.36),
         inset 0 0 0 1px var(--jb-border-color);
@@ -50,7 +50,7 @@ jb-calendar.terminal-style::part(today-day) {
 
 jb-date-input.terminal-style::part(selected-day),
 jb-calendar.terminal-style::part(selected-day) {
-    box-shadow: inset 0 0 0 1px var(--jb-text-primary);
+    box-shadow: inset 0 0 0 1px var(--jb-content-primary);
 }
 
 jb-date-input.terminal-style::part(disabled-day),
