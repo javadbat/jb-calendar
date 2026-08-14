@@ -63,6 +63,11 @@ export class JBCalendarWebComponent extends HTMLElement {
   };
   #activeSection: JBCalendarSections | null = null;
   #inputType: InputType = i18n.locale.calendar == "persian"?InputTypes.jalali:InputTypes.gregorian
+  #hasInputTypeOverride = false;
+  #hasShowPersianNumberOverride = false;
+  #jalaliMonthListOverridden = false;
+  #gregorianMonthListOverridden = false;
+  #unsubscribeLocaleChange: VoidFunction | null = null;
   #defaultCalendarData = {
     jalali: {
       year: getJalaliYear(today),
@@ -83,9 +88,11 @@ export class JBCalendarWebComponent extends HTMLElement {
     if (Array.isArray(monthList) && monthList.length == 12) {
       switch (inputType) {
         case "JALALI":
+          this.#jalaliMonthListOverridden = true;
           this.#jalaliMonthList = monthList.map((item) => item);
           break;
         case "GREGORIAN":
+          this.#gregorianMonthListOverridden = true;
           this.#gregorianMonthList = monthList;
       }
       this.#initMonthList();
@@ -190,6 +197,10 @@ export class JBCalendarWebComponent extends HTMLElement {
     return this.#inputType;
   }
   set inputType(value) {
+    this.#hasInputTypeOverride = true;
+    this.#setInputType(value);
+  }
+  #setInputType(value: InputType) {
     this.#inputType = value;
     this.onInputTypeChange();
   }
@@ -202,6 +213,10 @@ export class JBCalendarWebComponent extends HTMLElement {
       console.error("showPersianNumber must be boolean");
       return;
     }
+    this.#hasShowPersianNumberOverride = true;
+    this.#setShowPersianNumber(value);
+  }
+  #setShowPersianNumber(value: boolean) {
     this.#showPersianNumber = value;
     this.setCalendarData();
   }
@@ -233,9 +248,21 @@ export class JBCalendarWebComponent extends HTMLElement {
   }
   connectedCallback() {
     // standard web component event that called when all of dom is bound
-
+    this.#unsubscribeLocaleChange?.();
+    this.#applyLocaleDefaults();
+    this.#unsubscribeLocaleChange = i18n.subscribe(() => this.#applyLocaleDefaults());
     this.callOnLoadEvent();
     this.setupStyleBaseOnCssDirection();
+  }
+  disconnectedCallback() {
+    this.#unsubscribeLocaleChange?.();
+    this.#unsubscribeLocaleChange = null;
+  }
+  #applyLocaleDefaults() {
+    if (!this.#jalaliMonthListOverridden) this.#jalaliMonthList = dictionary.get(i18n, "jalaliMonthList");
+    if (!this.#gregorianMonthListOverridden) this.#gregorianMonthList = dictionary.get(i18n, "gregorianMonthList");
+    if (!this.#hasInputTypeOverride) this.#setInputType(i18n.locale.calendar === "persian" ? InputTypes.jalali : InputTypes.gregorian);
+    if (!this.#hasShowPersianNumberOverride) this.#setShowPersianNumber(i18n.locale.numberingSystem === "arabext");
     this.initCalendarLayout();
   }
   initCalendarLayout() {
