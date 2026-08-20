@@ -983,3 +983,9 @@ export class JBCalendarWebComponent extends JBBaseComponent {
   }
 }
 defineWebComponent("jb-calendar", JBCalendarWebComponent);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "jb-calendar": JBCalendarWebComponent;
+  }
+}
