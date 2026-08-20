@@ -1,3 +1,4 @@
+import { defineWebComponent, JBBaseComponent, enToFaDigits } from "jb-core";
 import CSS from "./jb-calendar.css";
 import VariableCSS from './variables.css';
 
@@ -27,7 +28,6 @@ import {
   getDaysInMonth as getJalaliDaysInMonth,
   getDate as getJalaliDate,
 } from "date-fns-jalali";
-import { enToFaDigits } from "jb-core";
 import {registerDefaultVariables} from 'jb-core/theme';
 import { renderHTML } from "./render";
 import { dictionary } from "./i18n";
@@ -41,11 +41,7 @@ const InputTypes: { [key: string]: InputType } = {
 
 export type {JBCalendarValue};
 const today = new Date();
-if (HTMLElement == undefined) {
-  //in case of server render or old browser
-  console.error("you cant render web component on a server side");
-}
-export class JBCalendarWebComponent extends HTMLElement {
+export class JBCalendarWebComponent extends JBBaseComponent {
   #internals?: ElementInternals;
   #swipeGestureData: JBCalendarSwipeGestureData = {
     daysWrapper: {
@@ -986,7 +982,4 @@ export class JBCalendarWebComponent extends HTMLElement {
     }
   }
 }
-const myElementNotExists = !customElements.get("jb-calendar");
-if (myElementNotExists) {
-  window.customElements.define("jb-calendar", JBCalendarWebComponent);
-}
+defineWebComponent("jb-calendar", JBCalendarWebComponent);
