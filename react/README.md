@@ -44,7 +44,7 @@ This entry point is specifically for React. For Angular, Vue, Nuxt, Svelte, Soli
 | `jalaliMonthList` | `string[]` | Custom Jalali month labels. Must contain exactly 12 labels. [Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--custom-month-name) |
 | `onSelect` | `(event) => void` | Fired when the user selects an enabled day. Read `event.target.value`. [Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--value-test) |
 | `inputType` | `'JALALI' \| 'GREGORIAN'` | Calendar system used for input and displayed values. [Jalali Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--jalali) · [Gregorian Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--gregorian) |
-| `direction` | `'rtl' \| 'ltr'` | Calendar layout direction. [RTL Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--right-to-left) |
+| `dir` | `'rtl' \| 'ltr'` | Native calendar layout direction. [RTL Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--right-to-left) |
 
 ### Attributes
 
@@ -52,7 +52,7 @@ React consumers should use props instead of setting web-component attributes dir
 
 ### Properties
 
-React forwards supported custom-element properties such as `inputType` and `direction`. Use a ref for lower-level properties such as `showPersianNumber`; see the complete [web-component properties reference](../README.md#properties).
+React forwards supported custom-element properties such as `inputType` and native HTML properties such as `dir`. Use a ref for lower-level properties such as `showPersianNumber`; see the complete [web-component properties reference](../README.md#properties).
 
 ### Methods
 
@@ -138,10 +138,10 @@ function PersianCalendar() {
 
 ## Direction
 
-Set `direction` to `rtl` or `ltr`. For direction changes after mount, the underlying element also exposes `setupStyleBaseOnCssDirection()`; see the [RTL Jalali Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--right-to-left) or [RTL Gregorian Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--rtl-gregorian).
+Set the native `dir` prop to `rtl` or `ltr`. If inherited direction changes after mount, the underlying element exposes `refreshDirection()`; see the [RTL Jalali Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--right-to-left) or [RTL Gregorian Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--rtl-gregorian).
 
 ```jsx
-<JBCalendar direction="rtl" inputType="JALALI" />
+<JBCalendar dir="rtl" inputType="JALALI" />
 ```
 
 ## Change month labels
@@ -193,6 +193,6 @@ Accessibility behavior is provided by the underlying web component. See the [web
 
 - Import `JBCalendar` from `jb-calendar/react`; the wrapper imports and registers the underlying `jb-calendar` web component.
 - Use `onSelect` and read `event.target.value`; the event has no `detail`.
-- Use `min`, `max`, `jalaliMonthList`, `inputType`, and `direction` as props.
-- Use a ref for `select()`, `selectToday()`, `showPersianNumber`, `setMonthList()`, and `setupStyleBaseOnCssDirection()`.
+- Use `min`, `max`, `jalaliMonthList`, `inputType`, and `dir` as props.
+- Use a ref for `select()`, `selectToday()`, `showPersianNumber`, `setMonthList()`, and `refreshDirection()`.
 - Use `jb-date-input` instead of `JBCalendar` when the UI must behave as a form input.

@@ -216,20 +216,8 @@ export class JBCalendarWebComponent extends JBBaseComponent {
     this.#showPersianNumber = value;
     this.setCalendarData();
   }
-  //for layout direction
-  get cssDirection(): Direction {
+  get #effectiveDirection(): Direction {
     return getComputedStyle(this).direction as Direction;
-  }
-  #direction: Direction | null = null;
-  get direction() {
-    return this.#direction?this.#direction:this.cssDirection;
-  }
-  set direction(dir: Direction) {
-    if (dir && (dir == "ltr" || dir == "rtl")) {
-      this.#direction = dir;
-      this.style.direction = dir;
-    }
-    this.setupStyleBaseOnCssDirection();
   }
   constructor() {
     super();
@@ -248,7 +236,15 @@ export class JBCalendarWebComponent extends JBBaseComponent {
     this.#applyLocaleDefaults();
     this.#unsubscribeLocaleChange = i18n.subscribe(() => this.#applyLocaleDefaults());
     this.callOnLoadEvent();
-    this.setupStyleBaseOnCssDirection();
+    this.refreshDirection();
+  }
+  static get observedAttributes() {
+    return ["dir"];
+  }
+  attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
+    if (name === "dir" && oldValue !== newValue && this.isConnected) {
+      this.refreshDirection();
+    }
   }
   disconnectedCallback() {
     this.#unsubscribeLocaleChange?.();
@@ -267,21 +263,20 @@ export class JBCalendarWebComponent extends JBBaseComponent {
     this.setCalendarData();
   }
   /**
-   * @public its public because we cant detect css dir change by js so we have to let user change it manually  
-   * @description set elements direction base on current css direction or seated direction.
-   * @param dir 
+   * Refresh direction-sensitive layout classes from the host's computed direction.
+   * Call this after changing direction indirectly through an ancestor or CSS class.
    */
-  setupStyleBaseOnCssDirection(dir: Direction = this.direction) {
-    //change some calendar style base on css direction of the element
+  refreshDirection() {
+    const direction = this.#effectiveDirection;
     //TODO: use css `if()` when it become standard
-    if (dir == "ltr") {
+    if (direction == "ltr") {
       this.elements.navigatorTitle.nextButton.classList.add("--css-ltr");
       this.elements.navigatorTitle.prevButton.classList.add("--css-ltr");
       this.elements.monthDayWrapper.next.classList.add("--css-ltr");
       this.elements.monthDayWrapper.prev.classList.add("--css-ltr");
       this.elements.yearsWrapper.next.classList.add("--css-ltr");
       this.elements.yearsWrapper.prev.classList.add("--css-ltr");
-    } else if (dir == "rtl") {
+    } else if (direction == "rtl") {
       this.elements.navigatorTitle.nextButton.classList.remove("--css-ltr");
       this.elements.navigatorTitle.prevButton.classList.remove("--css-ltr");
       this.elements.monthDayWrapper.next.classList.remove("--css-ltr");
@@ -465,7 +460,7 @@ export class JBCalendarWebComponent extends JBBaseComponent {
       if (Math.abs(deltaX) > 100) {
         //determine direction of change
         let swipeDirection = deltaX > 0 ? "next" : "prev";
-        if (this.direction == "ltr") {
+        if (this.#effectiveDirection == "ltr") {
           swipeDirection = deltaX > 0 ? "prev" : "next";
         }
         //do the transition
@@ -530,7 +525,7 @@ export class JBCalendarWebComponent extends JBBaseComponent {
 
       //determine direction of change
       let swipeDirection = deltaX > 0 ? "next" : "prev";
-      if (this.direction == "ltr") {
+      if (this.#effectiveDirection == "ltr") {
         swipeDirection = deltaX > 0 ? "prev" : "next";
       }
       if (Math.abs(deltaX) > 100) {

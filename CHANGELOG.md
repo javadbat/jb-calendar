@@ -1,5 +1,11 @@
 # Changelog
 
+## [6.0.0] - 2026-09-03
+
+### Changed
+
+- Breaking: removed the custom `direction` and `cssDirection` properties in favor of the native `dir` attribute/property, and renamed `setupStyleBaseOnCssDirection()` to `refreshDirection()`.
+
 ## [5.3.0] - 2026-08-22
 
 ### Changed

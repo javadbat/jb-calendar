@@ -49,7 +49,11 @@ import 'jb-calendar';
 
 ### Attributes
 
-`jb-calendar` does not currently define public HTML attributes. Configure it with properties and methods.
+`jb-calendar` uses the native `dir` HTML attribute for layout direction. Configure its calendar-specific behavior with properties and methods.
+
+| attribute | type | default | description |
+| --- | --- | --- | --- |
+| `dir` | `'rtl' \| 'ltr'` | inherited | Native layout direction. [RTL Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--right-to-left) |
 
 ### Properties
 
@@ -59,8 +63,6 @@ import 'jb-calendar';
 | `inputType` | `'JALALI' \| 'GREGORIAN'` | no | Calendar date system used for input and displayed values. [Jalali Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--jalali) · [Gregorian Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--gregorian) |
 | `activeSection` | `'DAY' \| 'MONTH' \| 'YEAR'` | no | Visible selection section. |
 | `showPersianNumber` | `boolean` | no | Renders numbers with Persian digits when `true`. [Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--persian-numbers) |
-| `direction` | `'rtl' \| 'ltr'` | no | Calendar layout direction. Leave unset to use computed CSS direction. [RTL Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--right-to-left) |
-| `cssDirection` | `'rtl' \| 'ltr'` | yes | Computed CSS direction of the host. |
 | `defaultCalendarData` | `{ jalali, gregorian }` | no | Default visible year/month used when no date is selected. [Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--default-visible-month) |
 | `dateRestrictions` | `{ min: Date \| null; max: Date \| null }` | no | Mutable min/max date restriction object. Set `dateRestrictions.min` and `dateRestrictions.max`. [Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--min-max) |
 | `data` | `JBCalendarData` | no | Internal visible calendar state: `selectedYear`, `selectedMonth`, and `yearSelectionRange`. |
@@ -80,7 +82,7 @@ type JBCalendarValue = {
 | `select(year, month, day)` | `void` | Selects a date in the current `inputType` and updates `value`. [Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--imperative-selection) |
 | `selectToday()` | `void` | Selects today in the current `inputType`. [Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--imperative-selection) |
 | `setMonthList(inputType, monthList)` | `void` | Replaces the 12 month labels for `JALALI` or `GREGORIAN`. [Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--custom-month-name) |
-| `setupStyleBaseOnCssDirection(dir?)` | `void` | Refreshes direction-sensitive layout classes from `dir` or computed host direction. [Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--right-to-left) |
+| `refreshDirection()` | `void` | Recalculates direction-sensitive layout classes from the computed host direction. [Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--right-to-left) |
 | `checkIsDayDisable(dayDate)` | `{ min; max; isAllValid }` | Checks whether a `Date` is valid against min/max restrictions. [Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--min-max) |
 
 ### Events
@@ -213,14 +215,13 @@ calendar.setMonthList('GREGORIAN', [
 
 ## Direction
 
-The component reads CSS direction when it mounts. If your app changes direction after mount, call `setupStyleBaseOnCssDirection()` or set `direction`; see the [RTL Jalali Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--right-to-left) or [RTL Gregorian Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--rtl-gregorian).
+Use the native `dir` attribute or inherit direction from an ancestor. The component refreshes when its own `dir` changes. If inherited direction changes after mount, call `refreshDirection()`; see the [RTL Jalali Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--right-to-left) or [RTL Gregorian Demo](https://javadbat.github.io/design-system/?path=/story/components-jbcalendar--rtl-gregorian).
 
 ```js
 const calendar = document.querySelector('jb-calendar');
 
-calendar.setupStyleBaseOnCssDirection();
-calendar.setupStyleBaseOnCssDirection('ltr');
-calendar.direction = 'rtl';
+calendar.dir = 'rtl';
+calendar.refreshDirection();
 ```
 
 ## Slots and CSS parts

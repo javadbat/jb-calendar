@@ -15,7 +15,15 @@
           "superclass": {
             "name": "HTMLElement"
           },
-          "attributes": [],
+          "attributes": [
+            {
+              "name": "dir",
+              "description": "Native layout direction. When omitted, direction is inherited from the surrounding document.",
+              "type": {
+                "text": "'rtl' | 'ltr'"
+              }
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -48,23 +56,6 @@
               "type": {
                 "text": "boolean"
               }
-            },
-            {
-              "kind": "field",
-              "name": "direction",
-              "description": "Calendar layout direction. Set to rtl or ltr, or leave unset to use computed CSS direction.",
-              "type": {
-                "text": "'rtl' | 'ltr'"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "cssDirection",
-              "description": "Computed CSS direction of the host element.",
-              "type": {
-                "text": "'rtl' | 'ltr'"
-              },
-              "readonly": true
             },
             {
               "kind": "field",
@@ -139,16 +130,8 @@
               ]
             },
             {
-              "name": "setupStyleBaseOnCssDirection",
-              "description": "Refreshes direction-sensitive layout classes from the provided direction or computed host direction.",
-              "parameters": [
-                {
-                  "name": "dir",
-                  "type": {
-                    "text": "'rtl' | 'ltr'"
-                  }
-                }
-              ]
+              "name": "refreshDirection",
+              "description": "Recalculates direction-sensitive layout classes from the computed host direction. Call after inherited direction changes at runtime."
             },
             {
               "name": "checkIsDayDisable",

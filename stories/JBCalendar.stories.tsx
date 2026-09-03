@@ -10,7 +10,7 @@ const meta = {
   title: "Components/JBCalendar",
   component: JBCalendar,
   args: {
-    direction: 'ltr',
+    dir: 'ltr',
   }
 } satisfies Meta<typeof JBCalendar>;
 export default meta;
@@ -270,16 +270,26 @@ export const valueTest: Story = {
 export const RightToLeft: Story = {
   args: {
     inputType: 'JALALI',
-    direction: 'rtl',
+    dir: 'rtl',
   },
   globals: {
     locale: "fa",
     dir: "rtl"
   },
+  play: async ({ canvasElement }) => {
+    const calendar = getCalendar(canvasElement);
+    const nextButton = getShadow(calendar).querySelector('.next-btn')!;
+
+    await waitFor(() => expect(nextButton.classList.contains('--css-ltr')).toBe(false));
+    calendar.dir = 'ltr';
+    await waitFor(() => expect(nextButton.classList.contains('--css-ltr')).toBe(true));
+    calendar.dir = 'rtl';
+    await waitFor(() => expect(nextButton.classList.contains('--css-ltr')).toBe(false));
+  },
 };
 export const RTLGregorian: Story = {
   args: {
-    direction: 'rtl',
+    dir: 'rtl',
     inputType: 'GREGORIAN'
   },
   globals: {
