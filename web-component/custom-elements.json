@@ -382,6 +382,10 @@
               "description": "Today status point border color."
             },
             {
+              "name": "--jb-calendar-month-color",
+              "description": "Month button text color."
+            },
+            {
               "name": "--jb-calendar-month-bg-color-hover",
               "description": "Month hover background color."
             },
@@ -390,8 +394,16 @@
               "description": "Month hover text color."
             },
             {
+              "name": "--jb-calendar-month-color-disabled",
+              "description": "Disabled month text color."
+            },
+            {
               "name": "--jb-calendar-month-button-border-radius",
               "description": "Month button border radius."
+            },
+            {
+              "name": "--jb-calendar-year-color",
+              "description": "Year button text color."
             },
             {
               "name": "--jb-calendar-year-bg-color-hover",
@@ -400,6 +412,10 @@
             {
               "name": "--jb-calendar-year-color-hover",
               "description": "Year hover text color."
+            },
+            {
+              "name": "--jb-calendar-year-color-disabled",
+              "description": "Disabled year text color."
             },
             {
               "name": "--jb-calendar-year-button-border-radius",

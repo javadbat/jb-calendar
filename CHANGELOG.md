@@ -1,10 +1,17 @@
 # Changelog
 
-## [6.0.0] - 2026-09-03
+## [6.0.0] - 2026-09-08
 
 ### Changed
 
 - Breaking: removed the custom `direction` and `cssDirection` properties in favor of the native `dir` attribute/property, and renamed `setupStyleBaseOnCssDirection()` to `refreshDirection()`.
+- use jb-button for year and month selection
+- disable hover effects on disabled date.
+- Reduced initial rendering work by batching day updates, creating month and year controls on demand, and deferring offscreen layout and paint.
+
+### Added
+
+- add disabled to month and year list items
 
 ## [5.3.0] - 2026-08-22
 

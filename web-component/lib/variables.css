@@ -1,8 +1,6 @@
 :host{
   /* Size */
   --day-button-border-radius: var(--jb-calendar-day-button-border-radius, var(--jb-radius-sm));
-  --month-button-border-radius: var(--jb-calendar-month-button-border-radius, var(--jb-radius-sm));
-  --year-button-border-radius: var(--jb-calendar-year-button-border-radius, var(--jb-radius-sm));
   /* Theme/Color */
   --color: var(--jb-calendar-color,var(--jb-content-primary));
   --arrow-fill-color: var(--jb-calendar-arrow-fill-color, var(--jb-neutral-6));
@@ -17,10 +15,18 @@
   --day-text-color: var(--jb-calendar-day-text-color, var(--jb-neutral-4));
   --status-point-bg-color-today: var(--jb-calendar-status-point-bg-color-today, var(--jb-green));
   --status-point-border-color: var(--jb-calendar-status-point-border-color, var(--jb-surface-primary));
-  --month-bg-color-hover: var(--jb-calendar-month-bg-color-hover, var(--jb-surface-secondary));
-  --month-color-hover: var(--jb-calendar-month-color-hover, var(--jb-content-primary));
-  --year-bg-color-hover: var(--jb-calendar-year-bg-color-hover, var(--jb-surface-secondary));
-  --year-color-hover: var(--jb-calendar-year-color-hover, var(--jb-content-primary));
   --swipe-up-icon-color: var(--jb-calendar-arrow-fill-color, var(--arrow-fill-color));
+
+  /* Capture inherited jb-button theme values before picker items apply optional overrides. */
+  --month-button-border-radius: var(--jb-calendar-month-button-border-radius);
+  --month-button-color: var(--jb-calendar-month-color);
+  --month-button-bg-color-hover: var(--jb-calendar-month-bg-color-hover);
+  --month-button-color-hover: var(--jb-calendar-month-color-hover);
+  --month-button-color-disabled: var(--jb-calendar-month-color-disabled);
+  --year-button-border-radius: var(--jb-calendar-year-button-border-radius);
+  --year-button-color: var(--jb-calendar-year-color);
+  --year-button-bg-color-hover: var(--jb-calendar-year-bg-color-hover);
+  --year-button-color-hover: var(--jb-calendar-year-color-hover);
+  --year-button-color-disabled: var(--jb-calendar-year-color-disabled);
 
 }

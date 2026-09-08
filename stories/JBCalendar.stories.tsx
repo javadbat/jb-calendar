@@ -168,6 +168,8 @@ export const Gregorian: Story = {
       expect(calendar.inputType).toBe('GREGORIAN');
       expect(gregorianMonthList).toContain(shadow.querySelector('.navigator-title .month')?.textContent);
     });
+    expect(getMonthNames(calendar)).toHaveLength(0);
+    expect(shadow.querySelectorAll('.year-selection-section .year-number')).toHaveLength(0);
 
     await userEvent.click(shadow.querySelector<HTMLElement>('.navigator-title .month')!);
 

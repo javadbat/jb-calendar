@@ -2,27 +2,20 @@ jb-date-input.ant-design-style::part(calendar),
 jb-calendar.ant-design-style {
     --jb-calendar-color: var(--jb-content-primary);
     --jb-calendar-arrow-fill-color: var(--jb-focus-color);
-    --jb-calendar-day-button-border-radius: 0.375rem;
-    --jb-calendar-month-button-border-radius: 0.375rem;
-    --jb-calendar-year-button-border-radius: 0.375rem;
-    --jb-calendar-day-text-color: var(--jb-content-secondary);
-    --jb-calendar-day-text-color-disabled: var(--jb-text-disabled);
+    --jb-calendar-day-button-border-radius: 0.25rem;
+    --jb-calendar-day-text-color: var(--jb-button-dark);
+    --jb-calendar-day-text-color-disabled: var(--jb-button-color-disabled, var(--jb-text-disabled));
     --jb-calendar-day-text-color-today: var(--jb-focus-color);
-    --jb-calendar-day-bg-color-hover: var(--jb-surface-hover);
-    --jb-calendar-day-color-hover: var(--jb-focus-color);
+    --jb-calendar-day-bg-color-hover: var(--jb-button-bg-color-ghost-hover);
+    --jb-calendar-day-color-hover: var(--jb-button-color-ghost-hover, var(--jb-button-dark));
     --jb-calendar-day-bg-color-selected: var(--jb-focus-color);
     --jb-calendar-day-bg-color-selected-hover: var(--jb-primary-hover);
     --jb-calendar-day-color-selected: var(--jb-surface-primary);
     --jb-calendar-day-color-selected-hover: var(--jb-surface-primary);
     --jb-calendar-status-point-bg-color-today: var(--jb-success);
     --jb-calendar-status-point-border-color: var(--jb-surface-primary);
-    --jb-calendar-month-bg-color-hover: var(--jb-surface-hover);
-    --jb-calendar-month-color-hover: var(--jb-focus-color);
-    --jb-calendar-year-bg-color-hover: var(--jb-surface-hover);
-    --jb-calendar-year-color-hover: var(--jb-focus-color);
 }
 
-jb-date-input.ant-design-style::part(calendar),
 jb-calendar.ant-design-style {
     padding: 0.5rem;
     justify-self: center;
@@ -38,4 +31,23 @@ jb-calendar.ant-design-style {
 
     --custom-calendar-radius: 0.5rem;
     background: var(--jb-surface-primary);
+}
+
+jb-date-input.ant-design-style::part(navigator),
+jb-calendar.ant-design-style::part(navigator) {
+    height: 2.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid var(--jb-border-secondary, #f0f0f0);
+    box-sizing: border-box;
+}
+
+jb-date-input.ant-design-style::part(week-day-wrapper),
+jb-calendar.ant-design-style::part(week-day-wrapper) {
+    margin-bottom: 0.5rem;
+}
+
+jb-date-input.ant-design-style::part(week-day),
+jb-calendar.ant-design-style::part(week-day) {
+    color: var(--jb-content-secondary, #8c8c8c);
 }

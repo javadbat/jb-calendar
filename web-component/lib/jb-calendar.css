@@ -2,20 +2,22 @@
     display: block;
     width: max-content;
     height: max-content;
+    content-visibility: auto;
+    contain-intrinsic-size: 17rem 19rem;
 }
 :host(:focus-visible) {
     outline: 2px solid var(--jb-calendar-focus-ring-color, Highlight);
     outline-offset: 2px;
 }
-:where(.arrow-btn, .month, .year, .day-wrapper, .month-wrapper, .year-wrapper) {
+:where(.arrow-btn, .month, .year, .day-wrapper) {
     all: unset;
     box-sizing: border-box;
     cursor: pointer;
 }
-:where(.arrow-btn, .month, .year, .day-wrapper, .month-wrapper, .year-wrapper):disabled {
+:where(.arrow-btn, .month, .year, .day-wrapper):disabled {
     cursor: default;
 }
-:where(.arrow-btn, .month, .year, .day-wrapper, .month-wrapper, .year-wrapper):focus-visible {
+:where(.arrow-btn, .month, .year, .day-wrapper):focus-visible {
     outline: 2px solid var(--jb-calendar-focus-ring-color, Highlight);
     outline-offset: 2px;
 }
@@ -131,6 +133,7 @@
                         width: 2rem;
                         user-select: none;
                         cursor: pointer;
+                        font-family: inherit;
                         &.--disable{
                             cursor: not-allowed;
                             .day-number-wrapper{
@@ -151,14 +154,14 @@
                                 background-color: var(--day-bg-color-selected);
                                 
                             }
-                            &:hover{
+                            &:not(:disabled):hover{
                                 .day-number-wrapper{
                                     color: var(--day-color-selected-hover);
                                     background-color: var(--day-bg-color-selected-hover);
                                 }
                             }
                         }
-                        &:hover{
+                        &:not(:disabled):hover{
                             .day-number-wrapper{
                                 background-color: var(--day-bg-color-hover) ;
                                 color: var(--day-color-hover);
@@ -210,21 +213,18 @@
             .month-wrapper{
                 width: 100%;
                 height: 2rem;
-                cursor: pointer;
-                border-radius: var(--month-button-border-radius);
                 user-select: none;
-                &:hover{
-                    background-color: var(--month-bg-color-hover);
-                }
+                --jb-button-border-radius-sm: var(--month-button-border-radius);
+                --jb-button-color-ghost: var(--month-button-color);
+                --jb-button-bg-color-ghost-hover: var(--month-button-bg-color-hover);
+                --jb-button-color-ghost-hover: var(--month-button-color-hover);
+                --jb-button-color-disabled: var(--month-button-color-disabled);
                 .month-name{
                     width: 100%;
                     height: 100%;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    &:hover{
-                        color: var(--month-color-hover);
-                    }
                 }
             }
         }
@@ -273,21 +273,18 @@
                 .year-wrapper{
                     width: 100%;
                     height: 2rem;
-                    cursor: pointer;
-                    border-radius: var(--year-button-border-radius);
                     user-select: none;
-                    &:hover{
-                        background-color: var(--year-bg-color-hover);
-                    }
+                    --jb-button-border-radius: var(--year-button-border-radius);
+                    --jb-button-color-ghost: var(--year-button-color);
+                    --jb-button-bg-color-ghost-hover: var(--year-button-bg-color-hover);
+                    --jb-button-color-ghost-hover: var(--year-button-color-hover);
+                    --jb-button-color-disabled: var(--year-button-color-disabled);
                     .year-number{
                         width: 100%;
                         height: 100%;
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        &:hover{
-                            color: var(--year-color-hover)
-                        }
                     }
                 }
             }
