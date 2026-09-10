@@ -1,5 +1,9 @@
 # Changelog
 
+## [6.1.0] - 2026-09-10
+
+- support null value setter
+
 ## [6.0.0] - 2026-09-08
 
 ### Changed
