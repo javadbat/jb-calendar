@@ -9,11 +9,11 @@ export const webComponentList: WebComponentBuildConfig[] = [
     external: ["date-fns","jb-button", "jb-icons/arrow","date-fns-jalali", "jb-core", "jb-core/theme", "jb-core/i18n"],
     umdName: "JBCalendar",
     //because date-fns dont have any umd module export i have to do this so it doesn't exclude in umd build
-    umdIncludes: ["date-fns", "date-fns-jalali"],
+    umdIncludes: ["date-fns", "date-fns-jalali","jb-core", "jb-core/theme", "jb-core/i18n"],
     globals: {
       "jb-core": "JBCore",
       "jb-core/theme":"JBCoreTheme",
-      "jb-core/i18n":"JBCoreI18N",
+      "jb-core/i18n":"JBCoreI18n",
       "jb-icons/arrow": "JBIconArrow",
       "jb-button": "JBButton"
     },

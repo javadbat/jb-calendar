@@ -236,7 +236,7 @@ export class JBCalendarWebComponent extends JBBaseComponent {
 
   #updateDayDom() {
     // deselect prevValue
-    const prevSelectedDayDom = this.shadowRoot?.querySelector(`.--selected`)??null;
+    const prevSelectedDayDom = this.shadowRoot?.querySelector(`.--selected`) ?? null;
     if (prevSelectedDayDom !== null) {
       prevSelectedDayDom.classList.remove("--selected");
       prevSelectedDayDom.part.remove("selected-day");
