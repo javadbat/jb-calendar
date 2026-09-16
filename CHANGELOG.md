@@ -1,5 +1,9 @@
 # Changelog
 
+## [6.1.2] - 2026-09-16
+
+- fix before initialize prop setup
+
 ## [6.1.0] - 2026-09-10
 
 - support null value setter

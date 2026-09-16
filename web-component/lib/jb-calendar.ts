@@ -138,28 +138,28 @@ export class JBCalendarWebComponent extends JBBaseComponent {
     if (this.#activeSection) {
       //if we have active section before
       const selectionType: "day" | "month" | "year" = this.#activeSection.toLocaleLowerCase() as any;
-      this.elements.selectionSections[selectionType].classList.remove("--show");
+      this.elements?.selectionSections[selectionType].classList.remove("--show");
     }
 
     if (value == "DAY") {
-      this.elements.selectionSections.day.classList.add("--show");
-      this.elements.navigatorTitle.month.classList.add("--show");
-      this.elements.navigatorTitle.year.classList.add("--show");
-      this.elements.navigatorTitle.yearRange.classList.remove("--show");
+      this.elements?.selectionSections.day.classList.add("--show");
+      this.elements?.navigatorTitle.month.classList.add("--show");
+      this.elements?.navigatorTitle.year.classList.add("--show");
+      this.elements?.navigatorTitle.yearRange.classList.remove("--show");
     }
     if (value == "MONTH") {
       this.#initMonthList();
-      this.elements.selectionSections.month.classList.add("--show");
-      this.elements.navigatorTitle.month.classList.remove("--show");
-      this.elements.navigatorTitle.year.classList.add("--show");
-      this.elements.navigatorTitle.yearRange.classList.remove("--show");
+      this.elements?.selectionSections.month.classList.add("--show");
+      this.elements?.navigatorTitle.month.classList.remove("--show");
+      this.elements?.navigatorTitle.year.classList.add("--show");
+      this.elements?.navigatorTitle.yearRange.classList.remove("--show");
     }
     if (value == "YEAR") {
       this.#updateYearList();
-      this.elements.selectionSections.year.classList.add("--show");
-      this.elements.navigatorTitle.month.classList.remove("--show");
-      this.elements.navigatorTitle.year.classList.remove("--show");
-      this.elements.navigatorTitle.yearRange.classList.add("--show");
+      this.elements?.selectionSections.year.classList.add("--show");
+      this.elements?.navigatorTitle.month.classList.remove("--show");
+      this.elements?.navigatorTitle.year.classList.remove("--show");
+      this.elements?.navigatorTitle.yearRange.classList.add("--show");
     }
     this.#activeSection = value;
   }
@@ -265,19 +265,19 @@ export class JBCalendarWebComponent extends JBBaseComponent {
     const direction = this.#effectiveDirection;
     //TODO: use css `if()` when it become standard
     if (direction == "ltr") {
-      this.elements.navigatorTitle.nextButton.classList.add("--css-ltr");
-      this.elements.navigatorTitle.prevButton.classList.add("--css-ltr");
-      this.elements.monthDayWrapper.next.classList.add("--css-ltr");
-      this.elements.monthDayWrapper.prev.classList.add("--css-ltr");
-      this.elements.yearsWrapper.next.classList.add("--css-ltr");
-      this.elements.yearsWrapper.prev.classList.add("--css-ltr");
+      this.elements?.navigatorTitle.nextButton.classList.add("--css-ltr");
+      this.elements?.navigatorTitle.prevButton.classList.add("--css-ltr");
+      this.elements?.monthDayWrapper.next.classList.add("--css-ltr");
+      this.elements?.monthDayWrapper.prev.classList.add("--css-ltr");
+      this.elements?.yearsWrapper.next.classList.add("--css-ltr");
+      this.elements?.yearsWrapper.prev.classList.add("--css-ltr");
     } else if (direction == "rtl") {
-      this.elements.navigatorTitle.nextButton.classList.remove("--css-ltr");
-      this.elements.navigatorTitle.prevButton.classList.remove("--css-ltr");
-      this.elements.monthDayWrapper.next.classList.remove("--css-ltr");
-      this.elements.monthDayWrapper.prev.classList.remove("--css-ltr");
-      this.elements.yearsWrapper.next.classList.remove("--css-ltr");
-      this.elements.yearsWrapper.prev.classList.remove("--css-ltr");
+      this.elements?.navigatorTitle.nextButton.classList.remove("--css-ltr");
+      this.elements?.navigatorTitle.prevButton.classList.remove("--css-ltr");
+      this.elements?.monthDayWrapper.next.classList.remove("--css-ltr");
+      this.elements?.monthDayWrapper.prev.classList.remove("--css-ltr");
+      this.elements?.yearsWrapper.next.classList.remove("--css-ltr");
+      this.elements?.yearsWrapper.prev.classList.remove("--css-ltr");
     }
   }
   fillDayOfWeek() {
@@ -313,17 +313,19 @@ export class JBCalendarWebComponent extends JBBaseComponent {
     } finally {
       this.#isUpdatingCalendarData = false;
     }
-    this.elements.navigatorTitle.year.textContent = this.localizeString(this.data.selectedYear.toString());
-    this.#updateTitleMonth(this.data.selectedMonth);
-    this.elements.navigatorTitle.yearRange.textContent = this.localizeString(`${this.data.yearSelectionRange[0]} - ${this.data.yearSelectionRange[1]}`);
-    this.#renderActiveSection();
+    if(this.elements){
+      this.elements.navigatorTitle.year.textContent = this.localizeString(this.data.selectedYear.toString());
+      this.#updateTitleMonth(this.data.selectedMonth);
+      this.elements.navigatorTitle.yearRange.textContent = this.localizeString(`${this.data.yearSelectionRange[0]} - ${this.data.yearSelectionRange[1]}`);
+      this.#renderActiveSection();
+    }
   }
   callOnLoadEvent() {
     const event = new CustomEvent("load", { bubbles: true, composed: true });
     this.dispatchEvent(event);
   }
   callOnInitEvent() {
-    const event = new CustomEvent("init", { bubbles: true, composed: true });
+    const event = new CustomEvent("init", { bubbles: true, composed: false });
     this.dispatchEvent(event);
   }
   initWebComponent() {
@@ -454,7 +456,7 @@ export class JBCalendarWebComponent extends JBBaseComponent {
       const clientY = e.changedTouches[0].clientY;
       const deltaY = clientY - this.#swipeGestureData.daysWrapper.startY;
       this.#swipeGestureData.daysWrapper.startY = null;
-      this.elements.swipeupSymbol.classList.remove("--show");
+      this.elements?.swipeupSymbol.classList.remove("--show");
       this.elements.swipeupSymbol.style.transform = `translateY(${0}px)`;
       this.elements.swipeupSymbol.style.opacity = `0`;
       if (Math.abs(deltaY) > 70) {
@@ -522,11 +524,13 @@ export class JBCalendarWebComponent extends JBBaseComponent {
   }
   #updateTitleMonth(monthIndex: number) {
     const monthName = this.inputType == InputTypes.jalali ? this.#jalaliMonthList[monthIndex - 1] : this.#gregorianMonthList[monthIndex - 1];
-    this.elements.navigatorTitle.month.innerHTML = monthName;
+    this.elements.navigatorTitle.month.textContent = monthName;
   }
   createDataHandler() {
     const onYearChanged = (newYear: number) => {
-      this.elements.navigatorTitle.year.innerHTML = this.localizeString(newYear.toString());
+      if(this.elements){
+        this.elements.navigatorTitle.year.textContent = this.localizeString(newYear.toString());
+      }
       if (this.activeSection == "MONTH") this.#initMonthList(newYear);
     };
     const onMonthChanged = (newMonth: number) => {
@@ -534,7 +538,7 @@ export class JBCalendarWebComponent extends JBBaseComponent {
       this.fillMonthDays();
     };
     const onYearSelectionRangeChanged = (newRange: number[]) => {
-      this.elements.navigatorTitle.yearRange.innerHTML = this.localizeString(`${newRange[0]} - ${newRange[1]}`);
+      this.elements.navigatorTitle.yearRange.textContent = this.localizeString(`${newRange[0]} - ${newRange[1]}`);
       if (this.activeSection == "YEAR") this.#updateYearList([newRange[0], newRange[1]]);
     };
     const dataHandler = {
@@ -560,18 +564,22 @@ export class JBCalendarWebComponent extends JBBaseComponent {
     const restrictionHandler = {
       set: (obj: any, prop: string, value: Date | null) => {
         obj[prop] = value;
-        switch (prop) {
-          case "min":
-          case "max":
-            if (this.activeSection == "DAY") {
-              this.fillMonthDays();
-            } else if (this.activeSection == "MONTH") {
-              this.#initMonthList();
-            } else if (this.activeSection == "YEAR") {
-              this.#updateYearList();
-            }
-            break;
+        if (this.elements) {
+          // if dom connected and element initiated we update dom
+          switch (prop) {
+            case "min":
+            case "max":
+              if (this.activeSection == "DAY") {
+                this.fillMonthDays();
+              } else if (this.activeSection == "MONTH") {
+                this.#initMonthList();
+              } else if (this.activeSection == "YEAR") {
+                this.#updateYearList();
+              }
+              break;
+          }
         }
+
         return true;
       },
     };
@@ -711,7 +719,7 @@ export class JBCalendarWebComponent extends JBBaseComponent {
       });
       fragment.appendChild(dayDom);
     }
-    this.elements.monthDayWrapper[type].replaceChildren(fragment);
+    this.elements?.monthDayWrapper[type].replaceChildren(fragment);
   }
   fillMonthDays() {
     this.fillMonthDaysDom(this.data.selectedYear, this.data.selectedMonth, "current");
