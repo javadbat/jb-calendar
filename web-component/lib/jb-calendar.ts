@@ -202,7 +202,7 @@ export class JBCalendarWebComponent extends JBBaseComponent {
       this.#internals.role = "group";
       this.#internals.ariaLabel = dictionary.get(i18n, "calendar");
     }
-    this.initWebComponent();
+    this.#initWebComponent();
     this.initProps();
     this.initCalendar();
   }
@@ -211,7 +211,7 @@ export class JBCalendarWebComponent extends JBBaseComponent {
     this.#unsubscribeLocaleChange?.();
     this.#applyLocaleDefaults();
     this.#unsubscribeLocaleChange = i18n.subscribe(() => this.#applyLocaleDefaults());
-    this.callOnLoadEvent();
+    this.#callOnLoadEvent();
     this.refreshDirection();
   }
   static get observedAttributes() {
@@ -320,15 +320,15 @@ export class JBCalendarWebComponent extends JBBaseComponent {
       this.#renderActiveSection();
     }
   }
-  callOnLoadEvent() {
-    const event = new CustomEvent("load", { bubbles: true, composed: true });
+  #callOnLoadEvent() {
+    const event = new CustomEvent("load", { bubbles: true, composed: false });
     this.dispatchEvent(event);
   }
-  callOnInitEvent() {
+  #callOnInitEvent() {
     const event = new CustomEvent("init", { bubbles: true, composed: false });
     this.dispatchEvent(event);
   }
-  initWebComponent() {
+  #initWebComponent() {
     const shadowRoot = this.attachShadow({ mode: "open", serializable: true, clonable: true });
     registerDefaultVariables();
     const html = `<style>${CSS} ${VariableCSS}</style>\n${renderHTML()}`;
@@ -362,10 +362,10 @@ export class JBCalendarWebComponent extends JBBaseComponent {
       },
       swipeupSymbol: shadowRoot.querySelector(".swipe-up-symbol")!,
     };
-    this.registerEventHandlers();
+    this.#registerEventHandlers();
     window.matchMedia;
   }
-  registerEventHandlers() {
+  #registerEventHandlers() {
     this.elements.navigatorTitle.nextButton.addEventListener("click", this.onNextButtonClicked.bind(this));
     this.elements.navigatorTitle.prevButton.addEventListener("click", this.onPrevButtonClicked.bind(this));
     this.elements.navigatorTitle.year.addEventListener("click", this.onNavigatorTitleYearClicked.bind(this));
@@ -587,7 +587,7 @@ export class JBCalendarWebComponent extends JBBaseComponent {
   }
   initProps() {
     //default input type of this component is jalali
-    this.callOnInitEvent();
+    this.#callOnInitEvent();
   }
   selectToday() {
     const today = new Date();
