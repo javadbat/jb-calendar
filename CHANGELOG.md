@@ -1,5 +1,17 @@
 # Changelog
 
+
+## [6.1.7] - 2026-09-26
+
+### Changed
+
+- make some method intended to be private private.
+
+### Fixed
+
+- remove switch show all year text base on calendar type.(it's only base on language).
+- fix switch input type update year list
+
 ## [6.1.2] - 2026-09-16
 
 - fix before initialize prop setup

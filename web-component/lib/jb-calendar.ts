@@ -27,7 +27,7 @@ import { registerDefaultVariables } from "jb-core/theme";
 import { createDayDom, renderHTML, renderMonthList, renderYearList } from "./render";
 import { dictionary } from "./i18n";
 import { i18n } from "jb-core/i18n";
-import { getDefaultCalendarData, getEmptyValue } from "./constants";
+import { getDefaultCalendarData, getEmptyValue, getInitialCalendarData } from "./constants";
 export * from "./types.js";
 
 const InputTypes: { [key: string]: InputType } = {
@@ -95,11 +95,7 @@ export class JBCalendarWebComponent extends JBBaseComponent {
     this.createDateRestrictionHandler(),
   );
   data: JBCalendarData = new Proxy(
-    {
-      selectedYear: 0,
-      selectedMonth: 0,
-      yearSelectionRange: [0, 0],
-    },
+    getInitialCalendarData(),
     this.createDataHandler(),
   );
   private elements!: JBCalendarElements;
@@ -173,7 +169,7 @@ export class JBCalendarWebComponent extends JBBaseComponent {
   #setInputType(value: InputType) {
     if (this.#inputType == value && this.isConnected) return;
     this.#inputType = value;
-    this.onInputTypeChange();
+    this.#onInputTypeChange();
   }
   #showPersianNumber = i18n.locale.numberingSystem == "arabext";
   get showPersianNumber() {
@@ -254,7 +250,7 @@ export class JBCalendarWebComponent extends JBBaseComponent {
     }
   }
   initCalendarLayout() {
-    this.fillDayOfWeek();
+    this.#renderActiveSection();
     this.setCalendarData();
   }
   /**
@@ -303,17 +299,15 @@ export class JBCalendarWebComponent extends JBBaseComponent {
       if (this.inputType == InputTypes.jalali) {
         this.data.selectedYear = this.value.year || this.data.selectedYear || this.#defaultCalendarData.jalali.year;
         this.data.selectedMonth = this.value.month || this.data.selectedMonth || this.#defaultCalendarData.jalali.month;
-        this.elements.swipeupSymbol.querySelector(".swipe-up-text")!.textContent = "نمایش سال‌ها";
       } else {
         this.data.selectedYear = this.value.year || this.data.selectedYear || this.#defaultCalendarData.gregorian.year;
         this.data.selectedMonth = this.value.month || this.data.selectedMonth || this.#defaultCalendarData.gregorian.month;
-        this.elements.swipeupSymbol.querySelector(".swipe-up-text")!.textContent = "show years";
       }
       this.data.yearSelectionRange = [this.data.selectedYear - 4, this.data.selectedYear + 7];
     } finally {
       this.#isUpdatingCalendarData = false;
     }
-    if(this.elements){
+    if (this.elements) {
       this.elements.navigatorTitle.year.textContent = this.localizeString(this.data.selectedYear.toString());
       this.#updateTitleMonth(this.data.selectedMonth);
       this.elements.navigatorTitle.yearRange.textContent = this.localizeString(`${this.data.yearSelectionRange[0]} - ${this.data.yearSelectionRange[1]}`);
@@ -366,10 +360,10 @@ export class JBCalendarWebComponent extends JBBaseComponent {
     window.matchMedia;
   }
   #registerEventHandlers() {
-    this.elements.navigatorTitle.nextButton.addEventListener("click", this.onNextButtonClicked.bind(this));
-    this.elements.navigatorTitle.prevButton.addEventListener("click", this.onPrevButtonClicked.bind(this));
-    this.elements.navigatorTitle.year.addEventListener("click", this.onNavigatorTitleYearClicked.bind(this));
-    this.elements.navigatorTitle.month.addEventListener("click", this.onNavigatorTitleMonthClicked.bind(this));
+    this.elements.navigatorTitle.nextButton.addEventListener("click", this.#onNextButtonClicked.bind(this));
+    this.elements.navigatorTitle.prevButton.addEventListener("click", this.#onPrevButtonClicked.bind(this));
+    this.elements.navigatorTitle.year.addEventListener("click", this.#onNavigatorTitleYearClicked.bind(this));
+    this.elements.navigatorTitle.month.addEventListener("click", this.#onNavigatorTitleMonthClicked.bind(this));
     //add support for swiping
     this.elements.selectionSections.day.addEventListener("touchstart", this.onDayWrapperTouchStart.bind(this));
     this.elements.selectionSections.day.addEventListener("touchmove", this.onDayWrapperTouchMove.bind(this));
@@ -437,12 +431,12 @@ export class JBCalendarWebComponent extends JBBaseComponent {
           this.elements.monthDayWrapper.current.style.transform = `translateX(${0}px)`;
           this.elements.monthDayWrapper.prev.style.transform = `translateX(${0}px)`;
           this.elements.monthDayWrapper.next.style.transform = `translateX(${0}px)`;
-          this.onPrevButtonClicked();
+          this.#onPrevButtonClicked();
         } else {
           this.elements.monthDayWrapper.current.style.transform = `translateX(${0}px)`;
           this.elements.monthDayWrapper.prev.style.transform = `translateX(${0}px)`;
           this.elements.monthDayWrapper.next.style.transform = `translateX(${0}px)`;
-          this.onNextButtonClicked();
+          this.#onNextButtonClicked();
         }
       } else {
         this.moveBackToPos(this.elements.monthDayWrapper.current);
@@ -497,12 +491,12 @@ export class JBCalendarWebComponent extends JBBaseComponent {
           this.elements.yearsWrapper.current.style.transform = `translateX(${0}px)`;
           this.elements.yearsWrapper.prev.style.transform = `translateX(${0}px)`;
           this.elements.yearsWrapper.next.style.transform = `translateX(${0}px)`;
-          this.onPrevButtonClicked();
+          this.#onPrevButtonClicked();
         } else {
           this.elements.yearsWrapper.current.style.transform = `translateX(${0}px)`;
           this.elements.yearsWrapper.prev.style.transform = `translateX(${0}px)`;
           this.elements.yearsWrapper.next.style.transform = `translateX(${0}px)`;
-          this.onNextButtonClicked();
+          this.#onNextButtonClicked();
         }
       } else {
         this.moveBackToPos(this.elements.yearsWrapper.current);
@@ -528,7 +522,7 @@ export class JBCalendarWebComponent extends JBBaseComponent {
   }
   createDataHandler() {
     const onYearChanged = (newYear: number) => {
-      if(this.elements){
+      if (this.elements) {
         this.elements.navigatorTitle.year.textContent = this.localizeString(newYear.toString());
       }
       if (this.activeSection == "MONTH") this.#initMonthList(newYear);
@@ -638,12 +632,16 @@ export class JBCalendarWebComponent extends JBBaseComponent {
     });
   }
   #renderActiveSection() {
-    if (this.activeSection == "DAY") {
-      this.fillMonthDays();
-    } else if (this.activeSection == "MONTH") {
-      this.#initMonthList();
-    } else {
-      this.#updateYearList();
+    switch (this.activeSection) {
+      case "DAY":
+        this.fillDayOfWeek();
+        break;
+      case "MONTH":
+        this.#initMonthList();
+        break;
+      case "YEAR":
+        this.#updateYearList();
+        break;
     }
   }
   #getDate(year: number, month: number, day: number): Date {
@@ -715,7 +713,7 @@ export class JBCalendarWebComponent extends JBBaseComponent {
         isSelected,
         isDisable,
         localizedDayNumber: this.localizeString(i.toString()),
-        onSelect: (selectedYear, selectedMonth, dayNumber) => this.onDayClicked(selectedYear, selectedMonth, dayNumber),
+        onSelect: (selectedYear, selectedMonth, dayNumber) => this.#onDayClicked(selectedYear, selectedMonth, dayNumber),
       });
       fragment.appendChild(dayDom);
     }
@@ -771,12 +769,12 @@ export class JBCalendarWebComponent extends JBBaseComponent {
     dayDom.part.add("empty-day");
     return dayDom;
   }
-  onDayClicked(year: number, month: number, dayNumber: number) {
+  #onDayClicked(year: number, month: number, dayNumber: number) {
     this.select(year, month, dayNumber);
     const event = new CustomEvent("select");
     this.dispatchEvent(event);
   }
-  onNextButtonClicked() {
+  #onNextButtonClicked() {
     if (this.activeSection == "DAY") {
       const selectedMonth = this.data.selectedMonth;
       if (selectedMonth < 12) {
@@ -796,7 +794,7 @@ export class JBCalendarWebComponent extends JBBaseComponent {
     }
   }
 
-  onPrevButtonClicked() {
+  #onPrevButtonClicked() {
     if (this.activeSection == "DAY") {
       const selectedMonth = this.data.selectedMonth;
       if (selectedMonth > 1) {
@@ -818,20 +816,23 @@ export class JBCalendarWebComponent extends JBBaseComponent {
       }
     }
   }
-  onNavigatorTitleYearClicked() {
+  #onNavigatorTitleYearClicked() {
     if (this.activeSection == "DAY" || this.activeSection == "MONTH") {
       this.activeSection = "YEAR";
     }
   }
-  onNavigatorTitleMonthClicked() {
+  #onNavigatorTitleMonthClicked() {
     if (this.activeSection == "DAY") {
       this.activeSection = "MONTH";
     }
   }
-  onInputTypeChange() {
+  #onInputTypeChange() {
+    this.data.selectedYear = getInitialCalendarData().selectedYear;
+    this.data.selectedMonth = getInitialCalendarData().selectedMonth;
+    this.data.yearSelectionRange = getInitialCalendarData().yearSelectionRange;
     // when date input type change this function get called
     this.setCalendarData();
-    this.fillDayOfWeek();
+    this.#renderActiveSection();
   }
   localizeString(string: string): string {
     if (this.showPersianNumber) {

@@ -17,3 +17,9 @@ export const getDefaultCalendarData = () => ({
     month: getMonth(today) + 1,
   },
 });
+
+export const getInitialCalendarData = () => ({
+  selectedYear: 0,
+  selectedMonth: 0,
+  yearSelectionRange: [0, 0] satisfies [number, number],
+});
