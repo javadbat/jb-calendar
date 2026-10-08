@@ -17,7 +17,7 @@
     "jalali",
     "web component"
   ],
-  "version": "6.1.7",
+  "version": "6.2.0",
   "bugs": "https://github.com/javadbat/jb-calendar/issues",
   "license": "MIT",
   "files": [
@@ -52,8 +52,8 @@
   "dependencies": {
     "date-fns": "^4.4.0",
     "date-fns-jalali": "^4.4.0-0",
-    "jb-core": "^0.37.0",
-    "jb-icons": "^2.5.0",
-    "jb-button": "^5.1.1"
+    "jb-core": "^0.38.0",
+    "jb-icons": "^2.6.0",
+    "jb-button": "^5.2.1"
   }
 }

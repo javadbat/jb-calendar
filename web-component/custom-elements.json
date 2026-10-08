@@ -420,6 +420,10 @@
             {
               "name": "--jb-calendar-year-button-border-radius",
               "description": "Year button border radius."
+            },
+            {
+              "name": "--jb-calendar-corner-shape",
+              "description": "Corner shape for calendar elements."
             }
           ]
         }

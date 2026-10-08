@@ -1,6 +1,7 @@
 :host{
   /* Size */
   --day-button-border-radius: var(--jb-calendar-day-button-border-radius, var(--jb-radius-sm));
+  
   /* Theme/Color */
   --color: var(--jb-calendar-color,var(--jb-content-primary));
   --arrow-fill-color: var(--jb-calendar-arrow-fill-color, var(--jb-neutral-6));
@@ -16,6 +17,9 @@
   --status-point-bg-color-today: var(--jb-calendar-status-point-bg-color-today, var(--jb-green));
   --status-point-border-color: var(--jb-calendar-status-point-border-color, var(--jb-surface-primary));
   --swipe-up-icon-color: var(--jb-calendar-arrow-fill-color, var(--arrow-fill-color));
+
+  /*Others*/
+  --corner-shape: var(--jb-calendar-corner-shape, var(--jb-corner-shape, round));
 
   /* Capture inherited jb-button theme values before picker items apply optional overrides. */
   --month-button-border-radius: var(--jb-calendar-month-button-border-radius);

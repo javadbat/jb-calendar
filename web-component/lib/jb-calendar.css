@@ -172,7 +172,7 @@
                             height: 2rem;
                             border-radius: var( --day-button-border-radius);
                             color:var(--day-text-color);
-                            
+                            corner-shape: var(--corner-shape);
                             display: flex;
                             align-items: center;
                             justify-content: center;
